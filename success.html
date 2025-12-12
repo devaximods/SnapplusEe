@@ -6,9 +6,11 @@
     <title>Activation réussie !</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
-        body{background:#000;color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;font-family:'Inter',sans-serif;overflow:hidden;}
+        *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
+        body{background:#000;color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;overflow:hidden;}
         .card{background:#111;border-radius:28px;padding:60px 30px;text-align:center;box-shadow:0 20px 60px rgba(0,255,136,0.2);max-width:420px;width:100%;}
-        .icon{font-size:6em;margin-bottom:30px;color:#00ff88;}
+        .icon{font-size:6em;margin-bottom:30px;color:#00ff88;animation:bounce 2s infinite;}
+        @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}
         h1{font-size:2.8em;font-weight:700;color:#fff;margin-bottom:20px;}
         .service{font-size:1.8em;color:#00ff88;margin:20px 0;font-weight:600;}
         .plan{font-size:1.6em;color:#fff;margin:20px 0;}
@@ -33,21 +35,38 @@
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script>
+        // Récupère le service et le plan
         const service = localStorage.getItem('selectedService') || 'Service';
         const plan = localStorage.getItem('selectedPlan') || 'Plan';
 
         document.getElementById('service').textContent = service;
         document.getElementById('plan').textContent = plan;
 
-        confetti({
-            particleCount: 300,
-            spread: 100,
-            origin: { y: 0.6 },
-            colors: ['#00ff88', '#00ffaa', '#fff']
-        });
+        // Confettis de ouf
+        const end = Date.now() + 5 * 1000;
+        const colors = ['#00ff88', '#00ffaa', '#fff'];
+
+        (function frame() {
+            confetti({
+                particleCount: 5,
+                angle: 60,
+                spread: 55,
+                origin: { x: 0 }
+            });
+            confetti({
+                particleCount: 5,
+                angle: 120,
+                spread: 55,
+                origin: { x: 1 }
+            });
+
+            if (Date.now() < end) {
+                requestAnimationFrame(frame);
+            }
+        }());
 
         function share() {
-            const text = `Yo j’ai eu ${service} ${plan} GRATUIT ! Viens : ${window.location.origin}`;
+            const text = `Yo j’ai eu ${service} ${plan} GRATUIT en 30s ! Viens : ${window.location.origin}`;
             if (navigator.share) {
                 navigator.share({title: 'Offre Gratuite', text: text, url: window.location.origin});
             } else {
