@@ -3,87 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Choisis ton plan Premium</title>
+    <title>Choisis ton plan Netflix Premium</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
-        body{background:#000;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;}
-        .container{max-width:600px;width:100%;}
-        .back-button{color:#fffc00;text-decoration:none;margin-bottom:30px;font-size:1.1em;display:inline-block;}
-        .card{background:#111;border-radius:25px;padding:40px;box-shadow:0 20px 60px rgba(255,252,0,0.2);border:1px solid #333;}
-        .header{text-align:center;margin-bottom:40px;}
-        .icon{width:80px;height:80px;background:#fffc00;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2.5em;margin:0 auto 20px;color:#000;}
-        h1{font-size:2em;color:#fffc00;margin-bottom:10px;}
-        p{color:#aaa;font-size:1.05em;}
-        .summary{background:#1a1a1a;border-radius:15px;padding:25px;margin-bottom:30px;border:1px solid #333;}
-        h2{font-size:1.3em;color:#fffc00;margin-bottom:20px;text-align:center;}
-        .plans-grid{display:grid;grid-template-columns:1fr;gap:15px;}
-        .plan-card{background:#222;padding:20px;border-radius:12px;cursor:pointer;transition:0.3s;border:2px solid transparent;position:relative;}
-        .plan-card:hover{border-color:#fffc00;}
-        .plan-card.selected{border-color:#00ff00;background:#003300;}
-        .plan-duration{font-weight:bold;color:#fffc00;font-size:1.4em;}
-        .plan-price{font-size:1.8em;color:#00ff00;margin:10px 0;}
-        .plan-requirement{color:#aaa;font-size:0.9em;}
-        .select-btn{background:#fffc00;color:#000;padding:15px;border-radius:50px;font-weight:bold;margin-top:20px;width:100%;border:none;cursor:pointer;transition:0.3s;}
-        .select-btn:hover{background:#fff;}
-        .error{color:#ff3300;margin-top:10px;text-align:center;font-weight:bold;}
+        *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+        body{background:#000;color:#fff;min-height:100vh;display:flex;flex-direction:column;}
+        header{background:#141414;padding:20px;text-align:center;position:relative;}
+        .back-btn{position:absolute;left:20px;top:20px;color:#fff;text-decoration:none;font-size:1.5em;}
+        h1{color:#E50914;font-size:2.5em;font-weight:700;margin:20px 0;}
+        .container{max-width:900px;margin:0 auto;padding:20px;}
+        .plans-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;}
+        .plan-card{background:#141414;border-radius:20px;overflow:hidden;position:relative;transition:0.4s;box-shadow:0 10px 30px rgba(229,9,20,0.3);cursor:pointer;}
+        .plan-card:hover{transform:translateY(-20px);box-shadow:0 20px 60px rgba(229,9,20,0.5);}
+        .badge{position:absolute;top:20px;right:20px;padding:10px 20px;border-radius:50px;font-weight:bold;font-size:0.9em;z-index:10;}
+        .badge.popular{background:#FFD700;color:#000;}
+        .badge.best{background:#FF4500;color:#fff;}
+        .plan-header{padding:50px 20px;text-align:center;background:linear-gradient(135deg,#221f1f,#000);}
+        .plan-title{font-size:2em;color:#fff;margin-bottom:15px;}
+        .plan-price{position:relative;font-size:3.5em;color:#E50914;font-weight:700;}
+        .plan-price .old{text-decoration:line-through;color:#666;font-size:0.4em;position:absolute;top:15px;left:50%;transform:translateX(-50%);}
+        .plan-price .free{font-size:0.5em;color:#00ff00;font-weight:bold;margin-left:10px;}
+        .plan-features{padding:30px 20px;list-style:none;}
+        .plan-features li{color:#aaa;margin:18px 0;display:flex;align-items:center;gap:15px;font-size:1.1em;}
+        .plan-features li:before{content:'✓';color:#00ff00;font-size:1.3em;font-weight:bold;}
+        .plan-btn{background:#E50914;color:#fff;padding:20px;border:none;border-radius:50px;font-size:1.3em;font-weight:bold;cursor:pointer;transition:0.3s;margin:30px 20px 20px;}
+        .plan-btn:hover{background:#fff;color:#E50914;}
     </style>
 </head>
 <body>
+    <header>
+        <a href="index.html" class="back-btn">←</a>
+        <h1>Choisis ton plan gratuit</h1>
+    </header>
+
     <div class="container">
-        <a href="index.html" class="back-button">← Retour</a>
-        
-        <div class="card">
-            <div class="header">
-                <div class="icon">🎁</div>
-                <h1>Choisis ton plan gratuit</h1>
-                <p>Offre exclusive 2025</p>
+        <div class="plans-grid">
+            <!-- Basique -->
+            <div class="plan-card" onclick="activatePlan('Basique')">
+                <div class="plan-header">
+                    <div class="plan-title">Offre Basique</div>
+                    <div class="plan-price">
+                        <span class="old">9,99€/mois</span><br>
+                        GRATUIT
+                    </div>
+                </div>
+                <ul class="plan-features">
+                    <li>Accès complet Netflix</li>
+                    <li>Qualité HD</li>
+                    <li>1 appareil simultané</li>
+                    <li>Sans publicité</li>
+                </ul>
+                <button class="plan-btn">Activer gratuitement</button>
             </div>
 
-            <div class="summary">
-                <h2 id="summaryService">-</h2>
+            <!-- Premium (Populaire) -->
+            <div class="plan-card" onclick="activatePlan('Premium')">
+                <div class="badge popular">Populaire</div>
+                <div class="plan-header">
+                    <div class="plan-title">Offre Premium</div>
+                    <div class="plan-price">
+                        <span class="old">19,99€/mois</span><br>
+                        GRATUIT
+                    </div>
+                </div>
+                <ul class="plan-features">
+                    <li>Tout de l'offre Basique</li>
+                    <li>Qualité 4K Ultra HD + HDR</li>
+                    <li>4 appareils simultanés</li>
+                    <li>Téléchargement illimité</li>
+                    <li>Support prioritaire 24/7</li>
+                </ul>
+                <button class="plan-btn">Activer gratuitement</button>
             </div>
 
-            <div class="plans-grid">
-                <div class="plan-card" onclick="selectPlan('3 mois', 'Gratuit', 'Vérification SMS')">
-                    <div class="plan-duration">3 mois</div>
-                    <div class="plan-price">GRATUIT</div>
-                    <div class="plan-requirement">Vérification SMS rapide</div>
+            <!-- Famille (Meilleur choix) -->
+            <div class="plan-card" onclick="activatePlan('Famille')">
+                <div class="badge best">Meilleur choix 🔥</div>
+                <div class="plan-header">
+                    <div class="plan-title">Offre Famille</div>
+                    <div class="plan-price">
+                        <span class="old">29,99€/mois</span><br>
+                        GRATUIT À VIE
+                    </div>
                 </div>
-                <div class="plan-card" onclick="selectPlan('6 mois', 'Gratuit', 'Partage à 10 amis')">
-                    <div class="plan-duration">6 mois</div>
-                    <div class="plan-price">GRATUIT</div>
-                    <div class="plan-requirement">Partage à 10 amis</div>
-                </div>
-                <div class="plan-card" onclick="selectPlan('1 an', 'Gratuit à vie', 'Partage à 50 amis')">
-                    <div class="plan-duration">1 an</div>
-                    <div class="plan-price">GRATUIT À VIE</div>
-                    <div class="plan-requirement">Partage à 50 amis</div>
-                </div>
+                <ul class="plan-features">
+                    <li>Tout de l'offre Premium</li>
+                    <li>6 appareils simultanés</li>
+                    <li>Profils illimités</li>
+                    <li>Accès anticipé aux nouveautés</li>
+                    <li>Cadeaux exclusifs Netflix</li>
+                </ul>
+                <button class="plan-btn">Activer gratuitement</button>
             </div>
-
-            <div id="error" class="error"></div>
-            <button class="select-btn" onclick="goToVerify()">ACTIVER CE PLAN</button>
         </div>
     </div>
 
     <script>
-        const selectedService = localStorage.getItem('selectedService') || 'Service';
-        document.getElementById('summaryService').textContent = selectedService;
-
-        let selectedPlan = {};
-        function selectPlan(duration, price, requirement) {
-            selectedPlan = {duration, price, requirement};
-            localStorage.setItem('selectedPlan', JSON.stringify(selectedPlan));
-            document.querySelectorAll('.plan-card').forEach(card => card.classList.remove('selected'));
-            event.target.closest('.plan-card').classList.add('selected');
-        }
-
-        function goToVerify() {
-            if (!selectedPlan.duration) {
-                document.getElementById('error').textContent = 'Choisis un plan d’abord !';
-                return;
-            }
-            window.location.href = 'verification.html';
+        function activatePlan(plan) {
+            localStorage.setItem('selectedPlan', plan);
+            window.location.href = 'verify-phone.html';
         }
     </script>
 </body>
