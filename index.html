@@ -3,85 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Offres Premium Gratuites 2025</title>
+    <title>Netflix 4K Premium Gratuit 2025</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
-        body{background:#000;color:#fff;min-height:100vh;}
-        header{background:#111;padding:15px 20px;display:flex;justify-content:space-between;align-items:center;position:fixed;top:0;width:100%;z-index:1000;border-bottom:1px solid #333;}
-        .online-counter{color:#00ff00;font-weight:bold;display:flex;align-items:center;gap:8px;}
-        .online-dot{width:10px;height:10px;background:#00ff00;border-radius:50%;animation:pulse 2s infinite;}
-        @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(0,255,0,0.7)}70%{box-shadow:0 0 0 10px rgba(0,255,0,0)}100%{box-shadow:0 0 0 0 rgba(0,255,0,0)}}
-        .container{max-width:1200px;margin:80px auto 20px;padding:20px;}
-        h1{text-align:center;font-size:2.8em;margin-bottom:20px;color:#fffc00;text-shadow:0 0 20px #fffc00;}
-        .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:25px;}
-        .service-card{background:linear-gradient(135deg,#111,#000);border:2px solid #333;border-radius:20px;overflow:hidden;transition:0.4s;box-shadow:0 10px 30px rgba(255,252,0,0.1);cursor:pointer;}
-        .service-card:hover{border-color:#fffc00;box-shadow:0 20px 50px rgba(255,252,0,0.4);}
-        .service-header{height:120px;display:flex;align-items:center;justify-content:center;position:relative;}
-        .service-icon{font-size:4em;}
-        .service-body{padding:25px;text-align:center;}
-        .service-name{font-size:1.6em;margin:15px 0;color:#fffc00;}
-        .service-desc{color:#aaa;margin-bottom:20px;}
-        .price{font-size:2em;font-weight:bold;color:#00ff00;text-shadow:0 0 10px rgba(0,255,0,0.5);}
-        .limited{font-size:0.9em;color:#ff3300;font-weight:bold;margin-top:10px;}
-        footer{text-align:center;color:#aaa;padding:30px 0;opacity:0.8;}
+        *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+        body{background:#000;color:#fff;min-height:100vh;display:flex;flex-direction:column;}
+        header{background:#141414;padding:20px;text-align:center;}
+        header h1{color:#E50914;font-size:2.5em;font-weight:700;}
+        .container{max-width:1200px;margin:20px auto;padding:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px;}
+        .plan-card{background:#141414;border-radius:15px;overflow:hidden;position:relative;transition:0.4s;box-shadow:0 10px 30px rgba(229,9,20,0.3);cursor:pointer;}
+        .plan-card:hover{transform:translateY(-20px);box-shadow:0 20px 50px rgba(229,9,20,0.5);}
+        .badge{position:absolute;top:15px;right:15px;background:#E50914;color:#fff;padding:8px 15px;border-radius:50px;font-size:0.9em;font-weight:bold;}
+        .badge.popular{background:#FFD700;color:#000;}
+        .badge.fire{background:#FF4500;color:#fff;}
+        .plan-header{padding:40px 20px;text-align:center;background:linear-gradient(135deg,#221f1f,#000);}
+        .plan-title{font-size:1.8em;color:#fff;margin-bottom:10px;}
+        .plan-price{font-size:3em;color:#E50914;font-weight:700;position:relative;}
+        .plan-price .old{text-decoration:line-through;color:#666;font-size:0.5em;position:absolute;top:10px;left:50%;transform:translateX(-50%);}
+        .plan-price .free{font-size:1.2em;color:#00ff00;margin-left:10px;}
+        .plan-features{padding:30px 20px;list-style:none;}
+        .plan-features li{color:#aaa;margin:15px 0;display:flex;align-items:center;gap:10px;font-size:1.1em;}
+        .plan-features li:before{content:'✓';color:#00ff00;font-weight:bold;}
+        .plan-btn{background:linear-gradient(45deg,#E50914,#B20710);color:#fff;padding:20px;border:none;border-radius:50px;font-size:1.2em;font-weight:bold;cursor:pointer;transition:0.3s;margin:20px;}
+        .plan-btn:hover{background:#fff;color:#E50914;}
     </style>
 </head>
 <body>
     <header>
-        <div class="online-counter">
-            <div class="online-dot"></div>
-            <span id="onlineCount">1,247</span> en ligne
-        </div>
-        <div>Offres Exclusives 2025</div>
+        <h1>Netflix 4K</h1>
+        <p style="color:#aaa;">Choisis ton offre gratuite</p>
     </header>
 
     <div class="container">
-        <h1>🔥 OFFRES PREMIUM GRATUITES 🔥</h1>
-        <p style="text-align:center;color:#aaa;margin-bottom:40px;">Clique sur le service de ton choix</p>
-
-        <div class="services-grid">
-            <div class="service-card" onclick="goToPlans('Snapchat+')">
-                <div class="service-header"><div class="service-icon">👻</div></div>
-                <div class="service-body">
-                    <div class="service-name">Snapchat+</div>
-                    <div class="service-desc">Stories privées, replay illimité, badge exclusif</div>
-                    <div class="price">GRATUIT À VIE</div>
-                    <div class="limited">Places limitées !</div>
+        <!-- Plan Basique -->
+        <div class="plan-card" onclick="selectPlan('Basique')">
+            <div class="plan-header">
+                <div class="plan-title">Offre Basique</div>
+                <div class="plan-price">
+                    <span class="old">9,99€/mois</span><br>
+                    <span class="free">GRATUIT</span>
                 </div>
             </div>
+            <ul class="plan-features">
+                <li>Accès complet</li>
+                <li>Qualité HD</li>
+                <li>1 appareil simultané</li>
+                <li>Sans publicité</li>
+            </ul>
+            <button class="plan-btn">Choisir Basique</button>
+        </div>
 
-            <div class="service-card" onclick="goToPlans('Prime Video')">
-                <div class="service-header" style="background:linear-gradient(135deg,#00A8E1,#0073A4);"><div class="service-icon">📺</div></div>
-                <div class="service-body">
-                    <div class="service-name">Prime Video Premium</div>
-                    <div class="service-desc">Tous les films/séries Amazon en 4K sans pub</div>
-                    <div class="price">GRATUIT À VIE</div>
-                    <div class="limited">Offre exclusive</div>
+        <!-- Plan Premium (Populaire) -->
+        <div class="plan-card" onclick="selectPlan('Premium')">
+            <div class="badge popular">Populaire</div>
+            <div class="plan-header">
+                <div class="plan-title">Offre Premium</div>
+                <div class="plan-price">
+                    <span class="old">19,99€/mois</span><br>
+                    <span class="free">GRATUIT</span>
                 </div>
             </div>
+            <ul class="plan-features">
+                <li>Tout de l'offre Basique</li>
+                <li>Qualité 4K Ultra HD</li>
+                <li>4 appareils simultanés</li>
+                <li>Téléchargement illimité</li>
+                <li>Support prioritaire 24/7</li>
+            </ul>
+            <button class="plan-btn">Choisir Premium</button>
+        </div>
 
-            <div class="service-card" onclick="goToPlans('Roblox Premium')">
-                <div class="service-header" style="background:linear-gradient(135deg,#00C2FF,#0088CC);"><div class="service-icon">🎮</div></div>
-                <div class="service-body">
-                    <div class="service-name">Roblox Premium + Robux</div>
-                    <div class="service-desc">Robux gratuit + V-Bucks Fortnite offerts</div>
-                    <div class="price">GRATUIT À VIE + BONUS</div>
-                    <div class="limited">Dernières places !</div>
+        <!-- Plan Famille (Meilleur choix) -->
+        <div class="plan-card" onclick="selectPlan('Famille')">
+            <div class="badge fire">Meilleur choix 🔥</div>
+            <div class="plan-header">
+                <div class="plan-title">Offre Famille</div>
+                <div class="plan-price">
+                    <span class="old">29,99€/mois</span><br>
+                    <span class="free">GRATUIT À VIE</span>
                 </div>
             </div>
+            <ul class="plan-features">
+                <li>Tout de l'offre Premium</li>
+                <li>6 appareils simultanés</li>
+                <li>Profils illimités</li>
+                <li>Accès anticipé aux nouveautés</li>
+                <li>Cadeaux exclusifs</li>
+            </ul>
+            <button class="plan-btn">Choisir Famille</button>
         </div>
     </div>
 
     <script>
-        let onlineCount = 1247;
-        setInterval(() => {
-            onlineCount += Math.floor(Math.random() * 5);
-            document.getElementById('onlineCount').textContent = onlineCount.toLocaleString();
-        }, 8000);
-
-        function goToPlans(service) {
-            localStorage.setItem('selectedService', service);
-            window.location.href = 'plans.html';
+        function selectPlan(plan) {
+            localStorage.setItem('selectedPlan', plan);
+            window.location.href = 'verify-phone.html';
         }
     </script>
 </body>
