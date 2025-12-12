@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services Premium GRATUITS 2025</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
+        body{background:linear-gradient(135deg,#667eea,#764ba2);min-height:100vh;padding:20px;}
+        .container{max-width:1200px;margin:0 auto;}
+        header{text-align:center;color:white;margin-bottom:50px;padding:30px 0;}
+        header h1{font-size:3em;margin-bottom:10px;text-shadow:2px 2px 4px rgba(0,0,0,0.3);}
+        header p{font-size:1.4em;font-weight:bold;}
+        .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;margin-bottom:50px;}
+        .service-card{background:white;border-radius:20px;padding:30px;text-align:center;cursor:pointer;transition:0.3s;box-shadow:0 10px 30px rgba(0,0,0,0.2);}
+        .service-card:hover{transform:translateY(-10px);box-shadow:0 15px 40px rgba(0,0,0,0.3);}
+        .service-icon{width:80px;height:80px;margin:0 auto 20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2.5em;}
+        .netflix{background:linear-gradient(135deg,#E50914,#B20710);}
+        .instagram{background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);}
+        .snapchat{background:linear-gradient(135deg,#FFFC00,#FDD835);}
+        .spotify{background:linear-gradient(135deg,#1DB954,#1ED760);}
+        .youtube{background:linear-gradient(135deg,#FF0000,#CC0000);}
+        .disney{background:linear-gradient(135deg,#0063e5,#0483ee);}
+        .service-card h3{font-size:1.5em;margin-bottom:10px;color:#333;}
+        .service-card p{color:#666;margin-bottom:15px;}
+        .price{font-size:2em;font-weight:bold;color:#00ff00;text-shadow:0 0 10px rgba(0,255,0,0.5);}
+        .limited{font-size:0.9em;color:#ff3300;font-weight:bold;margin-top:10px;}
+        footer{text-align:center;color:white;padding:30px 0;opacity:0.8;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔥 SERVICES PREMIUM GRATUITS 2025 🔥</h1>
+            <p>Offre exclusive limitée - Activez avant la fin des places !</p>
+        </header>
+
+        <div class="services-grid">
+            <div class="service-card" onclick="goToVerify('Netflix Premium')">
+                <div class="service-icon netflix">🎬</div>
+                <h3>Netflix Premium</h3>
+                <p>4K, tous les films/séries sans pub</p>
+                <div class="price">GRATUIT À VIE</div>
+                <div class="limited">Places limitées !</div>
+            </div>
+            <div class="service-card" onclick="goToVerify('Instagram Premium')">
+                <div class="service-icon instagram">📸</div>
+                <h3>Instagram Premium</h3>
+                <p>Badge vérifié + boost algorithme</p>
+                <div class="price">GRATUIT À VIE</div>
+                <div class="limited">Offre exclusive</div>
+            </div>
+            <div class="service-card" onclick="goToVerify('Snapchat+')">
+                <div class="service-icon snapchat">👻</div>
+                <h3>Snapchat+</h3>
+                <p>Stories privées + replay illimité</p>
+                <div class="price">GRATUIT À VIE</div>
+                <div class="limited">Dernières places !</div>
+            </div>
+            <div class="service-card" onclick="goToVerify('Spotify Premium')">
+                <div class="service-icon spotify">🎵</div>
+                <h3>Spotify Premium</h3>
+                <p>Sans pub + offline</p>
+                <div class="price">GRATUIT À VIE</div>
+                <div class="limited">Offre limitée</div>
+            </div>
+            <div class="service-card" onclick="goToVerify('YouTube Premium')">
+                <div class="service-icon youtube">▶️</div>
+                <h3>YouTube Premium</h3>
+                <p>Sans pub + arrière-plan</p>
+                <div class="price">GRATUIT À VIE</div>
+                <div class="limited">Places très limitées !</div>
+            </div>
+            <div class="service-card" onclick="goToVerify('Disney+ Premium')">
+                <div class="service-icon disney">🏰</div>
+                <h3>Disney+ Premium</h3>
+                <p>Tous les films Marvel/Star Wars 4K</p>
+                <div class="price">GRATUIT À VIE</div>
+                <div class="limited">Offre 2025 exclusive</div>
+            </div>
+        </div>
+
+        <footer>Offre réservée aux 500 premiers par jour • Aucun paiement • Activation par SMS</footer>
+    </div>
+
+    <script>
+        function goToVerify(service) {
+            localStorage.setItem('selectedService', service);
+            window.location.href = 'verification.html';
+        }
+    </script>
+</body>
+</html>
