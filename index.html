@@ -3,93 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Choisis ton plan – GRATUIT</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+    <title>Offres Premium Gratuites 2025</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;800&display=swap" rel="stylesheet">
     <style>
         *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-        body{background:#000;color:#fff;min-height:100vh;display:flex;flex-direction:column;overflow:hidden;}
-        header{background:#111;padding:20px;text-align:center;position:relative;}
-        .back{position:absolute;left:20px;top:20px;color:#fffc00;text-decoration:none;font-size:1.5em;}
-        h1{color:#fffc00;font-size:2.5em;margin:20px 0;}
-        .container{max-width:420px;margin:0 auto;padding:20px;flex:1;display:flex;flex-direction:column;gap:25px;}
-        .service-title{text-align:center;color:#fffc00;font-size:2em;margin-bottom:20px;}
-        .plan{background:#111;border:2px solid #333;border-radius:20px;padding:35px;text-align:center;transition:0.4s;position:relative;overflow:hidden;cursor:pointer;flex:1;display:flex;flex-direction:column;justify-content:space-between;}
-        .plan:hover{border-color:#fffc00;transform:scale(1.05);}
-        .plan.locked{opacity:0.5;cursor:not-allowed;}
-        .locked-badge{background:#ff3300;color:#fff;padding:8px 16px;border-radius:50px;font-size:0.9em;font-weight:bold;margin-top:10px;display:inline-block;}
-        .plan-title{font-size:2em;margin:20px 0;color:#fffc00;}
-        .plan-price{font-size:3em;color:#00ff00;font-weight:700;position:relative;}
-        .plan-price .old{text-decoration:line-through;color:#666;font-size:0.4em;position:absolute;top:10px;left:50%;transform:translateX(-50%);}
-        .features{list-style:none;padding:20px 0;flex:1;}
-        .features li{color:#aaa;margin:15px 0;display:flex;align-items:center;justify-content:center;gap:10px;font-size:1.1em;}
-        .features li:before{content:'✓';color:#00ff00;font-weight:bold;}
-        .btn{background:#fffc00;color:#000;padding:20px;border-radius:50px;font-size:1.4em;font-weight:bold;margin-top:auto;border:none;transition:0.3s;}
-        .btn:hover{background:#fff;}
-        .btn.locked{background:#444;cursor:not-allowed;}
+        body{background:#000;color:#fff;min-height:100vh;overflow:hidden;}
+        header{background:#111;padding:15px 20px;display:flex;justify-content:space-between;align-items:center;position:fixed;top:0;width:100%;z-index:1000;border-bottom:2px solid #fffc00;}
+        .online{color:#00ff00;font-weight:800;display:flex;align-items:center;gap:10px;font-size:1.1em;}
+        .dot{width:12px;height:12px;background:#00ff00;border-radius:50%;animation:pulse 1.5s infinite;}
+        @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+        .container{max-width:420px;margin:90px auto 30px;padding:20px;}
+        h1{text-align:center;font-size:3em;font-weight:800;color:#fffc00;text-shadow:0 0 30px #fffc00;margin-bottom:20px;}
+        .grid{display:grid;gap:25px;}
+        .card{background:#111;border:2px solid #333;border-radius:28px;overflow:hidden;transition:0.4s;cursor:pointer;position:relative;box-shadow:0 15px 40px rgba(0,0,0,0.8);}
+        .card:hover{transform:translateY(-15px);border-color:#fffc00;box-shadow:0 30px 70px rgba(255,252,0,0.4);}
+        .card-header{height:140px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#222,#000);}
+        .icon{font-size:5.5em;}
+        .card-body{padding:35px;text-align:center;}
+        .title{font-size:2em;font-weight:800;margin:15px 0;color:#fffc00;text-shadow:0 0 15px #fffc00;}
+        .desc{color:#aaa;font-size:1.1em;margin-bottom:25px;line-height:1.5;}
+        .price{position:relative;font-size:3.8em;color:#00ff00;font-weight:800;text-shadow:0 0 20px #00ff00;}
+        .price .old{text-decoration:line-through;color:#666;font-size:0.35em;position:absolute;top:15px;left:50%;transform:translateX(-50%);}
+        .btn{background:#fffc00;color:#000;padding:22px;border-radius:50px;font-size:1.5em;font-weight:800;width:90%;margin:25px auto;display:block;border:none;cursor:pointer;transition:0.3s;box-shadow:0 10px 30px rgba(255,252,0,0.5);}
+        .btn:hover{background:#fff;transform:scale(1.05);}
+        .locked{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;flex-direction:column;color:#ff3300;font-size:1.6em;font-weight:800;z-index:10;border-radius:28px;}
+        .locked-icon{font-size:4em;margin-bottom:15px;}
+        footer{text-align:center;color:#666;padding:40px;font-size:0.9em;}
     </style>
 </head>
 <body>
     <header>
-        <a href="index.html" class="back">←</a>
-        <h1>Choisis ton plan</h1>
+        <div class="online">
+            <div class="dot"></div>
+            <span id="onlineCount">3,847</span> en ligne
+        </div>
+        <div>Offres 2025</div>
     </header>
 
     <div class="container">
-        <h2 class="service-title" id="serviceName">-</h2>
+        <h1>🔥 GRATUIT À VIE 🔥</h1>
 
-        <!-- PLAN GRATUIT -->
-        <div class="plan" onclick="activate('3 mois')">
-            <div class="plan-title">3 mois</div>
-            <div class="plan-price">
-                <span class="old">Prix normal</span><br>GRATUIT
+        <div class="grid">
+            <!-- Snapchat+ -->
+            <div class="card" onclick="goToPlan('Snapchat+')">
+                <div class="card-header"><div class="icon">👻</div></div>
+                <div class="card-body">
+                    <div class="title">Snapchat+</div>
+                    <div class="desc">Stories privées · Replay illimité · Badge exclusif</div>
+                    <div class="price">
+                        <span class="old">9,99€</span><br>GRATUIT
+                    </div>
+                    <button class="btn">ACTIVER GRATUIT</button>
+                </div>
             </div>
-            <ul class="features">
-                <li>Vérification SMS rapide</li>
-                <li>Accès immédiat</li>
-            </ul>
-            <button class="btn">ACTIVER 3 MOIS</button>
-        </div>
 
-        <!-- PLAN 6 MOIS VERROUILLÉ -->
-        <div class="plan locked">
-            <div class="plan-title">6 mois</div>
-            <div class="plan-price">
-                <span class="old">Prix normal</span><br>GRATUIT
+            <!-- Netflix 4K -->
+            <div class="card" onclick="goToPlan('Netflix 4K')">
+                <div class="card-header"><div class="icon">📺</div></div>
+                <div class="card-body">
+                    <div class="title">Netflix 4K</div>
+                    <div class="desc">4K Ultra HD · 4 écrans · Téléchargement</div>
+                    <div class="price">
+                        <span class="old">19,99€</span><br>GRATUIT
+                    </div>
+                    <button class="btn">ACTIVER GRATUIT</button>
+                </div>
             </div>
-            <ul class="features">
-                <li>Partage à 10 amis requis</li>
-                <li>Bonus exclusif</li>
-            </ul>
-            <div class="locked-badge">🔒 Verrouillé</div>
-            <button class="btn locked">Verrouillé</button>
-        </div>
 
-        <!-- PLAN 1 AN VERROUILLÉ -->
-        <div class="plan locked">
-            <div class="plan-title">1 an</div>
-            <div class="plan-price">
-                <span class="old">Prix normal</span><br>GRATUIT À VIE
+            <!-- Spotify Premium -->
+            <div class="card" onclick="goToPlan('Spotify Premium')">
+                <div class="card-header"><div class="icon">🎵</div></div>
+                <div class="card-body">
+                    <div class="title">Spotify Premium</div>
+                    <div class="desc">Sans pub · Offline · Qualité max</div>
+                    <div class="price">
+                        <span class="old">10,99€</span><br>GRATUIT
+                    </div>
+                    <button class="btn">ACTIVER GRATUIT</button>
+                </div>
             </div>
-            <ul class="features">
-                <li>Partage à 50 amis requis</li>
-                <li>Bonus max + skin exclusif</li>
-            </ul>
-            <div class="locked-badge">🔒 Verrouillé</div>
-            <button class="btn locked">Verrouillé</button>
+
+            <!-- TikTok Coins -->
+            <div class="card">
+                <div class="card-header"><div class="icon">💎</div></div>
+                <div class="card-body">
+                    <div class="title">TikTok Coins</div>
+                    <div class="desc">50 000 Coins + Bonus live</div>
+                    <div class="price">
+                        <span class="old">99,99€</span><br>GRATUIT
+                    </div>
+                    <div class="locked">
+                        <div class="locked-icon">🔒</div>
+                        Partage à 10 amis
+                    </div>
+                </div>
+            </div>
+
+            <!-- V-Bucks Fortnite -->
+            <div class="card">
+                <div class="card-header"><div class="icon">💰</div></div>
+                <div class="card-body">
+                    <div class="title">V-Bucks Fortnite</div>
+                    <div class="desc">13 500 V-Bucks + Skin</div>
+                    <div class="price">
+                        <span class="old">99,99€</span><br>GRATUIT
+                    </div>
+                    <div class="locked">
+                        <div class="locked-icon">🔒</div>
+                        Partage à 20 amis
+                    </div>
+                </div>
+            </div>
+
+            <!-- Robux Roblox -->
+            <div class="card">
+                <div class="card-header"><div class="icon">🤑</div></div>
+                <div class="card-body">
+                    <div class="title">Robux Roblox</div>
+                    <div class="desc">22 000 Robux + Premium</div>
+                    <div class="price">
+                        <span class="old">199€</span><br>GRATUIT À VIE
+                    </div>
+                    <div class="locked">
+                        <div class="locked-icon">🔒</div>
+                        Partage à 50 amis
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <script>
-        const service = localStorage.getItem('selectedService') || 'Service';
-        document.getElementById('serviceName').textContent = service;
+    <footer>
+        Offre limitée · Vérification SMS obligatoire · Aucun paiement
+    </footer>
 
-        function activate(duration) {
-            if (duration !== '3 mois') {
-                alert('Ce plan est verrouillé – partage le lien avec des amis pour le débloquer !');
-                return;
-            }
-            localStorage.setItem('selectedPlan', duration);
-            window.location.href = 'verify-phone.html';
+    <script>
+        let count = 3847;
+        setInterval(() => {
+            count += Math.floor(Math.random() * 9);
+            document.getElementById('onlineCount').textContent = count.toLocaleString();
+        }, 5000);
+
+        function goToPlan(service) {
+            localStorage.setItem('selectedService', service);
+            window.location.href = 'plans.html';
         }
     </script>
 </body>
