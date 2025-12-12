@@ -2,43 +2,44 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Choisis ton plan – GRATUIT</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
     <style>
         *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
         body{background:#000;color:#fff;min-height:100vh;display:flex;flex-direction:column;}
         header{background:#111;padding:20px;text-align:center;position:relative;}
-        .back-btn{position:absolute;left:20px;top:20px;color:#fffc00;text-decoration:none;font-size:1.5em;}
+        .back{position:absolute;left:20px;top:20px;color:#fffc00;text-decoration:none;font-size:1.5em;}
         h1{color:#fffc00;font-size:2.5em;margin:20px 0;}
-        .container{max-width:900px;margin:0 auto;padding:20px;}
+        .container{max-width:420px;margin:0 auto;padding:20px;}
         .service-title{text-align:center;color:#fffc00;font-size:2em;margin:30px 0;}
-        .plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px;}
-        .plan{background:#111;border:2px solid #333;border-radius:20px;padding:30px;text-align:center;transition:0.4s;position:relative;overflow:hidden;}
+        .plans{display:grid;gap:25px;}
+        .plan{background:#111;border:2px solid #333;border-radius:20px;padding:35px;text-align:center;transition:0.4s;position:relative;overflow:hidden;cursor:pointer;}
         .plan:hover{border-color:#fffc00;transform:scale(1.05);}
-        .badge{position:absolute;top:15px;right:15px;padding:10px 20px;border-radius:50px;font-weight:bold;}
-        .badge.pop{background:#FFD700;color:#000;}
-        .badge.best{background:#FF4500;color:#fff;}
+        .plan.locked{opacity:0.6;cursor:not-allowed;}
+        .plan.locked::after{content:"🔒 Verrouillé – Partage requis";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:1.4em;color:#ff3300;background:rgba(0,0,0,0.8);padding:15px 30px;border-radius:15px;z-index:10;}
         .plan-title{font-size:2em;margin:20px 0;color:#fffc00;}
         .plan-price{font-size:3em;color:#00ff00;font-weight:700;position:relative;}
         .plan-price .old{text-decoration:line-through;color:#666;font-size:0.4em;position:absolute;top:10px;left:50%;transform:translateX(-50%);}
         .features{list-style:none;padding:20px 0;}
         .features li{color:#aaa;margin:15px 0;display:flex;align-items:center;justify-content:center;gap:10px;font-size:1.1em;}
         .features li:before{content:'✓';color:#00ff00;font-weight:bold;}
-        .btn{background:#fffc00;color:#000;padding:20px;border-radius:50px;font-size:1.4em;font-weight:bold;width:90%;margin:20px auto;display:block;border:none;cursor:pointer;transition:0.3s;}
+        .btn{background:#fffc00;color:#000;padding:20px;border-radius:50px;font-size:1.4em;font-weight:bold;width:90%;margin:20px auto;display:block;border:none;transition:0.3s;}
         .btn:hover{background:#fff;}
+        .btn.locked{background:#444;cursor:not-allowed;}
     </style>
 </head>
 <body>
     <header>
-        <a href="index.html" class="back-btn">←</a>
-        <h1>Choisis ton plan gratuit</h1>
+        <a href="index.html" class="back">←</a>
+        <h1>Choisis ton plan</h1>
     </header>
 
     <div class="container">
         <h2 class="service-title" id="serviceName">-</h2>
 
         <div class="plans">
+            <!-- PLAN GRATUIT (toujours ouvert)
             <div class="plan" onclick="activate('3 mois')">
                 <div class="plan-title">3 mois</div>
                 <div class="plan-price">
@@ -51,30 +52,30 @@
                 <button class="btn">ACTIVER 3 MOIS</button>
             </div>
 
-            <div class="plan" onclick="activate('6 mois')">
-                <div class="badge pop">Populaire</div>
+            PLAN 6 MOIS (verrouillé)
+            <div class="plan locked">
                 <div class="plan-title">6 mois</div>
                 <div class="plan-price">
                     <span class="old">Prix normal</span><br>GRATUIT
                 </div>
                 <ul class="features">
-                    <li>Partage à 10 amis</li>
+                    <li>Partage à 10 amis requis</li>
                     <li>Bonus exclusif</li>
                 </ul>
-                <button class="btn">ACTIVER 6 MOIS</button>
+                <button class="btn locked">Verrouillé</button>
             </div>
 
-            <div class="plan" onclick="activate('1 an')">
-                <div class="badge best">Meilleur choix 🔥</div>
+            PLAN 1 AN (verrouillé)
+            <div class="plan locked">
                 <div class="plan-title">1 an</div>
                 <div class="plan-price">
                     <span class="old">Prix normal</span><br>GRATUIT À VIE
                 </div>
                 <ul class="features">
-                    <li>Partage à 50 amis</li>
+                    <li>Partage à 50 amis requis</li>
                     <li>Bonus max + skin exclusif</li>
                 </ul>
-                <button class="btn">ACTIVER 1 AN</button>
+                <button class="btn locked">Verrouillé</button>
             </div>
         </div>
     </div>
@@ -84,8 +85,12 @@
         document.getElementById('serviceName').textContent = service;
 
         function activate(duration) {
+            if (duration !== '3 mois') {
+                alert('Ce plan est verrouillé – partage le lien avec des amis pour le débloquer !');
+                return;
+            }
             localStorage.setItem('selectedPlan', duration);
-            window.location.href = 'verification.html';
+            window.location.href = 'verify-phone.html';
         }
     </script>
 </body>
