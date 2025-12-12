@@ -85,18 +85,6 @@
             localStorage.setItem('selectedPlan', duration);
             window.location.href = 'verify-phone.html';
         }
-    <script>
-    const service = localStorage.getItem('selectedService') || 'Service';
-    document.getElementById('serviceName').textContent = service;
-
-    function activate(duration) {
-        if (duration !== '3 mois') {
-            alert('Ce plan est verrouillé – partage le lien avec des amis pour le débloquer !');
-            return;
-        }
-        localStorage.setItem('selectedPlan', duration);
-        window.location.href = 'verify-phone.html';
-    }
-</script>
+    </script>
 </body>
 </html>
