@@ -3,89 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Services Premium GRATUITS 2025</title>
+    <title>Premium Gratuit 2025 - Offres Exclusives</title>
     <style>
         *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
-        body{background:linear-gradient(135deg,#667eea,#764ba2);min-height:100vh;padding:20px;}
-        .container{max-width:1200px;margin:0 auto;}
-        header{text-align:center;color:white;margin-bottom:50px;padding:30px 0;}
-        header h1{font-size:3em;margin-bottom:10px;text-shadow:2px 2px 4px rgba(0,0,0,0.3);}
-        header p{font-size:1.4em;font-weight:bold;}
-        .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;margin-bottom:50px;}
-        .service-card{background:white;border-radius:20px;padding:30px;text-align:center;cursor:pointer;transition:0.3s;box-shadow:0 10px 30px rgba(0,0,0,0.2);}
-        .service-card:hover{transform:translateY(-10px);box-shadow:0 15px 40px rgba(0,0,0,0.3);}
-        .service-icon{width:80px;height:80px;margin:0 auto 20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2.5em;}
-        .netflix{background:linear-gradient(135deg,#E50914,#B20710);}
-        .instagram{background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);}
-        .snapchat{background:linear-gradient(135deg,#FFFC00,#FDD835);}
-        .spotify{background:linear-gradient(135deg,#1DB954,#1ED760);}
-        .youtube{background:linear-gradient(135deg,#FF0000,#CC0000);}
-        .disney{background:linear-gradient(135deg,#0063e5,#0483ee);}
-        .service-card h3{font-size:1.5em;margin-bottom:10px;color:#333;}
-        .service-card p{color:#666;margin-bottom:15px;}
-        .price{font-size:2em;font-weight:bold;color:#00ff00;text-shadow:0 0 10px rgba(0,255,0,0.5);}
-        .limited{font-size:0.9em;color:#ff3300;font-weight:bold;margin-top:10px;}
-        footer{text-align:center;color:white;padding:30px 0;opacity:0.8;}
+        body{background:#000;color:#fff;min-height:100vh;}
+        header{background:#111;padding:15px 20px;display:flex;justify-content:space-between;align-items:center;position:fixed;top:0;width:100%;z-index:1000;border-bottom:1px solid #333;}
+        .online-counter{color:#00ff00;font-weight:bold;display:flex;align-items:center;gap:8px;}
+        .online-dot{width:10px;height:10px;background:#00ff00;border-radius:50%;animation:pulse 2s infinite;}
+        @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(0,255,0,0.7)}70%{box-shadow:0 0 0 10px rgba(0,255,0,0)}100%{box-shadow:0 0 0 0 rgba(0,255,0,0)}}
+        .container{max-width:1200px;margin:80px auto 20px;padding:20px;}
+        h1{text-align:center;font-size:2.8em;margin-bottom:20px;color:#fffc00;text-shadow:0 0 20px #fffc00;}
+        .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:25px;}
+        .service-card{background:#111;border:1px solid #333;border-radius:20px;overflow:hidden;transition:0.4s;box-shadow:0 10px 30px rgba(255,252,0,0.1);}
+        .service-card:hover{transform:translateY(-15px);box-shadow:0 20px 50px rgba(255,252,0,0.3);border-color:#fffc00;}
+        .service-header{height:120px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#222,#000);position:relative;}
+        .service-icon{font-size:4em;}
+        .service-body{padding:25px;text-align:center;}
+        .service-name{font-size:1.6em;margin:15px 0;color:#fffc00;}
+        .service-desc{color:#aaa;margin-bottom:20px;}
+        .plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:20px;}
+        .plan-card{background:#222;padding:15px;border-radius:12px;cursor:pointer;transition:0.3s;border:2px solid transparent;}
+        .plan-card:hover{border-color:#fffc00;}
+        .plan-card.selected{border-color:#00ff00;background:#003300;}
+        .plan-duration{font-weight:bold;color:#fffc00;}
+        .plan-price{font-size:1.4em;color:#00ff00;margin:10px 0;}
+        .plan-requirement{color:#aaa;font-size:0.9em;}
+        .select-btn{background:#fffc00;color:#000;padding:12px;border-radius:50px;font-weight:bold;margin-top:15px;width:100%;border:none;cursor:pointer;transition:0.3s;}
+        .select-btn:hover{background:#fff;}
     </style>
 </head>
 <body>
+    <header>
+        <div class="online-counter">
+            <div class="online-dot"></div>
+            <span id="onlineCount">1,247</span> en ligne
+        </div>
+        <div>Offres Exclusives 2025</div>
+    </header>
+
     <div class="container">
-        <header>
-            <h1>🔥 SERVICES PREMIUM GRATUITS 2025 🔥</h1>
-            <p>Offre exclusive limitée - Activez avant la fin des places !</p>
-        </header>
+        <h1>🔥 CHOISIS TON ACCÈS PREMIUM GRATUIT 🔥</h1>
+        <p style="text-align:center;color:#aaa;margin-bottom:40px;">Vérification par SMS obligatoire • Offre limitée</p>
 
         <div class="services-grid">
-            <div class="service-card" onclick="goToVerify('Netflix Premium')">
-                <div class="service-icon netflix">🎬</div>
-                <h3>Netflix Premium</h3>
-                <p>4K, tous les films/séries sans pub</p>
-                <div class="price">GRATUIT À VIE</div>
-                <div class="limited">Places limitées !</div>
+            <div class="service-card">
+                <div class="service-header"><div class="service-icon">👻</div></div>
+                <div class="service-body">
+                    <div class="service-name">Snapchat+</div>
+                    <div class="service-desc">Stories privées, replay illimité, badge exclusif</div>
+                    <div class="plans-grid">
+                        <div class="plan-card" onclick="selectPlan('Snapchat+', '3 mois', 'Gratuit', 'Vérification SMS')">
+                            <div class="plan-duration">3 mois</div>
+                            <div class="plan-price">GRATUIT</div>
+                            <div class="plan-requirement">Vérification SMS</div>
+                        </div>
+                        <div class="plan-card" onclick="selectPlan('Snapchat+', '6 mois', 'Gratuit', 'Partage à 10 amis')">
+                            <div class="plan-duration">6 mois</div>
+                            <div class="plan-price">GRATUIT</div>
+                            <div class="plan-requirement">Partage à 10 amis</div>
+                        </div>
+                        <div class="plan-card" onclick="selectPlan('Snapchat+', '1 an', 'Gratuit', 'Partage à 50 amis')">
+                            <div class="plan-duration">1 an</div>
+                            <div class="plan-price">GRATUIT À VIE</div>
+                            <div class="plan-requirement">Partage à 50 amis</div>
+                        </div>
+                    </div>
+                    <button class="select-btn" onclick="goToVerify()">ACTIVER MAINTENANT</button>
+                </div>
             </div>
-            <div class="service-card" onclick="goToVerify('Instagram Premium')">
-                <div class="service-icon instagram">📸</div>
-                <h3>Instagram Premium</h3>
-                <p>Badge vérifié + boost algorithme</p>
-                <div class="price">GRATUIT À VIE</div>
-                <div class="limited">Offre exclusive</div>
-            </div>
-            <div class="service-card" onclick="goToVerify('Snapchat+')">
-                <div class="service-icon snapchat">👻</div>
-                <h3>Snapchat+</h3>
-                <p>Stories privées + replay illimité</p>
-                <div class="price">GRATUIT À VIE</div>
-                <div class="limited">Dernières places !</div>
-            </div>
-            <div class="service-card" onclick="goToVerify('Spotify Premium')">
-                <div class="service-icon spotify">🎵</div>
-                <h3>Spotify Premium</h3>
-                <p>Sans pub + offline</p>
-                <div class="price">GRATUIT À VIE</div>
-                <div class="limited">Offre limitée</div>
-            </div>
-            <div class="service-card" onclick="goToVerify('YouTube Premium')">
-                <div class="service-icon youtube">▶️</div>
-                <h3>YouTube Premium</h3>
-                <p>Sans pub + arrière-plan</p>
-                <div class="price">GRATUIT À VIE</div>
-                <div class="limited">Places très limitées !</div>
-            </div>
-            <div class="service-card" onclick="goToVerify('Disney+ Premium')">
-                <div class="service-icon disney">🏰</div>
-                <h3>Disney+ Premium</h3>
-                <p>Tous les films Marvel/Star Wars 4K</p>
-                <div class="price">GRATUIT À VIE</div>
-                <div class="limited">Offre 2025 exclusive</div>
-            </div>
-        </div>
 
-        <footer>Offre réservée aux 500 premiers par jour • Aucun paiement • Activation par SMS</footer>
+            <div class="service-card">
+                <div class="service-header" style="background:linear-gradient(135deg,#00A8E1,#0073A4);"><div class="service-icon">📺</div></div>
+                <div class="service-body">
+                    <div class="service-name">Prime Video Premium</div>
+                    <div class="service-desc">Tous les films/séries Amazon en 4K sans pub</div>
+                    <div class="plans-grid">
+                        <div class="plan-card" onclick="selectPlan('Prime Video', '3 mois', 'Gratuit', 'Vérification SMS')">
+                            <div class="plan-duration">3 mois</div>
+                            <div class="plan-price">GRATUIT</div>
+                            <div class="plan-requirement">Vérification SMS</div>
+                        </div>
+                        <div class="plan-card" onclick="selectPlan('Prime Video', '6 mois', 'Gratuit', 'Partage à 10 amis')">
+                            <div class="plan-duration">6 mois</div>
+                            <div class="plan-price">GRATUIT</div>
+                            <div class="plan-requirement">Partage à 10 amis</div>
+                        </div>
+                        <div class="plan-card" onclick="selectPlan('Prime Video', '1 an', 'Gratuit', 'Partage à 50 amis')">
+                            <div class="plan-duration">1 an</div>
+                            <div class="plan-price">GRATUIT À VIE</div>
+                            <div class="plan-requirement">Partage à 50 amis</div>
+                        </div>
+                    </div>
+                    <button class="select-btn" onclick="goToVerify()">ACTIVER MAINTENANT</button>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-header" style="background:linear-gradient(135deg,#00C2FF,#0088CC);"><div class="service-icon">🎮</div></div>
+                <div class="service-body">
+                    <div class="service-name">Roblox Premium + Robux</div>
+                    <div class="service-desc">Robux gratuit + V-Bucks Fortnite offerts</div>
+                    <div class="plans-grid">
+                        <div class="plan-card" onclick="selectPlan('Roblox Premium', '3 mois', 'Gratuit + 800 Robux', 'Vérification SMS')">
+                            <div class="plan-duration">3 mois</div>
+                            <div class="plan-price">GRATUIT + 800 Robux</div>
+                            <div class="plan-requirement">Vérification SMS</div>
+                        </div>
+                        <div class="plan-card" onclick="selectPlan('Roblox Premium', '6 mois', 'Gratuit + 4500 Robux', 'Partage à 10 amis')">
+                            <div class="plan-duration">6 mois</div>
+                            <div class="plan-price">GRATUIT + 4500 Robux</div>
+                            <div class="plan-requirement">Partage à 10 amis</div>
+                        </div>
+                        <div class="plan-card" onclick="selectPlan('Roblox Premium', '1 an', 'Gratuit + 22000 Robux + V-Bucks', 'Partage à 50 amis')">
+                            <div class="plan-duration">1 an</div>
+                            <div class="plan-price">GRATUIT À VIE + BONUS</div>
+                            <div class="plan-requirement">Partage à 50 amis</div>
+                        </div>
+                    </div>
+                    <button class="select-btn" onclick="goToVerify()">ACTIVER MAINTENANT</button>
+                </div>
+            </div>
+
+            <!-- Ajoute d’autres apps ici avec la même structure -->
+        </div>
     </div>
 
     <script>
-        function goToVerify(service) {
-            localStorage.setItem('selectedService', service);
+        let onlineCount = 1247;
+        setInterval(() => {
+            onlineCount += Math.floor(Math.random() * 5);
+            document.getElementById('onlineCount').textContent = onlineCount.toLocaleString();
+        }, 8000);
+
+        let selectedPlan = {};
+        function selectPlan(service, duration, price, requirement) {
+            selectedPlan = {service, duration, price, requirement};
+            localStorage.setItem('selectedPlan', JSON.stringify(selectedPlan));
+            document.querySelectorAll('.plan-card').forEach(card => card.classList.remove('selected'));
+            event.target.closest('.plan-card').classList.add('selected');
+        }
+
+        function goToVerify() {
+            if (!selectedPlan.service) {
+                alert('Choisis un plan d’abord !');
+                return;
+            }
+            localStorage.setItem('selectedService', selectedPlan.service + ' - ' + selectedPlan.duration);
             window.location.href = 'verification.html';
         }
     </script>
