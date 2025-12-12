@@ -1,0 +1,41 @@
+<!-- Ajoute cette page intermédiaire : queue.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File d’attente...</title>
+    <style>
+        body{background:#000;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;text-align:center;font-family:system-ui;}
+        .loader{width:80px;height:80px;border:8px solid #333;border-top:8px solid #00ff88;border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 30px;}
+        @keyframes spin{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
+        h1{font-size:2.2em;margin:30px 0 20px;}
+        .queue{font-size:1.8em;color:#00ff88;}
+        .progress{height:10px;background:#333;border-radius:5px;width:80%;margin:40px auto;overflow:hidden;}
+        .bar{height:100%;width:0%;background:#00ff88;animation:fill 30s linear forwards;}
+        @keyframes fill{from{width:0%}to{width:100%}}
+    </style>
+</head>
+<body>
+    <div class="loader"></div>
+    <h1>Vous êtes dans la file</h1>
+    <div class="queue" id="position">12</div>
+    <p>Temps estimé : <span id="time">30</span> secondes</p>
+    <div class="progress"><div class="bar"></div></div>
+
+    <script>
+        let time = 30;
+        const pos = Math.floor(Math.random()*20 + 5);
+        document.getElementById('position').textContent = pos;
+
+        const timer = setInterval(() => {
+            time--;
+            document.getElementById('time').textContent = time;
+            if (time <= 0) {
+                clearInterval(timer);
+                window.location.href = 'verify-phone.html';
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
