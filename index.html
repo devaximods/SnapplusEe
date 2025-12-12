@@ -3,43 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Snap+ & More – GRATUIT 2025</title>
+    <title>Offres Premium Gratuites 2025</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root{--bg:#000;--card:#111;--text:#fff;--accent:#00ff88;--snap:#fffc00;}
-        [data-theme="snap"]{--bg:#000;--card:#111;--text:#fff;--accent:#fffc00;}
         *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
-        body{background:var(--bg);color:var(--text);transition:all .4s;overflow-x:hidden;}
-        header{background:#0a0a0a;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;position:fixed;top:0;width:100%;z-index:1000;border-bottom:1px solid #222;}
-        .theme-toggle{color:var(--accent);font-size:1.4em;cursor:pointer;}
-        .online{color:var(--accent);font-weight:600;display:flex;align-items:center;gap:8px;}
-        .dot{width:9px;height:9px;background:var(--accent);border-radius:50%;animation:pulse 2s infinite;}
+        body{background:#000;color:#fff;overflow-x:hidden;}
+        header{background:#0a0a0a;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;position:fixed;top:0;width:100%;z-index:1000;border-bottom:1px solid #1a1a1a;}
+        .online{color:#00ff88;font-weight:600;display:flex;align-items:center;gap:8px;font-size:0.95em;}
+        .dot{width:9px;height:9px;background:#00ff88;border-radius:50%;animation:pulse 2s infinite;}
         @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
-        .container{max-width:420px;margin:80px auto 100px;padding:0 20px;}
-        h1{font-size:2.6em;font-weight:700;text-align:center;margin:20px 0;color:var(--text);}
+        .container{max-width:420px;margin:80px auto 40px;padding:0 20px;}
+        h1{font-size:2.4em;font-weight:700;color:#fff;text-align:center;margin:30px 0 10px;}
+        .subtitle{font-size:1em;color:#888;text-align:center;margin-bottom:40px;}
         .grid{display:grid;gap:20px;}
-        .card{background:var(--card);border-radius:20px;overflow:hidden;transition:0.3s;cursor:pointer;box-shadow:0 8px 25px rgba(0,0,0,0.6);}
-        .card:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(255,252,0,0.15);}
+        .card{background:#111;border-radius:20px;overflow:hidden;transition:0.3s;cursor:pointer;box-shadow:0 8px 25px rgba(0,0,0,0.6);}
+        .card:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(255,255,255,0.08);}
         .card-header{height:110px;display:flex;align-items:center;justify-content:center;background:#1a1a1a;}
         .icon{font-size:3.2em;}
         .card-body{padding:25px;text-align:center;}
-        .title{font-size:1.4em;font-weight:700;color:var(--text);margin-bottom:8px;}
+        .title{font-size:1.4em;font-weight:700;color:#fff;margin-bottom:8px;}
         .desc{font-size:0.95em;color:#aaa;line-height:1.5;margin-bottom:15px;}
-        .price{font-size:2.2em;font-weight:700;color:var(--accent);}
-        .old-price{font-size:0.9em;color:#666;text-decoration:line-through;margin-bottom:5px;}
-        .btn{background:var(--accent);color:#000;padding:16px;border-radius:50px;font-size:1.1em;font-weight:600;width:85%;margin:20px auto;display:block;border:none;cursor:pointer;transition:0.3s;}
-        .btn:hover{background:#fff;}
-
-        /* Témoignages */
-        .testimonials{background:#111;padding:20px;border-radius:20px;margin:40px 0;overflow:hidden;position:relative;height:100px;}
-        .testi{text-align:center;font-size:1.1em;color:#aaa;position:absolute;width:100%;opacity:0;transition:opacity 1s;}
-        .testi.active{opacity:1;}
-
-        /* Notification */
-        .notif{position:fixed;bottom:20px;right:20px;background:#111;border-left:4px solid var(--accent);padding:15px 20px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.8);z-index:9999;animation:slideIn 1s,slideOut 1s 6s forwards;}
-        @keyframes slideIn{from{transform:translateX(100%);opacity:0}to{transform:translateX(0);opacity:1}}
-        @keyframes slideOut{from{transform:translateX(0);opacity:1}to{transform:translateX(100%);opacity:0}}
-
+        .price{font-size:2.2em;font-weight:700;color:#00ff88;margin:15px 0;}
+        .old-price{font-size:0.9em;color:#666;text-decoration:line-through;margin-bottom:5px;display:block;}
+        .btn{background:#00ff88;color:#000;padding:16px;border-radius:50px;font-size:1.1em;font-weight:600;width:85%;margin:20px auto;display:block;border:none;cursor:pointer;transition:0.3s;}
+        .btn:hover{background:#00ffaa;}
         footer{text-align:center;color:#555;padding:50px 20px;font-size:0.85em;}
     </style>
 </head>
@@ -47,20 +34,14 @@
     <header>
         <div class="online">
             <div class="dot"></div>
-            <span id="onlineCount">21</span> en ligne
+            <span id="onlineCount">5,312</span> en ligne
         </div>
-        <div class="theme-toggle" onclick="toggleTheme()">🌙</div>
+        <div>Offres 2025</div>
     </header>
 
     <div class="container">
         <h1>Choisis ton service</h1>
-
-        <!-- Témoignages défilants -->
-        <div class="testimonials">
-            <div class="testi active">moauad.cba, 17 ans — "J’ai eu Snap+ gratuit en 30s 🔥"</div>
-            <div class="testi">Demdem3031, 19 ans — "Netflix 4K gratuit à vie merciii 😍"</div>
-            <div class="testi">Tangy, 15 ans — "22 000 Robux direct, trop fort !"</div>
-        </div>
+        <p class="subtitle">Accès gratuit après vérification SMS</p>
 
         <div class="grid">
             <div class="card" onclick="goToPlan('Snapchat+')">
@@ -70,7 +51,7 @@
                     <div class="desc">Stories privées · Replay illimité · Badge exclusif</div>
                     <div class="old-price">9,99 €/mois</div>
                     <div class="price">GRATUIT</div>
-                    <button class="btn">ACTIVER GRATUIT</button>
+                    <button class="btn">CHOISIR SNAPCHAT+</button>
                 </div>
             </div>
 
@@ -78,10 +59,10 @@
                 <div class="card-header"><div class="icon">📺</div></div>
                 <div class="card-body">
                     <div class="title">Netflix 4K</div>
-                    <div class="desc">4K + 4 écrans · Téléchargement</div>
+                    <div class="desc">4K + HDR · 4 écrans · Téléchargement</div>
                     <div class="old-price">19,99 €/mois</div>
                     <div class="price">GRATUIT</div>
-                    <button class="btn">ACTIVER GRATUIT</button>
+                    <button class="btn">CHOISIR NETFLIX</button>
                 </div>
             </div>
 
@@ -92,55 +73,22 @@
                     <div class="desc">Sans pub · Offline · Qualité max</div>
                     <div class="old-price">10,99 €/mois</div>
                     <div class="price">GRATUIT</div>
-                    <button class="btn">ACTIVER GRATUIT</button>
+                    <button class="btn">CHOISIR SPOTIFY</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Notification en bas à droite -->
-    <div class="notif" id="notif">
-        <strong>Mathis</strong> vient d’activer Snapchat+ · il y a 8s
-    </div>
-
     <footer>
-        Offre limitée 2025 · Vérification SMS obligatoire
+        Offre limitée 2025 · Vérification SMS obligatoire · Aucun paiement requis
     </footer>
 
     <script>
-        // Toggle thème nuit Snapchat
-        function toggleTheme() {
-            document.documentElement.setAttribute('data-theme', 
-                document.documentElement.getAttribute('data-theme') === 'snap' ? '' : 'snap');
-        }
-
-        // Compteur en ligne
-        let count = 4821;
+        let count = 5312;
         setInterval(() => {
-            count += Math.floor(Math.random() * 12);
+            count += Math.floor(Math.random() * 10);
             document.getElementById('onlineCount').textContent = count.toLocaleString();
         }, 5000);
-
-        // Témoignages défilants
-        const testi = document.querySelectorAll('.testi');
-        let current = 0;
-        setInterval(() => {
-            testi[current].classList.remove('active');
-            current = (current + 1) % testi.length;
-            testi[current].classList.add('active');
-        }, 4000);
-
-        // Fausse notification
-        const names = ['Momolatepu','Chloé','mouadbalance','Emma','Demdem7waa', ','nisss','Nelson3000','Lina13kS','mehdi30'];
-        const services = ['Snapchat+','Netflix 4K','Spotify Premium','Robux','V-Bucks'];
-        setInterval(() => {
-            const name = names[Math.floor(Math.random()*names.length)];
-            const service = services[Math.floor(Math.random()*services.length)];
-            const time = Math.floor(Math.random()*30 + 5);
-            document.getElementById('notif').innerHTML = `<strong>${name}</strong> vient d’activer ${service} · il y a ${time}s`;
-            document.getElementById('notif').style.animation = 'none';
-            setTimeout(() => document.getElementById('notif').style.animation = '', 100);
-        }, 8000);
 
         function goToPlan(service) {
             localStorage.setItem('selectedService', service);
