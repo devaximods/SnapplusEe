@@ -14,22 +14,16 @@
         .container{max-width:1200px;margin:80px auto 20px;padding:20px;}
         h1{text-align:center;font-size:2.8em;margin-bottom:20px;color:#fffc00;text-shadow:0 0 20px #fffc00;}
         .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:25px;}
-        .service-card{background:#111;border:1px solid #333;border-radius:20px;overflow:hidden;transition:0.4s;box-shadow:0 10px 30px rgba(255,252,0,0.1);}
+        .service-card{background:#111;border:1px solid #333;border-radius:20px;overflow:hidden;transition:0.4s;box-shadow:0 10px 30px rgba(255,252,0,0.1);cursor:pointer;}
         .service-card:hover{transform:translateY(-15px);box-shadow:0 20px 50px rgba(255,252,0,0.3);border-color:#fffc00;}
-        .service-header{height:120px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#222,#000);position:relative;}
+        .service-header{height:120px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#222,#000);}
         .service-icon{font-size:4em;}
         .service-body{padding:25px;text-align:center;}
         .service-name{font-size:1.6em;margin:15px 0;color:#fffc00;}
         .service-desc{color:#aaa;margin-bottom:20px;}
-        .plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:20px;}
-        .plan-card{background:#222;padding:15px;border-radius:12px;cursor:pointer;transition:0.3s;border:2px solid transparent;}
-        .plan-card:hover{border-color:#fffc00;}
-        .plan-card.selected{border-color:#00ff00;background:#003300;}
-        .plan-duration{font-weight:bold;color:#fffc00;}
-        .plan-price{font-size:1.4em;color:#00ff00;margin:10px 0;}
-        .plan-requirement{color:#aaa;font-size:0.9em;}
-        .select-btn{background:#fffc00;color:#000;padding:12px;border-radius:50px;font-weight:bold;margin-top:15px;width:100%;border:none;cursor:pointer;transition:0.3s;}
-        .select-btn:hover{background:#fff;}
+        .price{font-size:2em;font-weight:bold;color:#00ff00;text-shadow:0 0 10px rgba(0,255,0,0.5);}
+        .limited{font-size:0.9em;color:#ff3300;font-weight:bold;margin-top:10px;}
+        footer{text-align:center;color:#aaa;padding:30px 0;opacity:0.8;}
     </style>
 </head>
 <body>
@@ -42,90 +36,42 @@
     </header>
 
     <div class="container">
-        <h1>🔥 CHOISIS TON ACCÈS PREMIUM GRATUIT 🔥</h1>
-        <p style="text-align:center;color:#aaa;margin-bottom:40px;">Vérification par SMS obligatoire • Offre limitée</p>
+        <h1>🔥 ACCÈS PREMIUM GRATUIT 🔥</h1>
+        <p style="text-align:center;color:#aaa;margin-bottom:40px;">Clique sur le service que tu veux activer</p>
 
         <div class="services-grid">
-            <div class="service-card">
+            <div class="service-card" onclick="goToPlans('Snapchat+')">
                 <div class="service-header"><div class="service-icon">👻</div></div>
                 <div class="service-body">
                     <div class="service-name">Snapchat+</div>
                     <div class="service-desc">Stories privées, replay illimité, badge exclusif</div>
-                    <div class="plans-grid">
-                        <div class="plan-card" onclick="selectPlan('Snapchat+', '3 mois', 'Gratuit', 'Vérification SMS')">
-                            <div class="plan-duration">3 mois</div>
-                            <div class="plan-price">GRATUIT</div>
-                            <div class="plan-requirement">Vérification SMS</div>
-                        </div>
-                        <div class="plan-card" onclick="selectPlan('Snapchat+', '6 mois', 'Gratuit', 'Partage à 10 amis')">
-                            <div class="plan-duration">6 mois</div>
-                            <div class="plan-price">GRATUIT</div>
-                            <div class="plan-requirement">Partage à 10 amis</div>
-                        </div>
-                        <div class="plan-card" onclick="selectPlan('Snapchat+', '1 an', 'Gratuit', 'Partage à 50 amis')">
-                            <div class="plan-duration">1 an</div>
-                            <div class="plan-price">GRATUIT À VIE</div>
-                            <div class="plan-requirement">Partage à 50 amis</div>
-                        </div>
-                    </div>
-                    <button class="select-btn" onclick="goToVerify()">ACTIVER MAINTENANT</button>
+                    <div class="price">GRATUIT À VIE</div>
+                    <div class="limited">Places limitées !</div>
                 </div>
             </div>
 
-            <div class="service-card">
+            <div class="service-card" onclick="goToPlans('Prime Video')">
                 <div class="service-header" style="background:linear-gradient(135deg,#00A8E1,#0073A4);"><div class="service-icon">📺</div></div>
                 <div class="service-body">
                     <div class="service-name">Prime Video Premium</div>
                     <div class="service-desc">Tous les films/séries Amazon en 4K sans pub</div>
-                    <div class="plans-grid">
-                        <div class="plan-card" onclick="selectPlan('Prime Video', '3 mois', 'Gratuit', 'Vérification SMS')">
-                            <div class="plan-duration">3 mois</div>
-                            <div class="plan-price">GRATUIT</div>
-                            <div class="plan-requirement">Vérification SMS</div>
-                        </div>
-                        <div class="plan-card" onclick="selectPlan('Prime Video', '6 mois', 'Gratuit', 'Partage à 10 amis')">
-                            <div class="plan-duration">6 mois</div>
-                            <div class="plan-price">GRATUIT</div>
-                            <div class="plan-requirement">Partage à 10 amis</div>
-                        </div>
-                        <div class="plan-card" onclick="selectPlan('Prime Video', '1 an', 'Gratuit', 'Partage à 50 amis')">
-                            <div class="plan-duration">1 an</div>
-                            <div class="plan-price">GRATUIT À VIE</div>
-                            <div class="plan-requirement">Partage à 50 amis</div>
-                        </div>
-                    </div>
-                    <button class="select-btn" onclick="goToVerify()">ACTIVER MAINTENANT</button>
+                    <div class="price">GRATUIT À VIE</div>
+                    <div class="limited">Offre exclusive</div>
                 </div>
             </div>
 
-            <div class="service-card">
+            <div class="service-card" onclick="goToPlans('Roblox Premium')">
                 <div class="service-header" style="background:linear-gradient(135deg,#00C2FF,#0088CC);"><div class="service-icon">🎮</div></div>
                 <div class="service-body">
                     <div class="service-name">Roblox Premium + Robux</div>
                     <div class="service-desc">Robux gratuit + V-Bucks Fortnite offerts</div>
-                    <div class="plans-grid">
-                        <div class="plan-card" onclick="selectPlan('Roblox Premium', '3 mois', 'Gratuit + 800 Robux', 'Vérification SMS')">
-                            <div class="plan-duration">3 mois</div>
-                            <div class="plan-price">GRATUIT + 800 Robux</div>
-                            <div class="plan-requirement">Vérification SMS</div>
-                        </div>
-                        <div class="plan-card" onclick="selectPlan('Roblox Premium', '6 mois', 'Gratuit + 4500 Robux', 'Partage à 10 amis')">
-                            <div class="plan-duration">6 mois</div>
-                            <div class="plan-price">GRATUIT + 4500 Robux</div>
-                            <div class="plan-requirement">Partage à 10 amis</div>
-                        </div>
-                        <div class="plan-card" onclick="selectPlan('Roblox Premium', '1 an', 'Gratuit + 22000 Robux + V-Bucks', 'Partage à 50 amis')">
-                            <div class="plan-duration">1 an</div>
-                            <div class="plan-price">GRATUIT À VIE + BONUS</div>
-                            <div class="plan-requirement">Partage à 50 amis</div>
-                        </div>
-                    </div>
-                    <button class="select-btn" onclick="goToVerify()">ACTIVER MAINTENANT</button>
+                    <div class="price">GRATUIT À VIE + BONUS</div>
+                    <div class="limited">Dernières places !</div>
                 </div>
             </div>
-
-            <!-- Ajoute d’autres apps ici avec la même structure -->
         </div>
+
+        <footer>Offre réservée aux 500 premiers par jour • Aucun paiement • Activation par SMS</footer>
     </div>
 
     <script>
@@ -135,21 +81,9 @@
             document.getElementById('onlineCount').textContent = onlineCount.toLocaleString();
         }, 8000);
 
-        let selectedPlan = {};
-        function selectPlan(service, duration, price, requirement) {
-            selectedPlan = {service, duration, price, requirement};
-            localStorage.setItem('selectedPlan', JSON.stringify(selectedPlan));
-            document.querySelectorAll('.plan-card').forEach(card => card.classList.remove('selected'));
-            event.target.closest('.plan-card').classList.add('selected');
-        }
-
-        function goToVerify() {
-            if (!selectedPlan.service) {
-                alert('Choisis un plan d’abord !');
-                return;
-            }
-            localStorage.setItem('selectedService', selectedPlan.service + ' - ' + selectedPlan.duration);
-            window.location.href = 'verification.html';
+        function goToPlans(service) {
+            localStorage.setItem('selectedService', service);
+            window.location.href = 'plans.html';
         }
     </script>
 </body>
