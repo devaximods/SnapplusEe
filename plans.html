@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choisis ton plan Premium</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
+        body{background:#000;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;}
+        .container{max-width:600px;width:100%;}
+        .back-button{color:#fffc00;text-decoration:none;margin-bottom:30px;font-size:1.1em;display:inline-block;}
+        .card{background:#111;border-radius:25px;padding:40px;box-shadow:0 20px 60px rgba(255,252,0,0.2);border:1px solid #333;}
+        .header{text-align:center;margin-bottom:40px;}
+        .icon{width:80px;height:80px;background:#fffc00;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2.5em;margin:0 auto 20px;color:#000;}
+        h1{font-size:2em;color:#fffc00;margin-bottom:10px;}
+        p{color:#aaa;font-size:1.05em;}
+        .summary{background:#1a1a1a;border-radius:15px;padding:25px;margin-bottom:30px;border:1px solid #333;}
+        h2{font-size:1.3em;color:#fffc00;margin-bottom:20px;text-align:center;}
+        .plans-grid{display:grid;grid-template-columns:1fr;gap:15px;}
+        .plan-card{background:#222;padding:20px;border-radius:12px;cursor:pointer;transition:0.3s;border:2px solid transparent;position:relative;}
+        .plan-card:hover{border-color:#fffc00;}
+        .plan-card.selected{border-color:#00ff00;background:#003300;}
+        .plan-duration{font-weight:bold;color:#fffc00;font-size:1.4em;}
+        .plan-price{font-size:1.8em;color:#00ff00;margin:10px 0;}
+        .plan-requirement{color:#aaa;font-size:0.9em;}
+        .select-btn{background:#fffc00;color:#000;padding:15px;border-radius:50px;font-weight:bold;margin-top:20px;width:100%;border:none;cursor:pointer;transition:0.3s;}
+        .select-btn:hover{background:#fff;}
+        .error{color:#ff3300;margin-top:10px;text-align:center;font-weight:bold;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-button">← Retour</a>
+        
+        <div class="card">
+            <div class="header">
+                <div class="icon">🎁</div>
+                <h1>Choisis ton plan gratuit</h1>
+                <p>Offre exclusive 2025</p>
+            </div>
+
+            <div class="summary">
+                <h2 id="summaryService">-</h2>
+            </div>
+
+            <div class="plans-grid">
+                <div class="plan-card" onclick="selectPlan('3 mois', 'Gratuit', 'Vérification SMS')">
+                    <div class="plan-duration">3 mois</div>
+                    <div class="plan-price">GRATUIT</div>
+                    <div class="plan-requirement">Vérification SMS rapide</div>
+                </div>
+                <div class="plan-card" onclick="selectPlan('6 mois', 'Gratuit', 'Partage à 10 amis')">
+                    <div class="plan-duration">6 mois</div>
+                    <div class="plan-price">GRATUIT</div>
+                    <div class="plan-requirement">Partage à 10 amis</div>
+                </div>
+                <div class="plan-card" onclick="selectPlan('1 an', 'Gratuit à vie', 'Partage à 50 amis')">
+                    <div class="plan-duration">1 an</div>
+                    <div class="plan-price">GRATUIT À VIE</div>
+                    <div class="plan-requirement">Partage à 50 amis</div>
+                </div>
+            </div>
+
+            <div id="error" class="error"></div>
+            <button class="select-btn" onclick="goToVerify()">ACTIVER CE PLAN</button>
+        </div>
+    </div>
+
+    <script>
+        const selectedService = localStorage.getItem('selectedService') || 'Service';
+        document.getElementById('summaryService').textContent = selectedService;
+
+        let selectedPlan = {};
+        function selectPlan(duration, price, requirement) {
+            selectedPlan = {duration, price, requirement};
+            localStorage.setItem('selectedPlan', JSON.stringify(selectedPlan));
+            document.querySelectorAll('.plan-card').forEach(card => card.classList.remove('selected'));
+            event.target.closest('.plan-card').classList.add('selected');
+        }
+
+        function goToVerify() {
+            if (!selectedPlan.duration) {
+                document.getElementById('error').textContent = 'Choisis un plan d’abord !';
+                return;
+            }
+            window.location.href = 'verification.html';
+        }
+    </script>
+</body>
+</html>
