@@ -4,32 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Choisis ton plan</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;800&display=swap" rel="stylesheet">
     <style>
-        *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
+        *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
         body{background:#000;color:#fff;min-height:100vh;display:flex;flex-direction:column;}
-        header{background:#0a0a0a;padding:16px 20px;display:flex;align-items:center;position:relative;border-bottom:1px solid #1a1a1a;}
-        .back{color:#fff;font-size:1.8em;text-decoration:none;}
-        h1{font-size:2em;font-weight:700;color:#fff;text-align:center;margin:20px 0;}
-        .container{max-width:420px;margin:20px auto;padding:0 20px;flex:1;}
-        .service-title{text-align:center;color:#fff;font-size:1.6em;margin:30px 0 20px;font-weight:600;}
-        .plan{background:#111;border-radius:20px;padding:30px;margin-bottom:20px;transition:0.3s;cursor:pointer;position:relative;}
-        .plan:hover{transform:translateY(-5px);box-shadow:0 10px 30px rgba(255,255,255,0.05);}
-        .plan-title{font-size:1.6em;font-weight:700;color:#fff;margin-bottom:15px;}
-        .plan-price{font-size:2.4em;color:#00ff88;font-weight:700;margin:15px 0;}
-        .old-price{font-size:1em;color:#666;text-decoration:line-through;margin-bottom:5px;}
-        .features{list-style:none;margin:20px 0;}
-        .features li{color:#aaa;font-size:1em;margin:12px 0;display:flex;align-items:center;gap:10px;}
-        .features li:before{content:'✓';color:#00ff88;font-weight:bold;}
-        .btn{background:#00ff88;color:#000;padding:18px;border-radius:50px;font-size:1.2em;font-weight:600;width:100%;border:none;cursor:pointer;transition:0.3s;}
-        .btn:hover{background:#00ffaa;}
-        .btn.locked{background:#333;color:#666;cursor:not-allowed;}
-        .badge{position:absolute;top:12px;right:12px;background:#ff4444;color:#fff;padding:6px 12px;border-radius:30px;font-size:0.8em;font-weight:600;}
-        .share-popup{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);z-index:99999;display:none;align-items:center;justify-content:center;padding:20px;}
-        .share-card{background:#111;padding:40px;border-radius:30px;text-align:center;max-width:380px;border:3px solid #00ff88;box-shadow:0 0 60px rgba(0,255,136,0.4);}
-        .share-card h2{color:#00ff88;font-size:2em;margin-bottom:20px;}
-        .share-btn{background:#25D366;color:#fff;padding:18px;border-radius:50px;font-size:1.3em;margin:15px;width:100%;border:none;cursor:pointer;}
-        .share-btn.copy{background:#444;}
+        header{background:#111;padding:18px 20px;display:flex;align-items:center;position:relative;border-bottom:3px solid #fffc00;}
+        .back{color:#fffc00;font-size:2em;text-decoration:none;}
+        h1{font-size:3em;font-weight:900;color:#fffc00;text-align:center;margin:40px 0;text-shadow:0 0 40px #fffc00;}
+        .container{max-width:420px;margin:0 auto;padding:20px;flex:1;display:flex;flex-direction:column;gap:40px;}
+        .service{font-size:2em;color:#fffc00;text-align:center;margin-bottom:20px;font-weight:900;text-shadow:0 0 20px #fffc00;}
+        .plan{background:#111;border-radius:35px;padding:50px;text-align:center;transition:0.5s;position:relative;box-shadow:0 20px 50px rgba(0,0,0,0.8);}
+        .plan:hover{transform:scale(1.05);box-shadow:0 40px 100px rgba(255,252,0,0.4);}
+        .plan-title{font-size:2.5em;font-weight:900;color:#fffc00;margin:20px 0;text-shadow:0 0 20px #fffc00;}
+        .plan-price{font-size:4em;color:#00ff88;font-weight:900;margin:30px 0;text-shadow:0 0 30px #00ff88;}
+        .old-price{font-size:1.5em;color:#666;text-decoration:line-through;margin-bottom:10px;}
+        .features{list-style:none;margin:40px 0;}
+        .features li{color:#aaa;font-size:1.4em;margin:20px 0;display:flex;align-items:center;justify-content:center;gap:15px;}
+        .features li:before{content:'✓';color:#00ff88;font-size:1.8em;}
+        .btn{background:#fffc00;color:#000;padding:25px;border-radius:60px;font-size:1.8em;font-weight:900;width:85%;margin:30px auto;display:block;border:none;cursor:pointer;transition:0.4s;box-shadow:0 15px 40px rgba(255,252,0,0.6);}
+        .btn:hover{background:#fff;}
+        .locked-badge{background:#ff4444;color:#fff;padding:12px 24px;border-radius:50px;font-size:1.2em;font-weight:900;position:absolute;top:20px;right:20px;box-shadow:0 0 30px #ff0000;}
     </style>
 </head>
 <body>
@@ -39,9 +33,8 @@
     </header>
 
     <div class="container">
-        <div class="service-title" id="serviceName">-</div>
+        <div class="service" id="service">-</div>
 
-        <!-- PLAN 3 MOIS (ouvert) -->
         <div class="plan" onclick="activate('3 mois')">
             <div class="plan-title">3 mois</div>
             <div class="old-price">Prix normal</div>
@@ -49,14 +42,12 @@
             <ul class="features">
                 <li>Vérification SMS rapide</li>
                 <li>Accès immédiat</li>
-                <li>Accès limité</li>
             </ul>
             <button class="btn">ACTIVER 3 MOIS</button>
         </div>
 
-        <!-- PLAN 6 MOIS (verrouillé) -->
-        <div class="plan" onclick="openShare('6 mois')">
-            <div class="badge">🔒 Verrouillé</div>
+        <div class="plan" onclick="shareToUnlock()">
+            <div class="locked-badge">🔒 Partage à 5 amis</div>
             <div class="plan-title">6 mois</div>
             <div class="old-price">Prix normal</div>
             <div class="plan-price">GRATUIT</div>
@@ -64,12 +55,11 @@
                 <li>Accès complet</li>
                 <li>Bonus exclusif</li>
             </ul>
-            <button class="btn locked">DÉBLOQUER (partage)</button>
+            <button class="btn">DÉBLOQUER (5 partages)</button>
         </div>
 
-        <!-- PLAN 1 AN (verrouillé) -->
-        <div class="plan" onclick="openShare('1 an')">
-            <div class="badge">🔒 Verrouillé</div>
+        <div class="plan" onclick="shareToUnlock()">
+            <div class="locked-badge">🔒 Partage à 5 amis</div>
             <div class="plan-title">1 an</div>
             <div class="old-price">Prix normal</div>
             <div class="plan-price">GRATUIT À VIE</div>
@@ -77,49 +67,28 @@
                 <li>Accès illimité</li>
                 <li>Bonus max + skin exclusif</li>
             </ul>
-            <button class="btn locked">DÉBLOQUER (partage)</button>
-        </div>
-    </div>
-
-    <!-- Pop-up partage obligatoire -->
-    <div class="share-popup" id="sharePopup">
-        <div class="share-card">
-            <h2>Partage pour débloquer</h2>
-            <p>Envoie ce lien à tes amis pour accéder au plan supérieur</p>
-            <button class="share-btn" onclick="shareWhatsApp()">📱 WhatsApp</button>
-            <button class="share-btn" onclick="shareSMS()">📩 SMS</button>
-            <button class="share-btn copy" onclick="copyLink()">📋 Copier le lien</button>
-            <button style="margin-top:30px;color:#888;" onclick="document.getElementById('sharePopup').style.display='none'">Annuler</button>
+            <button class="btn">DÉBLOQUER (5 partages)</button>
         </div>
     </div>
 
     <script>
-        const service = localStorage.getItem('selectedService') || 'Service';
-        document.getElementById('serviceName').textContent = service;
+        const service = localStorage.getItem('selectedService') || 'Snapchat+';
+        document.getElementById('service').textContent = service;
 
         function activate(duration) {
             localStorage.setItem('selectedPlan', duration);
             window.location.href = 'verify-phone.html';
         }
 
-        function openShare(plan) {
-            localStorage.setItem('requestedPlan', plan);
-            document.getElementById('sharePopup').style.display = 'flex';
-        }
-
-        function shareWhatsApp() {
-            const text = encodeURIComponent(`Yo j’ai débloqué ${localStorage.getItem('requestedPlan')} gratuit sur ce site de ouf ! Viens vite : ${window.location.origin}`);
-            window.open(`https://wa.me/?text=${text}`, '_blank');
-        }
-
-        function shareSMS() {
-            const text = encodeURIComponent(`J’ai débloqué ${localStorage.getItem('requestedPlan')} gratuit ! Lien : ${window.location.origin}`);
-            window.location.href = `sms:?body=${text}`;
-        }
-
-        function copyLink() {
-            navigator.clipboard.writeText(window.location.origin);
-            alert('Lien copié ! Envoie-le à tes potes');
+        function shareToUnlock() {
+            const text = `J’ai débloqué ${service} GRATUIT À VIE en 30s ! Viens vite : ${window.location.origin}`;
+            if (navigator.share) {
+                navigator.share({title: 'Snap+ GRATUIT', text: text, url: window.location.origin});
+            } else {
+                prompt('Copie et envoie à 5 amis :', window.location.origin);
+            }
+            alert('Partage envoyé ! Débloqué après 5 partages confirmés');
+            // Tu peux ajouter un compteur fake plus tard si tu veux
         }
     </script>
 </body>
