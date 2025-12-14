@@ -4,33 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Vérification numéro</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
-        *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+        *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
         body{background:#000;color:#fff;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;overflow:hidden;}
         .container{max-width:420px;width:100%;}
-        .back{position:absolute;top:20px;left:20px;color:#fffc00;font-size:1.8em;text-decoration:none;}
-        .card{background:#111;border-radius:35px;padding:60px 30px;box-shadow:0 20px 60px rgba(255,252,0,0.2);border:2px solid #333;}
-        h1{font-size:2.8em;font-weight:900;color:#fffc00;text-align:center;margin-bottom:20px;text-shadow:0 0 30px #fffc00;}
-        p{color:#aaa;text-align:center;font-size:1.2em;margin-bottom:40px;}
-        .info{color:#888;text-align:center;font-size:1em;margin-bottom:30px;}
-        input{width:100%;padding:25px;background:#1a1a1a;border:2px solid #333;border-radius:20px;color:#fff;font-size:1.8em;text-align:center;letter-spacing:5px;transition:0.3s;}
-        input:focus{outline:none;border-color:#fffc00;box-shadow:0 0 0 5px rgba(255,252,0,0.3);}
-        .btn{background:#fffc00;color:#000;padding:22px;border:none;border-radius:60px;font-size:1.6em;font-weight:900;width:100%;margin-top:40px;cursor:pointer;transition:0.3s;box-shadow:0 15px 40px rgba(255,252,0,0.6);}
-        .btn:hover{background:#fff;transform:scale(1.05);}
-        .progress{margin-top:40px;height:10px;background:#1a1a1a;border-radius:5px;overflow:hidden;display:none;}
-        .bar{height:100%;width:0%;background:#fffc00;transition:width 0.3s ease;}
-        .loader{display:none;width:60px;height:60px;border:8px solid #1a1a1a;border-top:8px solid #fffc00;border-radius:50%;animation:spin 1s linear infinite;margin:40px auto;}
+        .back{position:absolute;top:20px;left:20px;color:#00ff88;font-size:1.6em;text-decoration:none;}
+        .card{background:#111;border-radius:28px;padding:50px 30px;box-shadow:0 20px 60px rgba(0,255,136,0.15);border:1px solid #1a1a1a;}
+        h1{font-size:2.2em;font-weight:700;color:#fff;text-align:center;margin-bottom:15px;}
+        p{color:#888;text-align:center;font-size:1.1em;margin-bottom:40px;}
+        .info{color:#666;text-align:center;font-size:0.95em;margin-bottom:30px;}
+        input{width:100%;padding:20px;background:#1a1a1a;border:2px solid #333;border-radius:18px;color:#fff;font-size:1.4em;text-align:center;letter-spacing:3px;transition:0.3s;}
+        input:focus{outline:none;border-color:#00ff88;box-shadow:0 0 0 4px rgba(0,255,136,0.2);}
+        .btn{background:#00ff88;color:#000;padding:18px;border:none;border-radius:50px;font-size:1.3em;font-weight:700;width:100%;margin-top:40px;cursor:pointer;transition:0.3s;box-shadow:0 10px 30px rgba(0,255,136,0.4);}
+        .btn:hover{background:#00ffaa;}
+        .btn:disabled{background:#333;color:#666;cursor:not-allowed;box-shadow:none;}
+        .progress{margin-top:40px;height:8px;background:#1a1a1a;border-radius:4px;overflow:hidden;display:none;}
+        .bar{height:100%;width:0%;background:#00ff88;transition:width 0.3s ease;}
+        .loader{display:none;width:50px;height:50px;border:6px solid #1a1a1a;border-top:6px solid #00ff88;border-radius:50%;animation:spin 1s linear infinite;margin:40px auto;}
         @keyframes spin{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
-        .status{text-align:center;margin-top:20px;color:#fffc00;font-weight:700;font-size:1.3em;display:none;}
-        .error{color:#ff4444;margin-top:20px;text-align:center;font-weight:700;}
+        .status{text-align:center;margin-top:20px;color:#00ff88;font-weight:600;font-size:1.1em;display:none;}
+        .error{color:#ff4444;margin-top:20px;text-align:center;font-weight:600;}
     </style>
 </head>
 <body>
     <a href="plans.html" class="back">←</a>
     <div class="container">
         <div class="card">
-            <h1>VÉRIFICATION NUMÉRO</h1>
+            <h1>Vérification numéro</h1>
             <p>Opérateurs acceptés : SFR · Orange · Bouygues</p>
             <p class="info">Free / Sosh / autres = refusé</p>
 
@@ -38,7 +39,7 @@
 
             <div id="error" class="error"></div>
 
-            <button class="btn" id="btn">VÉRIFIER MON NUMÉRO</button>
+            <button class="btn" id="btn">Vérifier mon numéro</button>
 
             <div class="progress" id="progress"><div class="bar" id="bar"></div></div>
             <div class="loader" id="loader"></div>
@@ -84,7 +85,7 @@
             });
 
             btn.disabled = true;
-            btn.textContent = 'VÉRIFICATION EN COURS...';
+            btn.textContent = 'Vérification en cours...';
             progress.style.display = 'block';
             loader.style.display = 'block';
             status.style.display = 'block';
