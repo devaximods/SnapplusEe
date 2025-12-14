@@ -3,92 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Offres Premium Gratuites 2025</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
+    <title>Snap+ GRATUIT 2025 – Style Snap/Insta</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;800;900&display=swap" rel="stylesheet">
     <style>
-        *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
-        body{background:#000;color:#fff;overflow-x:hidden;}
-        header{background:#0a0a0a;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;position:fixed;top:0;width:100%;z-index:1000;border-bottom:1px solid #1a1a1a;}
-        .online{color:#00ff88;font-weight:600;display:flex;align-items:center;gap:8px;font-size:0.95em;}
-        .dot{width:9px;height:9px;background:#00ff88;border-radius:50%;animation:pulse 2s infinite;}
-        @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
-        .container{max-width:420px;margin:80px auto 40px;padding:0 20px;}
-        h1{font-size:2.4em;font-weight:700;color:#fff;text-align:center;margin:30px 0 10px;}
-        .subtitle{font-size:1em;color:#888;text-align:center;margin-bottom:40px;}
-        .grid{display:grid;gap:20px;}
-        .card{background:#111;border-radius:20px;overflow:hidden;transition:0.3s;cursor:pointer;box-shadow:0 8px 25px rgba(0,0,0,0.6);}
-        .card:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(255,255,255,0.08);}
-        .card-header{height:110px;display:flex;align-items:center;justify-content:center;background:#1a1a1a;}
-        .icon{font-size:3.2em;}
-        .card-body{padding:25px;text-align:center;}
-        .title{font-size:1.4em;font-weight:700;color:#fff;margin-bottom:8px;}
-        .desc{font-size:0.95em;color:#aaa;line-height:1.5;margin-bottom:15px;}
-        .price{font-size:2.2em;font-weight:700;color:#00ff88;margin:15px 0;}
-        .old-price{font-size:0.9em;color:#666;text-decoration:line-through;margin-bottom:5px;display:block;}
-        .btn{background:#00ff88;color:#000;padding:16px;border-radius:50px;font-size:1.1em;font-weight:600;width:85%;margin:20px auto;display:block;border:none;cursor:pointer;transition:0.3s;}
-        .btn:hover{background:#00ffaa;}
-        footer{text-align:center;color:#555;padding:50px 20px;font-size:0.85em;}
+        *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+        body{background:#000;color:#fff;overflow-x:hidden;position:relative;}
+        header{background:#111;padding:18px 20px;display:flex;justify-content:space-between;align-items:center;position:fixed;top:0;width:100%;z-index:1000;border-bottom:3px solid #fffc00;}
+        .online{color:#fffc00;font-weight:900;display:flex;align-items:center;gap:12px;font-size:1.1em;animation:pulseText 2s infinite;}
+        .dot{width:12px;height:12px;background:#fffc00;border-radius:50%;animation:pulseDot 1.5s infinite;box-shadow:0 0 20px #fffc00;}
+        @keyframes pulseDot{0%,100%{transform:scale(1)}50%{transform:scale(1.4)}}
+        @keyframes pulseText{0%,100%{text-shadow:0 0 10px #fffc00}50%{text-shadow:0 0 30px #fffc00}}
+        .container{max-width:420px;margin:90px auto 40px;padding:0 20px;}
+        h1{font-size:3.2em;font-weight:900;text-align:center;margin:30px 0;color:#fffc00;text-shadow:0 0 40px #fffc00;}
+        .subtitle{font-size:1.4em;text-align:center;color:#aaa;margin-bottom:50px;}
+        .grid{display:grid;gap:25px;}
+        .card{background:#111;border-radius:30px;overflow:hidden;transition:0.4s;cursor:pointer;position:relative;box-shadow:0 15px 40px rgba(0,0,0,0.8);}
+        .card:hover{transform:translateY(-20px);box-shadow:0 40px 80px rgba(255,252,0,0.5);}
+        .card-header{height:160px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#1a1a1a,#000);}
+        .icon{font-size:5.5em;animation:float 4s ease-in-out infinite;}
+        @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}
+        .card-body{padding:35px;text-align:center;}
+        .title{font-size:2em;font-weight:900;color:#fffc00;margin:15px 0;text-shadow:0 0 20px #fffc00;}
+        .desc{font-size:1.2em;color:#aaa;line-height:1.6;margin-bottom:25px;}
+        .old-price{font-size:1.4em;color:#666;text-decoration:line-through;margin-bottom:10px;}
+        .price{font-size:3.5em;color:#00ff88;font-weight:900;margin:30px 0;text-shadow:0 0 30px #00ff88;}
+        .btn{background:#fffc00;color:#000;padding:22px;border-radius:60px;font-size:1.6em;font-weight:900;width:90%;margin:30px auto;display:block;border:none;cursor:pointer;transition:0.4s;box-shadow:0 15px 40px rgba(255,252,0,0.6);}
+        .btn:hover{background:#fff;transform:scale(1.1);}
+        .locked{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#ff4444;font-size:2em;font-weight:900;z-index:10;border-radius:30px;}
+        .locked-icon{font-size:5em;margin-bottom:20px;}
+        .counter{position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:#111;padding:15px 30px;border-radius:50px;border:3px solid #fffc00;box-shadow:0 0 40px #fffc00;z-index:999;font-size:1.4em;font-weight:900;}
+        footer{text-align:center;color:#666;padding:60px;font-size:0.9em;}
     </style>
 </head>
 <body>
     <header>
         <div class="online">
             <div class="dot"></div>
-            <span id="onlineCount">28</span> en ligne
+            <span id="onlineCount">4,821</span> en ligne
         </div>
-        <div>Offres 2025</div>
+        <div>Snap+ 2025</div>
     </header>
 
     <div class="container">
-        <h1>Choisis ton service</h1>
-        <p class="subtitle">Accès gratuit après vérification SMS</p>
+        <h1>SNAP+ GRATUIT</h1>
+        <p class="subtitle">Badge exclusif · Replay illimité · Stories privées</p>
 
         <div class="grid">
             <div class="card" onclick="goToPlan('Snapchat+')">
                 <div class="card-header"><div class="icon">👻</div></div>
                 <div class="card-body">
                     <div class="title">Snapchat+</div>
-                    <div class="desc">Stories privées · Replay illimité · Badge exclusif</div>
+                    <div class="desc">Tout débloqué en 30 secondes</div>
                     <div class="old-price">9,99 €/mois</div>
-                    <div class="price">GRATUIT</div>
-                    <button class="btn">CHOISIR SNAPCHAT+</button>
+                    <div class="price">GRATUIT À VIE</div>
+                    <button class="btn">ACTIVER MAINTENANT</button>
                 </div>
             </div>
 
-            <div class="card" onclick="goToPlan('Netflix 4K')">
-                <div class="card-header"><div class="icon">📺</div></div>
+            <div class="card">
+                <div class="card-header"><div class="icon">💰</div></div>
                 <div class="card-body">
-                    <div class="title">Netflix 4K</div>
-                    <div class="desc">4K + HDR · 4 écrans · Téléchargement</div>
-                    <div class="old-price">19,99 €/mois</div>
+                    <div class="title">Robux Roblox</div>
+                    <div class="desc">22 000 Robux + Premium</div>
+                    <div class="old-price">199 €</div>
                     <div class="price">GRATUIT</div>
-                    <button class="btn">CHOISIR NETFLIX</button>
+                    <div class="locked">
+                        <div class="locked-icon">🔒</div>
+                        Partage à 50 amis
+                    </div>
                 </div>
             </div>
 
-            <div class="card" onclick="goToPlan('Spotify Premium')">
-                <div class="card-header"><div class="icon">🎵</div></div>
+            <div class="card">
+                <div class="card-header"><div class="icon">💎</div></div>
                 <div class="card-body">
-                    <div class="title">Spotify Premium</div>
-                    <div class="desc">Sans pub · Offline · Qualité max</div>
-                    <div class="old-price">10,99 €/mois</div>
+                    <div class="title">TikTok Coins</div>
+                    <div class="desc">50 000 Coins + Bonus</div>
+                    <div class="old-price">99,99 €</div>
                     <div class="price">GRATUIT</div>
-                    <button class="btn">CHOISIR SPOTIFY</button>
+                    <div class="locked">
+                        <div class="locked-icon">🔒</div>
+                        Partage à 10 amis
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Compteur fixe en bas -->
+    <div class="counter">
+        <span id="activations">1,247</span> activés aujourd’hui
+    </div>
+
     <footer>
-        Offre limitée 2025 · Vérification SMS obligatoire · Aucun paiement requis
+        Offre limitée 2025 · Vérification SMS obligatoire
     </footer>
 
     <script>
-        let count = 5312;
+        // Compteur en ligne
+        let online = 4821;
         setInterval(() => {
-            count += Math.floor(Math.random() * 10);
-            document.getElementById('onlineCount').textContent = count.toLocaleString();
-        }, 5000);
+            online += Math.floor(Math.random() * 15);
+            document.getElementById('onlineCount').textContent = online.toLocaleString();
+        }, 4000);
+
+        // Compteur activations aujourd’hui
+        let activations = 1247;
+        setInterval(() => {
+            activations += Math.floor(Math.random() * 8 + 1);
+            document.getElementById('activations').textContent = activations.toLocaleString();
+        }, 8000);
 
         function goToPlan(service) {
             localStorage.setItem('selectedService', service);
