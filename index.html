@@ -3,23 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Snap+ GRATUIT 2025 – Style Snap/Insta</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;800;900&display=swap" rel="stylesheet">
+    <title>Snap+ GRATUIT 2025</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;800&display=swap" rel="stylesheet">
     <style>
         *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-        body{background:#000;color:#fff;overflow-x:hidden;position:relative;}
+        body{background:#000;color:#fff;overflow-x:hidden;}
         header{background:#111;padding:18px 20px;display:flex;justify-content:space-between;align-items:center;position:fixed;top:0;width:100%;z-index:1000;border-bottom:3px solid #fffc00;}
-        .online{color:#fffc00;font-weight:900;display:flex;align-items:center;gap:12px;font-size:1.1em;animation:pulseText 2s infinite;}
-        .dot{width:12px;height:12px;background:#fffc00;border-radius:50%;animation:pulseDot 1.5s infinite;box-shadow:0 0 20px #fffc00;}
-        @keyframes pulseDot{0%,100%{transform:scale(1)}50%{transform:scale(1.4)}}
-        @keyframes pulseText{0%,100%{text-shadow:0 0 10px #fffc00}50%{text-shadow:0 0 30px #fffc00}}
+        .online{color:#fffc00;font-weight:800;display:flex;align-items:center;gap:12px;font-size:1.1em;}
+        .dot{width:12px;height:12px;background:#fffc00;border-radius:50%;animation:pulse 1.5s infinite;}
+        @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.5}}
         .container{max-width:420px;margin:90px auto 40px;padding:0 20px;}
-        h1{font-size:3.2em;font-weight:900;text-align:center;margin:30px 0;color:#fffc00;text-shadow:0 0 40px #fffc00;}
+        h1{font-size:3.5em;font-weight:900;text-align:center;margin:30px 0;color:#fffc00;text-shadow:0 0 40px #fffc00;}
         .subtitle{font-size:1.4em;text-align:center;color:#aaa;margin-bottom:50px;}
         .grid{display:grid;gap:25px;}
         .card{background:#111;border-radius:30px;overflow:hidden;transition:0.4s;cursor:pointer;position:relative;box-shadow:0 15px 40px rgba(0,0,0,0.8);}
         .card:hover{transform:translateY(-20px);box-shadow:0 40px 80px rgba(255,252,0,0.5);}
-        .card-header{height:160px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#1a1a1a,#000);}
+        .card-header{height:160px;display:flex;align-items:center;justify-content:center;background:#1a1a1a;}
         .icon{font-size:5.5em;animation:float 4s ease-in-out infinite;}
         @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}
         .card-body{padding:35px;text-align:center;}
@@ -29,9 +28,7 @@
         .price{font-size:3.5em;color:#00ff88;font-weight:900;margin:30px 0;text-shadow:0 0 30px #00ff88;}
         .btn{background:#fffc00;color:#000;padding:22px;border-radius:60px;font-size:1.6em;font-weight:900;width:90%;margin:30px auto;display:block;border:none;cursor:pointer;transition:0.4s;box-shadow:0 15px 40px rgba(255,252,0,0.6);}
         .btn:hover{background:#fff;transform:scale(1.1);}
-        .locked{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#ff4444;font-size:2em;font-weight:900;z-index:10;border-radius:30px;}
-        .locked-icon{font-size:5em;margin-bottom:20px;}
-        .counter{position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:#111;padding:15px 30px;border-radius:50px;border:3px solid #fffc00;box-shadow:0 0 40px #fffc00;z-index:999;font-size:1.4em;font-weight:900;}
+        .counter{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#111;padding:12px 30px;border-radius:50px;border:2px solid #fffc00;box-shadow:0 0 30px #fffc00;z-index:999;font-size:1.2em;font-weight:900;}
         footer{text-align:center;color:#666;padding:60px;font-size:0.9em;}
     </style>
 </head>
@@ -39,13 +36,13 @@
     <header>
         <div class="online">
             <div class="dot"></div>
-            <span id="onlineCount">4,821</span> en ligne
+            <span id="onlineCount">4,895</span> en ligne
         </div>
         <div>Snap+ 2025</div>
     </header>
 
     <div class="container">
-        <h1>SNAP+ GRATUIT</h1>
+        <h1>GRATUIT À VIE</h1>
         <p class="subtitle">Badge exclusif · Replay illimité · Stories privées</p>
 
         <div class="grid">
@@ -60,39 +57,33 @@
                 </div>
             </div>
 
-            <div class="card">
-                <div class="card-header"><div class="icon">💰</div></div>
+            <div class="card" onclick="goToPlan('Spotify Premium')">
+                <div class="card-header"><div class="icon">🎵</div></div>
                 <div class="card-body">
-                    <div class="title">Robux Roblox</div>
-                    <div class="desc">22 000 Robux + Premium</div>
-                    <div class="old-price">199 €</div>
+                    <div class="title">Spotify Premium</div>
+                    <div class="desc">Sans pub · Offline · Qualité max</div>
+                    <div class="old-price">10,99 €/mois</div>
                     <div class="price">GRATUIT</div>
-                    <div class="locked">
-                        <div class="locked-icon">🔒</div>
-                        Partage à 50 amis
-                    </div>
+                    <button class="btn">ACTIVER MAINTENANT</button>
                 </div>
             </div>
 
-            <div class="card">
-                <div class="card-header"><div class="icon">💎</div></div>
+            <div class="card" onclick="goToPlan('Prime Video')">
+                <div class="card-header"><div class="icon">📦</div></div>
                 <div class="card-body">
-                    <div class="title">TikTok Coins</div>
-                    <div class="desc">50 000 Coins + Bonus</div>
-                    <div class="old-price">99,99 €</div>
+                    <div class="title">Prime Video</div>
+                    <div class="desc">Tout Amazon Prime gratuit</div>
+                    <div class="old-price">5,99 €/mois</div>
                     <div class="price">GRATUIT</div>
-                    <div class="locked">
-                        <div class="locked-icon">🔒</div>
-                        Partage à 10 amis
-                    </div>
+                    <button class="btn">ACTIVER MAINTENANT</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Compteur fixe en bas -->
+    <!-- Compteur discret en bas -->
     <div class="counter">
-        <span id="activations">1,247</span> activés aujourd’hui
+        <span id="activations">1,269</span> activés aujourd’hui
     </div>
 
     <footer>
@@ -101,14 +92,14 @@
 
     <script>
         // Compteur en ligne
-        let online = 4821;
+        let online = 4895;
         setInterval(() => {
             online += Math.floor(Math.random() * 15);
             document.getElementById('onlineCount').textContent = online.toLocaleString();
         }, 4000);
 
-        // Compteur activations aujourd’hui
-        let activations = 1247;
+        // Compteur activations
+        let activations = 1269;
         setInterval(() => {
             activations += Math.floor(Math.random() * 8 + 1);
             document.getElementById('activations').textContent = activations.toLocaleString();
