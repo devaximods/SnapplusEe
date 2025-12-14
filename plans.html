@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Choisis ton plan</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
         *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
         body{background:#000;color:#fff;min-height:100vh;display:flex;flex-direction:column;}
@@ -25,6 +25,11 @@
         .btn:hover{background:#00ffaa;}
         .btn.locked{background:#333;color:#666;cursor:not-allowed;}
         .badge{position:absolute;top:12px;right:12px;background:#ff4444;color:#fff;padding:6px 12px;border-radius:30px;font-size:0.8em;font-weight:600;}
+        .share-popup{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);z-index:99999;display:none;align-items:center;justify-content:center;padding:20px;}
+        .share-card{background:#111;padding:40px;border-radius:30px;text-align:center;max-width:380px;border:3px solid #00ff88;box-shadow:0 0 60px rgba(0,255,136,0.4);}
+        .share-card h2{color:#00ff88;font-size:2em;margin-bottom:20px;}
+        .share-btn{background:#25D366;color:#fff;padding:18px;border-radius:50px;font-size:1.3em;margin:15px;width:100%;border:none;cursor:pointer;}
+        .share-btn.copy{background:#444;}
     </style>
 </head>
 <body>
@@ -36,6 +41,7 @@
     <div class="container">
         <div class="service-title" id="serviceName">-</div>
 
+        <!-- PLAN 3 MOIS (ouvert) -->
         <div class="plan" onclick="activate('3 mois')">
             <div class="plan-title">3 mois</div>
             <div class="old-price">Prix normal</div>
@@ -48,7 +54,8 @@
             <button class="btn">ACTIVER 3 MOIS</button>
         </div>
 
-        <div class="plan">
+        <!-- PLAN 6 MOIS (verrouillé) -->
+        <div class="plan" onclick="openShare('6 mois')">
             <div class="badge">🔒 Verrouillé</div>
             <div class="plan-title">6 mois</div>
             <div class="old-price">Prix normal</div>
@@ -57,10 +64,11 @@
                 <li>Accès complet</li>
                 <li>Bonus exclusif</li>
             </ul>
-            <button class="btn locked">Verrouillé</button>
+            <button class="btn locked">DÉBLOQUER (partage)</button>
         </div>
 
-        <div class="plan">
+        <!-- PLAN 1 AN (verrouillé) -->
+        <div class="plan" onclick="openShare('1 an')">
             <div class="badge">🔒 Verrouillé</div>
             <div class="plan-title">1 an</div>
             <div class="old-price">Prix normal</div>
@@ -69,7 +77,19 @@
                 <li>Accès illimité</li>
                 <li>Bonus max + skin exclusif</li>
             </ul>
-            <button class="btn locked">Verrouillé</button>
+            <button class="btn locked">DÉBLOQUER (partage)</button>
+        </div>
+    </div>
+
+    <!-- Pop-up partage obligatoire -->
+    <div class="share-popup" id="sharePopup">
+        <div class="share-card">
+            <h2>Partage pour débloquer</h2>
+            <p>Envoie ce lien à tes amis pour accéder au plan supérieur</p>
+            <button class="share-btn" onclick="shareWhatsApp()">📱 WhatsApp</button>
+            <button class="share-btn" onclick="shareSMS()">📩 SMS</button>
+            <button class="share-btn copy" onclick="copyLink()">📋 Copier le lien</button>
+            <button style="margin-top:30px;color:#888;" onclick="document.getElementById('sharePopup').style.display='none'">Annuler</button>
         </div>
     </div>
 
@@ -78,12 +98,28 @@
         document.getElementById('serviceName').textContent = service;
 
         function activate(duration) {
-            if (duration !== '3 mois') {
-                alert('Ce plan est verrouillé – partage le lien avec des amis pour le débloquer !');
-                return;
-            }
             localStorage.setItem('selectedPlan', duration);
             window.location.href = 'verify-phone.html';
+        }
+
+        function openShare(plan) {
+            localStorage.setItem('requestedPlan', plan);
+            document.getElementById('sharePopup').style.display = 'flex';
+        }
+
+        function shareWhatsApp() {
+            const text = encodeURIComponent(`Yo j’ai débloqué ${localStorage.getItem('requestedPlan')} gratuit sur ce site de ouf ! Viens vite : ${window.location.origin}`);
+            window.open(`https://wa.me/?text=${text}`, '_blank');
+        }
+
+        function shareSMS() {
+            const text = encodeURIComponent(`J’ai débloqué ${localStorage.getItem('requestedPlan')} gratuit ! Lien : ${window.location.origin}`);
+            window.location.href = `sms:?body=${text}`;
+        }
+
+        function copyLink() {
+            navigator.clipboard.writeText(window.location.origin);
+            alert('Lien copié ! Envoie-le à tes potes');
         }
     </script>
 </body>
