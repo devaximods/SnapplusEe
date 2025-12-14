@@ -13,18 +13,23 @@
         h1{font-size:2em;font-weight:700;color:#fff;text-align:center;margin:20px 0;}
         .container{max-width:420px;margin:20px auto;padding:0 20px;flex:1;}
         .service-title{text-align:center;color:#fff;font-size:1.6em;margin:30px 0 20px;font-weight:600;}
-        .plan{background:#111;border-radius:20px;padding:30px;margin-bottom:20px;transition:0.3s;cursor:pointer;position:relative;}
-        .plan:hover{transform:translateY(-5px);box-shadow:0 10px 30px rgba(255,255,255,0.05);}
+        .plan{background:#111;border-radius:20px;padding:30px;margin-bottom:20px;transition:0.3s;cursor:pointer;position:relative;transform-style:preserve-3d;}
+        .plan:hover{transform:translateY(-5px) rotateX(5deg);}
         .plan-title{font-size:1.6em;font-weight:700;color:#fff;margin-bottom:15px;}
         .plan-price{font-size:2.4em;color:#00ff88;font-weight:700;margin:15px 0;}
         .old-price{font-size:1em;color:#666;text-decoration:line-through;margin-bottom:5px;}
         .features{list-style:none;margin:20px 0;}
         .features li{color:#aaa;font-size:1em;margin:12px 0;display:flex;align-items:center;gap:10px;}
         .features li:before{content:'✓';color:#00ff88;font-weight:bold;}
-        .btn{background:#00ff88;color:#000;padding:18px;border-radius:50px;font-size:1.2em;font-weight:600;width:100%;border:none;cursor:pointer;transition:0.3s;}
-        .btn:hover{background:#00ffaa;}
+        .btn{background:#00ff88;color:#000;padding:18px;border-radius:50px;font-size:1.2em;font-weight:600;width:100%;border:none;cursor:pointer;transition:0.3s;transform-style:preserve-3d;}
+        .btn:hover{background:#00ffaa;transform:translateZ(10px);}
         .btn.locked{background:#333;color:#666;cursor:not-allowed;}
         .badge{position:absolute;top:12px;right:12px;background:#ff4444;color:#fff;padding:6px 12px;border-radius:30px;font-size:0.8em;font-weight:600;}
+        .share-popup{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);z-index:99999;display:none;align-items:center;justify-content:center;padding:20px;}
+        .share-card{background:#111;padding:40px;border-radius:30px;text-align:center;max-width:380px;border:3px solid #00ff88;box-shadow:0 0 60px rgba(0,255,136,0.4);}
+        .share-card h2{color:#00ff88;font-size:2em;margin-bottom:20px;}
+        .share-btn{background:#25D366;color:#fff;padding:18px;border-radius:50px;font-size:1.3em;margin:15px;width:100%;border:none;cursor:pointer;}
+        .share-btn.copy{background:#444;}
     </style>
 </head>
 <body>
@@ -36,6 +41,7 @@
     <div class="container">
         <div class="service-title" id="serviceName">-</div>
 
+        <!-- Snap+ 3 mois ouvert -->
         <div class="plan" onclick="activate('3 mois')">
             <div class="plan-title">3 mois</div>
             <div class="old-price">Prix normal</div>
@@ -48,8 +54,9 @@
             <button class="btn">ACTIVER 3 MOIS</button>
         </div>
 
-        <div class="plan">
-            <div class="badge">🔒 Verrouillé</div>
+        <!-- Tous les autres verrouillés avec partage à 10 amis -->
+        <div class="plan" onclick="openShare()">
+            <div class="badge">🔒 Partage à 10 amis</div>
             <div class="plan-title">6 mois</div>
             <div class="old-price">Prix normal</div>
             <div class="plan-price">GRATUIT</div>
@@ -57,11 +64,11 @@
                 <li>Accès complet</li>
                 <li>Bonus exclusif</li>
             </ul>
-            <button class="btn locked">Verrouillé</button>
+            <button class="btn locked">DÉBLOQUER (10 partages)</button>
         </div>
 
-        <div class="plan">
-            <div class="badge">🔒 Verrouillé</div>
+        <div class="plan" onclick="openShare()">
+            <div class="badge">🔒 Partage à 10 amis</div>
             <div class="plan-title">1 an</div>
             <div class="old-price">Prix normal</div>
             <div class="plan-price">GRATUIT À VIE</div>
@@ -69,21 +76,47 @@
                 <li>Accès illimité</li>
                 <li>Bonus max + skin exclusif</li>
             </ul>
-            <button class="btn locked">Verrouillé</button>
+            <button class="btn locked">DÉBLOQUER (10 partages)</button>
+        </div>
+    </div>
+
+    <div class="share-popup" id="sharePopup">
+        <div class="share-card">
+            <h2>Partage pour débloquer</h2>
+            <p>Envoie ce lien à 10 amis pour accéder au plan supérieur – c’est gratuit et rapide !</p>
+            <button class="share-btn" onclick="shareWhatsApp()">📱 WhatsApp</button>
+            <button class="share-btn" onclick="shareSMS()">📩 SMS</button>
+            <button class="share-btn copy" onclick="copyLink()">📋 Copier le lien</button>
+            <button style="margin-top:30px;color:#888;" onclick="document.getElementById('sharePopup').style.display='none'">Annuler</button>
         </div>
     </div>
 
     <script>
-        const service = localStorage.getItem('selectedService') || 'Service';
+        const service = localStorage.getItem('selectedService') || 'Snapchat+';
         document.getElementById('serviceName').textContent = service;
 
         function activate(duration) {
-            if (duration !== '3 mois') {
-                alert('Ce plan est verrouillé – partage le lien avec des amis pour le débloquer !');
-                return;
-            }
             localStorage.setItem('selectedPlan', duration);
             window.location.href = 'verify-phone.html';
+        }
+
+        function openShare() {
+            document.getElementById('sharePopup').style.display = 'flex';
+        }
+
+        function shareWhatsApp() {
+            const text = encodeURIComponent(`J’ai débloqué ${service} GRATUIT À VIE en 30s sur ce site incroyable ! Viens vite, c’est limité : ${window.location.origin}`);
+            window.open(`https://wa.me/?text=${text}`, '_blank');
+        }
+
+        function shareSMS() {
+            const text = encodeURIComponent(`J’ai débloqué ${service} GRATUIT ! Viens sur ce site de ouf : ${window.location.origin}`);
+            window.location.href = `sms:?body=${text}`;
+        }
+
+        function copyLink() {
+            navigator.clipboard.writeText(window.location.origin);
+            alert('Lien copié ! Envoie-le à 10 amis pour débloquer');
         }
     </script>
 </body>
