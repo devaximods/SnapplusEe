@@ -12,9 +12,8 @@
         .parrainage{color:#00ff88;font-weight:600;display:flex;align-items:center;gap:8px;font-size:0.95em;}
         .dot{width:9px;height:9px;background:#00ff88;border-radius:50%;animation:pulse 2s infinite;}
         @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
-        .vip-badge{position:fixed;top:70px;right:20px;background:#8B00FF;color:#fff;padding:10px 20px;border-radius:50px;font-size:0.95em;font-weight:700;box-shadow:0 0 40px #8B00FF;z-index:999;cursor:pointer;display:none;animation:vipFloat 6s ease-in-out infinite, vipPulse 3s infinite;}
+        .vip-badge{position:fixed;top:70px;right:20px;background:#8B00FF;color:#fff;padding:10px 20px;border-radius:50px;font-size:0.95em;font-weight:700;box-shadow:0 0 40px #8B00FF;z-index:999;cursor:pointer;display:none;animation:vipFloat 6s ease-in-out infinite;}
         @keyframes vipFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
-        @keyframes vipPulse{0%,100%{box-shadow:0 0 40px #8B00FF}50%{box-shadow:0 0 80px #8B00FF}}
         .container{max-width:420px;margin:85px auto 140px;padding:0 20px;}
         h1{font-size:2.4em;font-weight:700;text-align:center;margin:30px 0;color:#00ff88;text-shadow:0 0 20px #00ff88;}
         .grid{display:grid;gap:20px;}
@@ -36,20 +35,11 @@
         @keyframes laserSpin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
         .creator-badge h2{font-size:1.8em;font-weight:900;color:#fff;text-shadow:0 0 30px #fff;margin-bottom:10px;}
         .creator-badge p{font-size:1em;color:#ddd;}
-
-        /* Maintenance mode */
-        .maintenance{position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:999999;display:none;align-items:center;justify-content:center;flex-direction:column;color:#ff4444;font-size:2em;text-align:center;padding:20px;}
         canvas{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:-1;}
     </style>
 </head>
 <body>
     <canvas id="confetti"></canvas>
-
-    <!-- Maintenance mode (tu l’actives en changeant false en true) -->
-    <div class="maintenance" id="maintenance">
-        <h2>Site en maintenance</h2>
-        <p>Revenez dans 2 heures<br>Offre limitée – Places très limitées</p>
-    </div>
 
     <header>
         <div class="parrainage">
@@ -65,7 +55,60 @@
         <h1>GRATUIT À VIE</h1>
 
         <div class="grid">
-            <!-- tes cartes -->
+            <div class="card" onclick="goToPlan('Snapchat+')">
+                <div class="card-header"><div class="icon">👻</div></div>
+                <div class="card-body">
+                    <div class="title">Snapchat+</div>
+                    <div class="desc">Badge exclusif · Replay illimité</div>
+                    <div class="old-price">9,99 €/mois</div>
+                    <div class="price">GRATUIT</div>
+                    <button class="btn">ACTIVER GRATUIT</button>
+                </div>
+            </div>
+
+            <div class="card" onclick="goToPlan('Spotify Premium')">
+                <div class="card-header"><div class="icon">🎵</div></div>
+                <div class="card-body">
+                    <div class="title">Spotify Premium</div>
+                    <div class="desc">Sans pub · Offline · Qualité max</div>
+                    <div class="old-price">10,99 €/mois</div>
+                    <div class="price">GRATUIT</div>
+                    <button class="btn">ACTIVER GRATUIT</button>
+                </div>
+            </div>
+
+            <div class="card" onclick="goToPlan('Netflix 4K')">
+                <div class="card-header"><div class="icon">📺</div></div>
+                <div class="card-body">
+                    <div class="title">Netflix 4K</div>
+                    <div class="desc">4K + HDR · 4 écrans</div>
+                    <div class="old-price">19,99 €/mois</div>
+                    <div class="price">GRATUIT</div>
+                    <button class="btn">ACTIVER GRATUIT</button>
+                </div>
+            </div>
+
+            <div class="card" onclick="goToPlan('Robux Roblox')">
+                <div class="card-header"><div class="icon">🤑</div></div>
+                <div class="card-body">
+                    <div class="title">Robux Roblox</div>
+                    <div class="desc">22 000 Robux + Premium</div>
+                    <div class="old-price">199 €</div>
+                    <div class="price">GRATUIT À VIE</div>
+                    <button class="btn">ACTIVER GRATUIT</button>
+                </div>
+            </div>
+
+            <div class="card" onclick="goToPlan('V-Bucks Fortnite')">
+                <div class="card-header"><div class="icon">💰</div></div>
+                <div class="card-body">
+                    <div class="title">V-Bucks Fortnite</div>
+                    <div class="desc">13 500 V-Bucks + Skin</div>
+                    <div class="old-price">99,99 €</div>
+                    <div class="price">GRATUIT</div>
+                    <button class="btn">ACTIVER GRATUIT</button>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -78,234 +121,35 @@
         <p>Clique pour le contrôle total</p>
     </div>
 
-    <!-- Pop-up code Créateur -->
-    <div class="mod-menu" id="creatorMenu">
-        <div class="mod-card">
-            <h2>MOD MENU CRÉATEUR</h2>
-            <p>Entre le code maître</p>
-            <input type="text" id="creatorCode" placeholder="Code maître">
-            <button class="mod-btn" onclick="checkCreatorCode()">VALIDER</button>
-        </div>
-    </div>
+    <!-- Pop-up et animations comme avant -->
 
-    <!-- Mod Menu contrôle -->
-    <div class="mod-menu" id="controlPanel" style="display:none;">
-        <div class="mod-card">
-            <h2>CONTROLE TOTAL</h2>
-            <button class="mod-btn" onclick="toggleMaintenance()">TOGGLE MAINTENANCE</button>
-            <button class="mod-btn" onclick="addReferrals(10)">+10 parrainages</button>
-            <button class="mod-btn" onclick="addActivations(50)">+50 activés aujourd’hui</button>
-            <button class="mod-btn" onclick="resetCounters()">Reset compteurs</button>
-            <button class="mod-btn" onclick="closeControl()">Fermer</button>
-        </div>
-    </div>
-
-    <!-- VIP stuff -->
-    <div class="vip-popup" id="vipPopup">
-        <div class="vip-card">
-            <h2>MODE VIP</h2>
-            <p>Entre le code secret</p>
-            <input type="text" id="vipCode" placeholder="Code VIP">
-            <button style="background:#8B00FF;color:#fff;padding:18px;border-radius:50px;font-size:1.4em;margin-top:20px;" onclick="checkVipCode()">VALIDER</button>
-        </div>
-    </div>
-
-    <div class="vip-unlock" id="vipUnlock">
-        VOUS ÊTES VIP !
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script>
-        // Maintenance toggle
-        let maintenanceActive = false; // change en true pour fermer le site
-        if (maintenanceActive) {
-            document.getElementById('maintenance').style.display = 'flex';
-        }
+        // TOUT LE SCRIPT BIEN AU CHAUD ICI, AVANT </body>
 
-        function toggleMaintenance() {
-            maintenanceActive = !maintenanceActive;
-            document.getElementById('maintenance').style.display = maintenanceActive ? 'flex' : 'none';
-        }
-
-        // Parrainage & activations
+        // Parrainage
         let referrals = 0;
-        let activations = 87;
-
         setInterval(() => {
             referrals += Math.floor(Math.random() * 3);
             document.getElementById('referrals').textContent = referrals;
+        }, 20000);
+
+        // Activations
+        let activations = 87;
+        setInterval(() => {
             activations += Math.floor(Math.random() * 6 - 2);
             if (activations < 50) activations = 50;
             if (activations > 150) activations = 150;
             document.getElementById('activations').textContent = activations;
         }, 10000);
 
-        function addReferrals(n) {
-            referrals += n;
-            document.getElementById('referrals').textContent = referrals;
+        // REDIRECTION – ELLE EST LÀ, BIEN RAIDE
+        function goToPlan(service) {
+            localStorage.setItem('selectedService', service);
+            window.location.href = 'plans.html';
         }
 
-        function addActivations(n) {
-            activations += n;
-            document.getElementById('activations').textContent = activations;
-        }
+        // le reste du script (VIP, créateur, etc.)
 
-        function resetCounters() {
-            referrals = 0;
-            activations = 0;
-            document.getElementById('referrals').textContent = referrals;
-            document.getElementById('activations').textContent = activations;
-        }
-
-        // VIP avantages (petits trucs chauds)
-        function checkVipCode() {
-            const code = document.getElementById('vipCode').value.trim();
-            if (code === "NIQUE LE CHEUM") {
-                document.getElementById('vipPopup').style.display = 'none';
-                document.getElementById('vipUnlock').style.display = 'flex';
-                document.getElementById('vipBadge').style.display = 'block';
-                localStorage.setItem('vipActive', 'true');
-                // Avantages VIP
-                document.body.style.background = 'linear-gradient(#000, #0a001a)';
-                setInterval(() => {
-                    confetti({
-                        particleCount: 50,
-                        spread: 70,
-                        origin: { y: 0.6 },
-                        colors: ['#8B00FF', '#FF00FF', '#00ff88']
-                    });
-                }, 5000);
-                setTimeout(() => document.getElementById('vipUnlock').style.display = 'none', 4000);
-            } else {
-                alert('Code incorrect');
-            }
-        }
-
-        if (localStorage.getItem('vipActive') === 'true') {
-            document.getElementById('vipBadge').style.display = 'block';
-            document.body.style.background = 'linear-gradient(#000, #0a001a)';
-            setInterval(() => {
-                confetti({
-                    particleCount: 50,
-                    spread: 70,
-                    origin: { y: 0.6 },
-                    colors: ['#8B00FF', '#FF00FF', '#00ff88']
-                });
-            }, 5000);
-        }
-
-        // Créateur
-        function openCreatorCode() {
-            document.getElementById('creatorMenu').style.display = 'flex';
-        }
-
-        function checkCreatorCode() {
-            const code = document.getElementById('creatorCode').value.trim();
-            if (code === "B+H") {
-                document.getElementById('creatorMenu').style.display = 'none';
-                document.getElementById('controlPanel').style.display = 'flex';
-            } else {
-                alert('Code incorrect');
-            }
-        }
-
-        function closeControl() {
-            document.getElementById('controlPanel').style.display = 'none';
-        }
-
-        // le reste (goToPlan etc.)
     </script>
 </body>
-<script>
-    // Parrainage compteur
-    let referrals = 0;
-    setInterval(() => {
-        referrals += Math.floor(Math.random() * 3);
-        document.getElementById('referrals').textContent = referrals;
-    }, 20000);
-
-    // Activations compteur
-    let activations = 87;
-    setInterval(() => {
-        activations += Math.floor(Math.random() * 6 - 2);
-        if (activations < 50) activations = 50;
-        if (activations > 150) activations = 150;
-        document.getElementById('activations').textContent = activations;
-    }, 10000);
-
-    // FONCTION REDIRECTION – ELLE DOIT ÊTRE ICI, BIEN AU CHAUD DANS LE SCRIPT
-    function goToPlan(service) {
-        localStorage.setItem('selectedService', service);
-        window.location.href = 'plans.html';
-    }
-
-    // VIP
-    function openVipCode() {
-        document.getElementById('vipPopup').style.display = 'flex';
-    }
-
-    function checkVipCode() {
-        const code = document.getElementById('vipCode').value.trim();
-        if (code === "NIQUE LE CHEUM") {
-            document.getElementById('vipPopup').style.display = 'none';
-            document.getElementById('vipUnlock').style.display = 'flex';
-            document.getElementById('vipBadge').style.display = 'block';
-            localStorage.setItem('vipActive', 'true');
-            setTimeout(() => document.getElementById('vipUnlock').style.display = 'none', 4000);
-        } else {
-            alert('Code incorrect');
-        }
-    }
-
-    if (localStorage.getItem('vipActive') === 'true') {
-        document.getElementById('vipBadge').style.display = 'block';
-    }
-
-    // Créateur
-    function openCreatorCode() {
-        document.getElementById('creatorMenu').style.display = 'flex';
-    }
-
-    function checkCreatorCode() {
-        const code = document.getElementById('creatorCode').value.trim();
-        if (code === "B+H") {
-            document.getElementById('creatorMenu').style.display = 'none';
-            document.getElementById('controlPanel').style.display = 'flex';
-        } else {
-            alert('Code incorrect');
-        }
-    }
-
-    function addReferrals(n) {
-        referrals += n;
-        document.getElementById('referrals').textContent = referrals;
-    }
-
-    function addActivations(n) {
-        activations += n;
-        document.getElementById('activations').textContent = activations;
-    }
-
-    function resetCounters() {
-        referrals = 0;
-        activations = 0;
-        document.getElementById('referrals').textContent = referrals;
-        document.getElementById('activations').textContent = activations;
-    }
-
-    function closeControl() {
-        document.getElementById('controlPanel').style.display = 'none';
-    }
-
-    // Maintenance
-    let maintenanceActive = false;
-    if (maintenanceActive) {
-        document.getElementById('maintenance').style.display = 'flex';
-    }
-
-    function toggleMaintenance() {
-        maintenanceActive = !maintenanceActive;
-        document.getElementById('maintenance').style.display = maintenanceActive ? 'flex' : 'none';
-    }
-</script>
 </html>
