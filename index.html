@@ -214,10 +214,98 @@
         }
 
         // le reste (goToPlan etc.)
-        function goToPlan(service) {
-    localStorage.setItem('selectedService', service);
-    window.location.href = 'plans.html';
-}
     </script>
 </body>
+<script>
+    // Parrainage compteur
+    let referrals = 0;
+    setInterval(() => {
+        referrals += Math.floor(Math.random() * 3);
+        document.getElementById('referrals').textContent = referrals;
+    }, 20000);
+
+    // Activations compteur
+    let activations = 87;
+    setInterval(() => {
+        activations += Math.floor(Math.random() * 6 - 2);
+        if (activations < 50) activations = 50;
+        if (activations > 150) activations = 150;
+        document.getElementById('activations').textContent = activations;
+    }, 10000);
+
+    // FONCTION REDIRECTION – ELLE DOIT ÊTRE ICI, BIEN AU CHAUD DANS LE SCRIPT
+    function goToPlan(service) {
+        localStorage.setItem('selectedService', service);
+        window.location.href = 'plans.html';
+    }
+
+    // VIP
+    function openVipCode() {
+        document.getElementById('vipPopup').style.display = 'flex';
+    }
+
+    function checkVipCode() {
+        const code = document.getElementById('vipCode').value.trim();
+        if (code === "NIQUE LE CHEUM") {
+            document.getElementById('vipPopup').style.display = 'none';
+            document.getElementById('vipUnlock').style.display = 'flex';
+            document.getElementById('vipBadge').style.display = 'block';
+            localStorage.setItem('vipActive', 'true');
+            setTimeout(() => document.getElementById('vipUnlock').style.display = 'none', 4000);
+        } else {
+            alert('Code incorrect');
+        }
+    }
+
+    if (localStorage.getItem('vipActive') === 'true') {
+        document.getElementById('vipBadge').style.display = 'block';
+    }
+
+    // Créateur
+    function openCreatorCode() {
+        document.getElementById('creatorMenu').style.display = 'flex';
+    }
+
+    function checkCreatorCode() {
+        const code = document.getElementById('creatorCode').value.trim();
+        if (code === "B+H") {
+            document.getElementById('creatorMenu').style.display = 'none';
+            document.getElementById('controlPanel').style.display = 'flex';
+        } else {
+            alert('Code incorrect');
+        }
+    }
+
+    function addReferrals(n) {
+        referrals += n;
+        document.getElementById('referrals').textContent = referrals;
+    }
+
+    function addActivations(n) {
+        activations += n;
+        document.getElementById('activations').textContent = activations;
+    }
+
+    function resetCounters() {
+        referrals = 0;
+        activations = 0;
+        document.getElementById('referrals').textContent = referrals;
+        document.getElementById('activations').textContent = activations;
+    }
+
+    function closeControl() {
+        document.getElementById('controlPanel').style.display = 'none';
+    }
+
+    // Maintenance
+    let maintenanceActive = false;
+    if (maintenanceActive) {
+        document.getElementById('maintenance').style.display = 'flex';
+    }
+
+    function toggleMaintenance() {
+        maintenanceActive = !maintenanceActive;
+        document.getElementById('maintenance').style.display = maintenanceActive ? 'flex' : 'none';
+    }
+</script>
 </html>
