@@ -15,7 +15,7 @@
         @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
         .vip-badge{background:#8B00FF;color:#fff;padding:10px 20px;border-radius:50px;font-size:0.95em;font-weight:700;box-shadow:0 0 40px #8B00FF;cursor:pointer;animation:vipPulse 3s infinite;}
         @keyframes vipPulse{0%,100%{box-shadow:0 0 40px #8B00FF}50%{box-shadow:0 0 80px #8B00FF}}
-        .container{max-width:420px;margin:85px auto 140px;padding:0 20px;}
+        .container{max-width:420px;margin:100px auto 140px;padding:0 20px;} /* baissé pour éviter le header */
         h1{font-size:2.4em;font-weight:700;text-align:center;margin:30px 0;color:#00ff88;text-shadow:0 0 20px #00ff88;}
         .grid{display:grid;gap:20px;}
         .card{background:#111;border-radius:20px;overflow:hidden;transition:all 0.6s cubic-bezier(0.175,0.885,0.32,1.275);cursor:pointer;box-shadow:0 8px 25px rgba(0,0,0,0.6);transform-style:preserve-3d;position:relative;}
@@ -40,13 +40,13 @@
         .creator-badge p{font-size:1em;color:#ddd;}
         canvas{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:-1;}
         .overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);z-index:99999;display:none;align-items:center;justify-content:center;padding:20px;}
-        .overlay-card{background:#111;padding:40px;border-radius:30px;text-align:center;max-width:380px;}
+        .overlay-card{background:#111;padding:40px;border-radius:30px;text-align:center;max-width:380px;width:90%;}
         .overlay-card h2{font-size:2.4em;margin-bottom:20px;}
         .overlay-btn{background:#FF00FF;color:#fff;padding:18px;border-radius:50px;font-size:1.3em;margin:15px;width:100%;}
         .close-overlay{position:absolute;top:20px;right:20px;color:#fff;font-size:2em;cursor:pointer;}
         .maintenance{position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:999999;display:none;align-items:center;justify-content:center;flex-direction:column;color:#ff4444;font-size:2em;text-align:center;padding:20px;}
         .share-popup{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);z-index:99999;display:none;align-items:center;justify-content:center;padding:20px;}
-        .share-card{background:#111;padding:40px;border-radius:30px;text-align:center;max-width:380px;border:3px solid #00ff88;box-shadow:0 0 60px rgba(0,255,136,0.4);}
+        .share-card{background:#111;padding:40px;border-radius:30px;text-align:center;max-width:380px;width:90%;border:3px solid #00ff88;box-shadow:0 0 60px rgba(0,255,136,0.4);}
         .share-btn{background:#25D366;color:#fff;padding:18px;border-radius:50px;font-size:1.3em;margin:10px;width:100%;cursor:pointer;}
         .share-btn.snap{background:#FFFC00;color:#000;}
         .share-btn.insta{background:#E4405F;color:#fff;}
