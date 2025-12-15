@@ -43,6 +43,12 @@
         .overlay-btn{background:#FF00FF;color:#fff;padding:18px;border-radius:50px;font-size:1.3em;margin:15px;width:100%;}
         .close-overlay{position:absolute;top:20px;right:20px;color:#fff;font-size:2em;cursor:pointer;}
         .maintenance{position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:999999;display:none;align-items:center;justify-content:center;flex-direction:column;color:#ff4444;font-size:2em;text-align:center;padding:20px;}
+        .cat-runner{position:fixed;bottom:100px;left:-100px;font-size:5em;z-index:9999;pointer-events:none;display:none;}
+        @keyframes catRun{
+            0% {left:-100px;transform:scale(1);}
+            70% {left:50%;transform:scale(1.5) rotate(360deg);}
+            100% {left:110%;transform:scale(0);}
+        }
     </style>
 </head>
 <body>
@@ -58,7 +64,7 @@
             <div class="dot"></div>
             <span id="referrals">0</span> parrainages
         </div>
-        <div class="vip-badge" id="vipBadge" onclick="openOverlay('vipOverlay')">
+        <div class="vip-badge" id="vipBadge" onclick="triggerCatAnimation()">
             MODE VIP 👑
         </div>
     </header>
@@ -177,6 +183,9 @@
         <p>Clique pour le contrôle total</p>
     </div>
 
+    <!-- Chat qui court -->
+    <div class="cat-runner" id="catRunner">👻</div>
+
     <!-- Overlay VIP -->
     <div class="overlay" id="vipOverlay">
         <div class="overlay-card" style="border:4px solid #8B00FF;box-shadow:0 0 80px #8B00FF;">
@@ -224,6 +233,23 @@
 
         function closeOverlay(id) {
             document.getElementById(id).style.display = 'none';
+        }
+
+        // Animation chat pour VIP
+        function triggerCatAnimation() {
+            const cat = document.getElementById('catRunner');
+            cat.style.display = 'block';
+            cat.style.animation = 'catRun 3s linear forwards';
+            setTimeout(() => {
+                confetti({
+                    particleCount: 200,
+                    spread: 120,
+                    origin: { x: 0.5, y: 0.8 },
+                    colors: ['#8B00FF', '#FF00FF', '#00ff88']
+                });
+                cat.style.display = 'none';
+                openOverlay('vipOverlay');
+            }, 3000);
         }
 
         // Compteurs
