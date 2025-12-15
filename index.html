@@ -214,6 +214,10 @@
         }
 
         // le reste (goToPlan etc.)
+        function goToPlan(service) {
+    localStorage.setItem('selectedService', service);
+    window.location.href = 'plans.html';
+}
     </script>
 </body>
 </html>
