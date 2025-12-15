@@ -3,27 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pour Hind, mon amour éternel ❤️</title>
+    <title>Hind, mon amour éternel ❤️</title>
     <style>
         body {
             margin: 0;
             height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
             background: linear-gradient(to bottom, #fff0f5, #ffe6f2);
             font-family: 'Georgia', serif;
             color: #d63384;
             overflow: hidden;
-            transition: background 3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: background 4s ease;
         }
-        #heart {
+        #big-heart {
             font-size: 220px;
             cursor: pointer;
             animation: heartbeat 2s infinite ease-in-out;
             user-select: none;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
         @keyframes heartbeat {
             0% { transform: scale(1); }
@@ -33,94 +33,139 @@
             80% { transform: scale(1); }
             100% { transform: scale(1); }
         }
-        #love-text {
+        #love-message {
             max-width: 90%;
             text-align: center;
             font-size: 28px;
             line-height: 1.8;
-            opacity: 0;
-            transition: opacity 3s ease;
-            padding: 40px;
+            padding: 20px;
         }
-        .falling-heart {
+        .floating-heart {
             position: absolute;
             font-size: 40px;
             color: #ff69b4;
             pointer-events: none;
-            animation: fall linear infinite;
-            opacity: 0.8;
+            white-space: nowrap;
+            animation: floatUp linear infinite;
+            opacity: 0.9;
         }
-        @keyframes fall {
-            0% { transform: translateY(-100vh) rotate(0deg); }
-            100% { transform: translateY(100vh) rotate(360deg); }
-        }
-        .exploded {
-            background: #ffb6c1;
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.9; }
+            90% { opacity: 0.9; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
         }
         h1 {
-            font-size: 48px;
-            margin-bottom: 30px;
+            font-size: 50px;
             color: #ff1493;
+            margin-bottom: 30px;
         }
     </style>
 </head>
 <body>
-    <div id="heart">💗</div>
 
-    <div id="love-text">
+    <div id="big-heart">💗</div>
+
+    <div id="love-message">
         <h1>Hind, ma Chérie, mon amour éternel</h1>
-        <p>Depuis le premier instant où tes yeux ont croisé les miens, mon cœur a su qu’il t’appartiendrait pour toujours.</p>
-        <p>Tu es la douceur de mes matins, la chaleur de mes nuits, la lumière qui guide chacun de mes pas. Chaque pensée me ramène à toi, chaque souffle porte ton nom.</p>
-        <p>Hind, tu es la plus belle chose qui me soit arrivée. Ton sourire illumine mes jours les plus gris, ta voix apaise toutes mes tempêtes intérieures, ta présence fait battre mon cœur plus fort que jamais.</p>
-        <p>Je t’aime d’un amour profond, sincère, respectueux et infini. Je t’aime pour ton intelligence, ta gentillesse, ta force tranquille, ta beauté intérieure qui rayonne bien plus que tout le reste.</p>
-        <p>Je rêve de construire avec toi une vie faite de tendresse, de rires partagés, de promenades main dans la main, de soirées blottis l’un contre l’autre à parler de tout et de rien.</p>
-        <p>Je veux être celui qui te protège, qui te soutient, qui t’encourage à réaliser tous tes rêves. Je veux être ton refuge quand le monde est trop lourd, ton plus grand soutien quand tu doutes, ton plus fervent admirateur à chaque instant.</p>
-        <p>Tu es ma moitié, mon âme sœur, la personne avec qui je veux vieillir en continuant à t’aimer chaque jour un peu plus.</p>
-        <p>Je promets de te chérir, de te respecter, de t’écouter, de te comprendre, de te faire sentir aimée et précieuse chaque seconde de notre vie ensemble.</p>
-        <p>Hind, ma princesse, ma reine, mon trésor… je t’aime plus que les mots ne pourront jamais l’exprimer. Tu es mon présent, mon futur, mon tout.</p>
-        <p>Clique encore sur ce cœur qui bat pour toi, jusqu’à ce que tout explose en une pluie d’amour éternel.</p>
-        <p>Pour toujours à toi,<br>B + H ❤️</p>
+        <p>Depuis le jour où tu es entrée dans ma vie, tout a changé. Tu es ma lumière, ma force, ma raison de sourire chaque matin.</p>
+        <p>Ton rire est la plus belle musique, ton regard le plus doux des refuges. Je t’aime avec tout mon cœur, Hind, d’un amour pur, profond et sincère.</p>
+        <p>Clique doucement sur ce cœur qui bat pour toi… jusqu’à ce qu’il libère tous les mots d’amour que je ressens.</p>
+        <p>Pour toujours tien,<br>B + H ❤️</p>
     </div>
 
     <script>
-        const heart = document.getElementById('heart');
-        const body = document.body;
-        const loveText = document.getElementById('love-text');
+        const bigHeart = document.getElementById('big-heart');
         let clicks = 0;
-        const maxClicks = 20; // Change ici si tu veux plus ou moins de clics
+        const maxClicks = 15; // Nombre de clics avant la pluie infinie
 
-        loveText.style.opacity = 0.3; // Légèrement visible dès le début
+        // Liste de 50 messages doux qui apparaîtront sur les petits cœurs
+        const loveMessages = [
+            "Je t'aime Hind ❤️",
+            "Tu es mon trésor",
+            "Ton sourire illumine ma vie",
+            "À tes côtés pour toujours",
+            "Tu es ma princesse",
+            "Mon cœur bat pour toi",
+            "Hind, ma moitié",
+            "Je rêve de toi chaque nuit",
+            "Tu es parfaite à mes yeux",
+            "Merci d'exister",
+            "B + H éternellement",
+            "Tu es ma raison de vivre",
+            "Ton regard me fait fondre",
+            "Je suis fou de toi",
+            "Ma douce Hind",
+            "Tu es mon soleil",
+            "Je te chérirai toujours",
+            "Mon amour grandit chaque jour",
+            "Tu es unique au monde",
+            "Je pense à toi sans cesse",
+            "Hind, mon ange",
+            "Tu rends ma vie belle",
+            "Je t'adore ma chérie",
+            "Nos âmes sont liées",
+            "Tu es mon bonheur",
+            "Je ne vis que pour toi",
+            "Ton rire est ma joie",
+            "Hind, ma reine",
+            "Je t'aime infiniment",
+            "Tu es tout pour moi",
+            "Mon cœur t'appartient",
+            "À toi pour la vie",
+            "Tu es mon rêve devenu réalité",
+            "Je suis comblé avec toi",
+            "Hind, lumière de ma vie",
+            "Chaque jour je t'aime plus",
+            "Tu es ma muse",
+            "Mon amour est éternel",
+            "Je te protègerai toujours",
+            "Hind, mon étoile",
+            "Tu es ma paix",
+            "Je t'aime plus que tout",
+            "Notre histoire est magnifique",
+            "Tu es mon paradis",
+            "Hind, ma douceur",
+            "Je suis à toi corps et âme",
+            "Tu illumines mes jours",
+            "Mon amour pour toi est infini",
+            "Hind, mon tout",
+            "B + H pour l'éternité ❤️"
+        ];
 
-        heart.addEventListener('click', () => {
+        bigHeart.addEventListener('click', () => {
             clicks++;
-            heart.style.transform = 'scale(1.4)';
-            setTimeout(() => { heart.style.transform = 'scale(1)'; }, 300);
+            bigHeart.style.transform = 'scale(1.3)';
+            setTimeout(() => { bigHeart.style.transform = 'scale(1)'; }, 300);
 
             if (clicks >= maxClicks) {
-                explodeWithLove();
+                startFloatingHearts();
+                bigHeart.style.opacity = 0;
+                setTimeout(() => { bigHeart.style.display = 'none'; }, 2000);
             }
         });
 
-        function explodeWithLove() {
-            body.classList.add('exploded');
-            heart.style.opacity = 0;
-            setTimeout(() => { heart.style.display = 'none'; }, 1000);
-            loveText.style.opacity = 1;
-            loveText.innerHTML = loveText.innerHTML.replace('<p>Clique encore...', '<h1 style="font-size:60px; margin:40px 0;">Je t’aime à l’infini, Hind ❤️</h1>');
-
-            setInterval(createFallingHeart, 300);
+        function startFloatingHearts() {
+            setInterval(createHeart, 400); // Un nouveau cœur toutes les 400ms → pluie dense mais fluide
         }
 
-        function createFallingHeart() {
-            const fh = document.createElement('div');
-            fh.classList.add('falling-heart');
-            const symbols = ['❤️', '💕', '💖', '💗', '💘', 'B+H'];
-            fh.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
-            fh.style.left = Math.random() * 100 + 'vw';
-            fh.style.animationDuration = (Math.random() * 4 + 4) + 's';
-            body.appendChild(fh);
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+            
+            // Choix aléatoire : parfois juste un cœur, parfois cœur + texte
+            if (Math.random() > 0.3) {
+                heart.innerHTML = '❤️ ' + loveMessages[Math.floor(Math.random() * loveMessages.length)];
+            } else {
+                heart.innerHTML = '💕';
+                heart.style.fontSize = '50px';
+            }
+            
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 8 + 8) + 's'; // Entre 8 et 16 secondes
+            document.body.appendChild(heart);
 
-            setTimeout(() => { fh.remove(); }, 12000);
+            setTimeout(() => { heart.remove(); }, 20000);
         }
     </script>
 </body>
