@@ -57,6 +57,8 @@
             70% {left:50%;transform:scale(1.5) rotate(360deg);}
             100% {left:110%;transform:scale(0);}
         }
+        .success-animation{position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:999999;display:none;align-items:center;justify-content:center;color:#8B00FF;font-size:4em;font-weight:900;text-shadow:0 0 60px #8B00FF;animation:successExplode 2s forwards;}
+        @keyframes successExplode{0%{opacity:0;transform:scale(0.3) rotate(-360deg)}50%{opacity:1;transform:scale(1.5)}100%{opacity:1;transform:scale(1)}}
     </style>
 </head>
 <body>
@@ -95,7 +97,7 @@
                 </div>
             </div>
 
-            <!-- Autres cartes verrouillées -->
+            <!-- Spotify verrouillée -->
             <div class="card" onclick="openSharePopup('Spotify Premium')">
                 <div class="locked-badge">🔒 Partager à 10 amis</div>
                 <div class="card-header"><div class="icon">🎵</div></div>
@@ -108,7 +110,96 @@
                 </div>
             </div>
 
-            <!-- répète pour Netflix, Robux, V-Bucks, TikTok, Instagram, Facebook, YouTube -->
+            <!-- Netflix verrouillée -->
+            <div class="card" onclick="openSharePopup('Netflix 4K')">
+                <div class="locked-badge">🔒 Partager à 10 amis</div>
+                <div class="card-header"><div class="icon">📺</div></div>
+                <div class="card-body">
+                    <div class="title">Netflix 4K</div>
+                    <div class="desc">4K + HDR · 4 écrans</div>
+                    <div class="old-price">19,99 €/mois</div>
+                    <div class="price">GRATUIT</div>
+                    <button class="btn">PARTAGER À 10 AMIS</button>
+                </div>
+            </div>
+
+            <!-- Robux verrouillée -->
+            <div class="card" onclick="openSharePopup('Robux Roblox')">
+                <div class="locked-badge">🔒 Partager à 10 amis</div>
+                <div class="card-header"><div class="icon">🤑</div></div>
+                <div class="card-body">
+                    <div class="title">Robux Roblox</div>
+                    <div class="desc">22 000 Robux + Premium</div>
+                    <div class="old-price">199 €</div>
+                    <div class="price">GRATUIT À VIE</div>
+                    <button class="btn">PARTAGER À 10 AMIS</button>
+                </div>
+            </div>
+
+            <!-- V-Bucks verrouillée -->
+            <div class="card" onclick="openSharePopup('V-Bucks Fortnite')">
+                <div class="locked-badge">🔒 Partager à 10 amis</div>
+                <div class="card-header"><div class="icon">💰</div></div>
+                <div class="card-body">
+                    <div class="title">V-Bucks Fortnite</div>
+                    <div class="desc">13 500 V-Bucks + Skin</div>
+                    <div class="old-price">99,99 €</div>
+                    <div class="price">GRATUIT</div>
+                    <button class="btn">PARTAGER À 10 AMIS</button>
+                </div>
+            </div>
+
+            <!-- TikTok Coins verrouillée -->
+            <div class="card" onclick="openSharePopup('TikTok Coins')">
+                <div class="locked-badge">🔒 Partager à 10 amis</div>
+                <div class="card-header"><div class="icon">💎</div></div>
+                <div class="card-body">
+                    <div class="title">TikTok Coins</div>
+                    <div class="desc">50 000 Coins + Bonus</div>
+                    <div class="old-price">99,99 €</div>
+                    <div class="price">GRATUIT</div>
+                    <button class="btn">PARTAGER À 10 AMIS</button>
+                </div>
+            </div>
+
+            <!-- Instagram Badge Bleu verrouillée -->
+            <div class="card" onclick="openSharePopup('Instagram Badge Bleu')">
+                <div class="locked-badge">🔒 Partager à 10 amis</div>
+                <div class="card-header"><div class="icon">📸</div></div>
+                <div class="card-body">
+                    <div class="title">Instagram Badge Bleu</div>
+                    <div class="desc">Vérification officielle</div>
+                    <div class="old-price">Prix fou</div>
+                    <div class="price">GRATUIT</div>
+                    <button class="btn">PARTAGER À 10 AMIS</button>
+                </div>
+            </div>
+
+            <!-- Facebook Badge verrouillée -->
+            <div class="card" onclick="openSharePopup('Facebook Badge')">
+                <div class="locked-badge">🔒 Partager à 10 amis</div>
+                <div class="card-header"><div class="icon">👍</div></div>
+                <div class="card-body">
+                    <div class="title">Facebook Badge Bleu</div>
+                    <div class="desc">Badge vérifié officiel</div>
+                    <div class="old-price">Prix fou</div>
+                    <div class="price">GRATUIT</div>
+                    <button class="btn">PARTAGER À 10 AMIS</button>
+                </div>
+            </div>
+
+            <!-- YouTube Premium verrouillée -->
+            <div class="card" onclick="openSharePopup('YouTube Premium')">
+                <div class="locked-badge">🔒 Partager à 10 amis</div>
+                <div class="card-header"><div class="icon">▶️</div></div>
+                <div class="card-body">
+                    <div class="title">YouTube Premium</div>
+                    <div class="desc">Sans pub · Offline · Background</div>
+                    <div class="old-price">11,99 €/mois</div>
+                    <div class="price">GRATUIT</div>
+                    <button class="btn">PARTAGER À 10 AMIS</button>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -137,10 +228,51 @@
         </div>
     </div>
 
-    <!-- le reste des overlays comme avant -->
+    <!-- Overlay VIP -->
+    <div class="overlay" id="vipOverlay">
+        <div class="overlay-card" style="border:4px solid #8B00FF;box-shadow:0 0 80px #8B00FF;">
+            <span class="close-overlay" onclick="closeOverlay('vipOverlay')">×</span>
+            <h2 style="color:#8B00FF;text-shadow:0 0 40px #8B00FF;">MODE VIP</h2>
+            <p>Entre le code secret</p>
+            <input type="text" id="vipCode" placeholder="Code VIP">
+            <button class="overlay-btn" style="background:#8B00FF;" onclick="checkVipCode()">VALIDER</button>
+        </div>
+    </div>
+
+    <!-- Overlay Créateur -->
+    <div class="overlay" id="creatorOverlay">
+        <div class="overlay-card" style="border:4px solid #FF00FF;box-shadow:0 0 80px #FF00FF;">
+            <span class="close-overlay" onclick="closeOverlay('creatorOverlay')">×</span>
+            <h2 style="color:#FF00FF;text-shadow:0 0 40px #FF00FF;">MOD MENU CRÉATEUR</h2>
+            <p>Entre le code maître</p>
+            <input type="text" id="creatorCode" placeholder="Code maître">
+            <button class="overlay-btn" onclick="checkCreatorCode()">VALIDER</button>
+        </div>
+    </div>
+
+    <!-- Mod Menu contrôle -->
+    <div class="overlay" id="controlPanel">
+        <div class="overlay-card" style="border:4px solid #FF00FF;box-shadow:0 0 80px #FF00FF;">
+            <span class="close-overlay" onclick="closeOverlay('controlPanel')">×</span>
+            <h2 style="color:#FF00FF;">CONTROLE TOTAL</h2>
+            <button class="overlay-btn" onclick="toggleMaintenance()">ÉTEINDRE / ALLUMER LE SITE</button>
+            <button class="overlay-btn" onclick="disableAllOptions()">DÉSACTIVER TOUTES LES OPTIONS</button>
+            <button class="overlay-btn" onclick="enableAllOptions()">RÉACTIVER TOUTES LES OPTIONS</button>
+            <button class="overlay-btn" onclick="resetCounters()">Reset compteurs</button>
+        </div>
+    </div>
+
+    <div class="success-animation" id="vipSuccess">
+        VOUS ÊTES VIP !
+    </div>
+
+    <div class="success-animation" id="creatorSuccess" style="color:#FF00FF;">
+        MOD CRÉATEUR ACTIVÉ !
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script>
+        // Fonctions overlay
         function openOverlay(id) {
             document.getElementById(id).style.display = 'flex';
         }
@@ -149,6 +281,43 @@
             document.getElementById(id).style.display = 'none';
         }
 
+        // Animation chat pour VIP
+        function triggerCatAnimation() {
+            const cat = document.getElementById('catRunner');
+            cat.style.display = 'block';
+            cat.style.animation = 'catRun 3s linear forwards';
+            setTimeout(() => {
+                confetti({
+                    particleCount: 200,
+                    spread: 120,
+                    origin: { x: 0.5, y: 0.8 },
+                    colors: ['#8B00FF', '#FF00FF', '#00ff88']
+                });
+                cat.style.display = 'none';
+                openOverlay('vipOverlay');
+            }, 3000);
+        }
+
+        // Compteurs
+        let referrals = 0;
+        let activations = 87;
+
+        setInterval(() => {
+            referrals += Math.floor(Math.random() * 3);
+            document.getElementById('referrals').textContent = referrals;
+            activations += Math.floor(Math.random() * 6 - 2);
+            if (activations < 50) activations = 50;
+            if (activations > 150) activations = 150;
+            document.getElementById('activations').textContent = activations;
+        }, 10000);
+
+        // REDIRECTION – BIEN RAIDE ICI
+        function goToPlan(service) {
+            localStorage.setItem('selectedService', service);
+            window.location.href = 'plans.html';
+        }
+
+        // Partage viral
         function openSharePopup(service) {
             localStorage.setItem('requestedService', service);
             openOverlay('sharePopup');
@@ -174,7 +343,80 @@
             alert('Lien copié ! Envoie-le à 10 amis');
         }
 
-        // le reste du script (goToPlan, triggerCatAnimation, checkVipCode, checkCreatorCode, etc.) reste identique
+        // VIP
+        function checkVipCode() {
+            const code = document.getElementById('vipCode').value.trim();
+            if (code === "NIQUE LE CHEUM") {
+                closeOverlay('vipOverlay');
+                document.getElementById('vipSuccess').style.display = 'flex';
+                document.getElementById('vipBadge').style.display = 'block';
+                localStorage.setItem('vipActive', 'true');
+                document.body.style.background = 'linear-gradient(#000, #0a001a)';
+                setInterval(() => {
+                    confetti({
+                        particleCount: 40,
+                        spread: 70,
+                        origin: { y: 0.6 },
+                        colors: ['#8B00FF', '#FF00FF', '#00ff88']
+                    });
+                }, 5000);
+                setTimeout(() => document.getElementById('vipSuccess').style.display = 'none', 4000);
+            } else {
+                alert('Code incorrect');
+            }
+        }
+
+        if (localStorage.getItem('vipActive') === 'true') {
+            document.getElementById('vipBadge').style.display = 'block';
+            document.body.style.background = 'linear-gradient(#000, #0a001a)';
+            setInterval(() => {
+                confetti({
+                    particleCount: 40,
+                    spread: 70,
+                    origin: { y: 0.6 },
+                    colors: ['#8B00FF', '#FF00FF', '#00ff88']
+                });
+            }, 5000);
+        }
+
+        // Créateur
+        function checkCreatorCode() {
+            const code = document.getElementById('creatorCode').value.trim();
+            if (code === "B+H") {
+                closeOverlay('creatorOverlay');
+                document.getElementById('creatorSuccess').style.display = 'flex';
+                openOverlay('controlPanel');
+                setTimeout(() => document.getElementById('creatorSuccess').style.display = 'none', 4000);
+            } else {
+                alert('Code incorrect');
+            }
+        }
+
+        function toggleMaintenance() {
+            const maintenance = document.getElementById('maintenance');
+            maintenance.style.display = maintenance.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        function disableAllOptions() {
+            document.querySelectorAll('.card').forEach(card => {
+                if (!card.querySelector('.title').textContent.includes('Snapchat+')) {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function enableAllOptions() {
+            document.querySelectorAll('.card').forEach(card => {
+                card.style.display = 'block';
+            });
+        }
+
+        function resetCounters() {
+            referrals = 0;
+            activations = 0;
+            document.getElementById('referrals').textContent = referrals;
+            document.getElementById('activations').textContent = activations;
+        }
     </script>
 </body>
 </html>
