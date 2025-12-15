@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>GRATUIT 2025 – Tout Débloqué VIP</title>
+    <title>GRATUIT 2025 – Snap+, Robux, V-Bucks</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
         *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
@@ -12,8 +12,9 @@
         .parrainage{color:#00ff88;font-weight:600;display:flex;align-items:center;gap:8px;font-size:0.95em;}
         .dot{width:9px;height:9px;background:#00ff88;border-radius:50%;animation:pulse 2s infinite;}
         @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
-        .vip-badge{position:fixed;top:70px;right:20px;background:#8B00FF;color:#fff;padding:10px 20px;border-radius:50px;font-size:0.95em;font-weight:700;box-shadow:0 0 40px #8B00FF;z-index:999;cursor:pointer;display:none;animation:vipFloat 6s ease-in-out infinite;}
+        .vip-badge{position:fixed;top:70px;right:20px;background:#8B00FF;color:#fff;padding:10px 20px;border-radius:50px;font-size:0.95em;font-weight:700;box-shadow:0 0 40px #8B00FF;z-index:999;cursor:pointer;display:none;animation:vipFloat 6s ease-in-out infinite, vipPulse 3s infinite;}
         @keyframes vipFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
+        @keyframes vipPulse{0%,100%{box-shadow:0 0 40px #8B00FF}50%{box-shadow:0 0 80px #8B00FF}}
         .container{max-width:420px;margin:85px auto 140px;padding:0 20px;}
         h1{font-size:2.4em;font-weight:700;text-align:center;margin:30px 0;color:#00ff88;text-shadow:0 0 20px #00ff88;}
         .grid{display:grid;gap:20px;}
@@ -36,22 +37,18 @@
         .creator-badge h2{font-size:1.8em;font-weight:900;color:#fff;text-shadow:0 0 30px #fff;margin-bottom:10px;}
         .creator-badge p{font-size:1em;color:#ddd;}
 
-        /* Nouvelles fonctions */
-        .urgency-bar{background:#ff4444;padding:15px;text-align:center;font-weight:900;position:fixed;top:60px;width:100%;z-index:999;box-shadow:0 10px 30px rgba(255,0,0,0.6);animation:pulseUrgence 2s infinite;}
-        @keyframes pulseUrgence{0%,100%{box-shadow:0 10px 30px rgba(255,0,0,0.6)}50%{box-shadow:0 20px 50px rgba(255,0,0,1)}}
-        .proof-video{margin:30px 0;border-radius:25px;overflow:hidden;box-shadow:0 20px 60px rgba(255,252,0,0.4);cursor:pointer;}
-        .proof-video img{width:100%;display:block;}
-        .proof-video .play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.7);padding:30px;border-radius:50%;width:100px;height:100px;display:flex;align-items:center;justify-content:center;}
-        .places-counter{position:fixed;top:110px;left:50%;transform:translateX(-50%);background:#ff4444;color:#fff;padding:12px 30px;border-radius:50px;font-weight:900;z-index:999;box-shadow:0 0 40px #ff0000;}
+        /* Maintenance mode */
+        .maintenance{position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:999999;display:none;align-items:center;justify-content:center;flex-direction:column;color:#ff4444;font-size:2em;text-align:center;padding:20px;}
         canvas{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:-1;}
     </style>
 </head>
 <body>
     <canvas id="confetti"></canvas>
 
-    <!-- Urgence bar -->
-    <div class="urgency-bar">
-        ⚠️ PLUS QUE 17 PLACES DISPONIBLES AUJOURD'HUI ⚠️
+    <!-- Maintenance mode (tu l’actives en changeant false en true) -->
+    <div class="maintenance" id="maintenance">
+        <h2>Site en maintenance</h2>
+        <p>Revenez dans 2 heures<br>Offre limitée – Places très limitées</p>
     </div>
 
     <header>
@@ -67,19 +64,8 @@
     <div class="container">
         <h1>GRATUIT À VIE</h1>
 
-        <!-- Fausse vidéo preuve -->
-        <div class="proof-video" onclick="openShareVideo()">
-            <div style="position:relative;">
-                <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Preuve">
-                <div class="play">
-                    <span style="font-size:5em;color:#ff0000;">▶️</span>
-                </div>
-            </div>
-            <p style="text-align:center;color:#fffc00;margin-top:10px;font-weight:700;">Preuve réelle : Snap+ gratuit en 30s</p>
-        </div>
-
         <div class="grid">
-            <!-- toutes tes cartes Snapchat, Spotify, Netflix, Robux, V-Bucks, TikTok Coins, Instagram badge, Facebook badge, YouTube Premium -->
+            <!-- tes cartes -->
         </div>
     </div>
 
@@ -87,54 +73,147 @@
         <span id="activations">87</span> activés aujourd’hui
     </div>
 
-    <div class="places-counter">
-        <span id="places">17</span> places restantes
-    </div>
-
     <div class="creator-badge" onclick="openCreatorCode()">
         <h2>CRÉATEUR EXCLUSIF</h2>
         <p>Clique pour le contrôle total</p>
     </div>
 
-    <!-- Tous les pop-up et scripts comme avant (VIP, créateur, partage, etc.) -->
+    <!-- Pop-up code Créateur -->
+    <div class="mod-menu" id="creatorMenu">
+        <div class="mod-card">
+            <h2>MOD MENU CRÉATEUR</h2>
+            <p>Entre le code maître</p>
+            <input type="text" id="creatorCode" placeholder="Code maître">
+            <button class="mod-btn" onclick="checkCreatorCode()">VALIDER</button>
+        </div>
+    </div>
 
-    <audio id="snapSound" preload="auto">
-        <source src="https://cdn.simplecastaudio.com/audio/6d0e6b/6d0e6b8f-4e9c-4f5a-9b9b-4d6f8e5e4b2d/snapchat-sound.mp3" type="audio/mpeg">
-    </audio>
+    <!-- Mod Menu contrôle -->
+    <div class="mod-menu" id="controlPanel" style="display:none;">
+        <div class="mod-card">
+            <h2>CONTROLE TOTAL</h2>
+            <button class="mod-btn" onclick="toggleMaintenance()">TOGGLE MAINTENANCE</button>
+            <button class="mod-btn" onclick="addReferrals(10)">+10 parrainages</button>
+            <button class="mod-btn" onclick="addActivations(50)">+50 activés aujourd’hui</button>
+            <button class="mod-btn" onclick="resetCounters()">Reset compteurs</button>
+            <button class="mod-btn" onclick="closeControl()">Fermer</button>
+        </div>
+    </div>
 
+    <!-- VIP stuff -->
+    <div class="vip-popup" id="vipPopup">
+        <div class="vip-card">
+            <h2>MODE VIP</h2>
+            <p>Entre le code secret</p>
+            <input type="text" id="vipCode" placeholder="Code VIP">
+            <button style="background:#8B00FF;color:#fff;padding:18px;border-radius:50px;font-size:1.4em;margin-top:20px;" onclick="checkVipCode()">VALIDER</button>
+        </div>
+    </div>
+
+    <div class="vip-unlock" id="vipUnlock">
+        VOUS ÊTES VIP !
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script>
-        // Son au clic
-        document.querySelectorAll('.card').forEach(card => {
-            card.addEventListener('click', () => {
-                document.getElementById('snapSound').currentTime = 0;
-                document.getElementById('snapSound').play().catch(() => {});
-            });
-        });
+        // Maintenance toggle
+        let maintenanceActive = false; // change en true pour fermer le site
+        if (maintenanceActive) {
+            document.getElementById('maintenance').style.display = 'flex';
+        }
 
-        // Places restantes qui descendent
-        let places = 17;
+        function toggleMaintenance() {
+            maintenanceActive = !maintenanceActive;
+            document.getElementById('maintenance').style.display = maintenanceActive ? 'flex' : 'none';
+        }
+
+        // Parrainage & activations
+        let referrals = 0;
+        let activations = 87;
+
         setInterval(() => {
-            places -= 1;
-            if (places < 5) places = 5;
-            document.getElementById('places').textContent = places;
-        }, 30000);
-
-        // Auto-scroll lent
-        setTimeout(() => {
-            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+            referrals += Math.floor(Math.random() * 3);
+            document.getElementById('referrals').textContent = referrals;
+            activations += Math.floor(Math.random() * 6 - 2);
+            if (activations < 50) activations = 50;
+            if (activations > 150) activations = 150;
+            document.getElementById('activations').textContent = activations;
         }, 10000);
 
-        // Confettis légers
-        setInterval(() => {
-            confetti({
-                particleCount: 30,
-                spread: 70,
-                origin: { y: 0.6 },
-                colors: ['#00ff88', '#fffc00']
-            });
-        }, 15000);
+        function addReferrals(n) {
+            referrals += n;
+            document.getElementById('referrals').textContent = referrals;
+        }
 
-        // le reste des scripts (parrainage, VIP, créateur, etc.)
+        function addActivations(n) {
+            activations += n;
+            document.getElementById('activations').textContent = activations;
+        }
+
+        function resetCounters() {
+            referrals = 0;
+            activations = 0;
+            document.getElementById('referrals').textContent = referrals;
+            document.getElementById('activations').textContent = activations;
+        }
+
+        // VIP avantages (petits trucs chauds)
+        function checkVipCode() {
+            const code = document.getElementById('vipCode').value.trim();
+            if (code === "NIQUE LE CHEUM") {
+                document.getElementById('vipPopup').style.display = 'none';
+                document.getElementById('vipUnlock').style.display = 'flex';
+                document.getElementById('vipBadge').style.display = 'block';
+                localStorage.setItem('vipActive', 'true');
+                // Avantages VIP
+                document.body.style.background = 'linear-gradient(#000, #0a001a)';
+                setInterval(() => {
+                    confetti({
+                        particleCount: 50,
+                        spread: 70,
+                        origin: { y: 0.6 },
+                        colors: ['#8B00FF', '#FF00FF', '#00ff88']
+                    });
+                }, 5000);
+                setTimeout(() => document.getElementById('vipUnlock').style.display = 'none', 4000);
+            } else {
+                alert('Code incorrect');
+            }
+        }
+
+        if (localStorage.getItem('vipActive') === 'true') {
+            document.getElementById('vipBadge').style.display = 'block';
+            document.body.style.background = 'linear-gradient(#000, #0a001a)';
+            setInterval(() => {
+                confetti({
+                    particleCount: 50,
+                    spread: 70,
+                    origin: { y: 0.6 },
+                    colors: ['#8B00FF', '#FF00FF', '#00ff88']
+                });
+            }, 5000);
+        }
+
+        // Créateur
+        function openCreatorCode() {
+            document.getElementById('creatorMenu').style.display = 'flex';
+        }
+
+        function checkCreatorCode() {
+            const code = document.getElementById('creatorCode').value.trim();
+            if (code === "B+H") {
+                document.getElementById('creatorMenu').style.display = 'none';
+                document.getElementById('controlPanel').style.display = 'flex';
+            } else {
+                alert('Code incorrect');
+            }
+        }
+
+        function closeControl() {
+            document.getElementById('controlPanel').style.display = 'none';
+        }
+
+        // le reste (goToPlan etc.)
     </script>
 </body>
 </html>
