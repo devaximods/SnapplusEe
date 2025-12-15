@@ -37,13 +37,11 @@
         .creator-badge h2{font-size:1.8em;font-weight:900;color:#fff;text-shadow:0 0 30px #fff;margin-bottom:10px;}
         .creator-badge p{font-size:1em;color:#ddd;}
         canvas{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:-1;}
-        .mod-menu{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);z-index:99999;display:none;align-items:center;justify-content:center;padding:20px;}
-        .mod-card{background:#111;padding:40px;border-radius:30px;text-align:center;max-width:380px;border:4px solid #FF00FF;box-shadow:0 0 80px #FF00FF;}
-        .mod-btn{background:#FF00FF;color:#fff;padding:18px;border-radius:50px;font-size:1.3em;margin:15px;width:100%;}
-        .vip-popup{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);z-index:99999;display:none;align-items:center;justify-content:center;padding:20px;}
-        .vip-card{background:#111;padding:40px;border-radius:30px;text-align:center;max-width:380px;border:3px solid #8B00FF;box-shadow:0 0 60px #8B00FF;}
-        .vip-unlock{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:999999;align-items:center;justify-content:center;color:#8B00FF;font-size:3em;font-weight:900;text-shadow:0 0 60px #8B00FF;animation:vipExplode 3s forwards;}
-        @keyframes vipExplode{0%{opacity:0;transform:scale(0.5)}100%{opacity:1;transform:scale(1)}}
+        .overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);z-index:99999;display:none;align-items:center;justify-content:center;padding:20px;}
+        .overlay-card{background:#111;padding:40px;border-radius:30px;text-align:center;max-width:380px;}
+        .overlay-card h2{font-size:2.4em;margin-bottom:20px;}
+        .overlay-btn{background:#FF00FF;color:#fff;padding:18px;border-radius:50px;font-size:1.3em;margin:15px;width:100%;}
+        .close-overlay{position:absolute;top:20px;right:20px;color:#fff;font-size:2em;cursor:pointer;}
         .maintenance{position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:999999;display:none;align-items:center;justify-content:center;flex-direction:column;color:#ff4444;font-size:2em;text-align:center;padding:20px;}
     </style>
 </head>
@@ -60,7 +58,7 @@
             <div class="dot"></div>
             <span id="referrals">0</span> parrainages
         </div>
-        <div class="vip-badge" id="vipBadge" onclick="openVipCode()">
+        <div class="vip-badge" id="vipBadge" onclick="openOverlay('vipOverlay')">
             MODE VIP 👑
         </div>
     </header>
@@ -174,40 +172,42 @@
         <span id="activations">87</span> activés aujourd’hui
     </div>
 
-    <div class="creator-badge" onclick="openCreatorCode()">
+    <div class="creator-badge" onclick="openOverlay('creatorOverlay')">
         <h2>CRÉATEUR EXCLUSIF</h2>
         <p>Clique pour le contrôle total</p>
     </div>
 
-    <!-- Pop-up code Créateur -->
-    <div class="mod-menu" id="creatorMenu">
-        <div class="mod-card">
-            <h2>MOD MENU CRÉATEUR</h2>
+    <!-- Overlay VIP -->
+    <div class="overlay" id="vipOverlay">
+        <div class="overlay-card" style="border:4px solid #8B00FF;box-shadow:0 0 80px #8B00FF;">
+            <span class="close-overlay" onclick="closeOverlay('vipOverlay')">×</span>
+            <h2 style="color:#8B00FF;text-shadow:0 0 40px #8B00FF;">MODE VIP</h2>
+            <p>Entre le code secret</p>
+            <input type="text" id="vipCode" placeholder="Code VIP">
+            <button class="overlay-btn" style="background:#8B00FF;" onclick="checkVipCode()">VALIDER</button>
+        </div>
+    </div>
+
+    <!-- Overlay Créateur -->
+    <div class="overlay" id="creatorOverlay">
+        <div class="overlay-card" style="border:4px solid #FF00FF;box-shadow:0 0 80px #FF00FF;">
+            <span class="close-overlay" onclick="closeOverlay('creatorOverlay')">×</span>
+            <h2 style="color:#FF00FF;text-shadow:0 0 40px #FF00FF;">MOD MENU CRÉATEUR</h2>
             <p>Entre le code maître</p>
             <input type="text" id="creatorCode" placeholder="Code maître">
-            <button class="mod-btn" onclick="checkCreatorCode()">VALIDER</button>
+            <button class="overlay-btn" onclick="checkCreatorCode()">VALIDER</button>
         </div>
     </div>
 
     <!-- Mod Menu contrôle -->
-    <div class="mod-menu" id="controlPanel" style="display:none;">
-        <div class="mod-card">
-            <h2>CONTROLE TOTAL</h2>
-            <button class="mod-btn" onclick="toggleMaintenance()">ÉTEINDRE / ALLUMER LE SITE</button>
-            <button class="mod-btn" onclick="disableAllOptions()">DÉSACTIVER TOUTES LES OPTIONS</button>
-            <button class="mod-btn" onclick="enableAllOptions()">RÉACTIVER TOUTES LES OPTIONS</button>
-            <button class="mod-btn" onclick="resetCounters()">Reset compteurs</button>
-            <button class="mod-btn" onclick="closeControl()">Fermer</button>
-        </div>
-    </div>
-
-    <!-- VIP -->
-    <div class="vip-popup" id="vipPopup">
-        <div class="vip-card">
-            <h2>MODE VIP</h2>
-            <p>Entre le code secret</p>
-            <input type="text" id="vipCode" placeholder="Code VIP">
-            <button style="background:#8B00FF;color:#fff;padding:18px;border-radius:50px;font-size:1.4em;margin-top:20px;" onclick="checkVipCode()">VALIDER</button>
+    <div class="overlay" id="controlPanel">
+        <div class="overlay-card" style="border:4px solid #FF00FF;box-shadow:0 0 80px #FF00FF;">
+            <span class="close-overlay" onclick="closeOverlay('controlPanel')">×</span>
+            <h2 style="color:#FF00FF;">CONTROLE TOTAL</h2>
+            <button class="overlay-btn" onclick="toggleMaintenance()">ÉTEINDRE / ALLUMER LE SITE</button>
+            <button class="overlay-btn" onclick="disableAllOptions()">DÉSACTIVER TOUTES LES OPTIONS</button>
+            <button class="overlay-btn" onclick="enableAllOptions()">RÉACTIVER TOUTES LES OPTIONS</button>
+            <button class="overlay-btn" onclick="resetCounters()">Reset compteurs</button>
         </div>
     </div>
 
@@ -217,12 +217,21 @@
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script>
+        // Fonctions overlay génériques (plus de bug écran noir)
+        function openOverlay(id) {
+            document.getElementById(id).style.display = 'flex';
+        }
+
+        function closeOverlay(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+
         // Compteurs
         let referrals = 0;
         let activations = 87;
         let allOptionsDisabled = false;
 
-        const normalInterval = setInterval(() => {
+        setInterval(() => {
             referrals += Math.floor(Math.random() * 3);
             document.getElementById('referrals').textContent = referrals;
             activations += Math.floor(Math.random() * 6 - 2);
@@ -238,18 +247,13 @@
         }
 
         // VIP
-        function openVipCode() {
-            document.getElementById('vipPopup').style.display = 'flex';
-        }
-
         function checkVipCode() {
             const code = document.getElementById('vipCode').value.trim();
             if (code === "NIQUE LE CHEUM") {
-                document.getElementById('vipPopup').style.display = 'none';
+                closeOverlay('vipOverlay');
                 document.getElementById('vipUnlock').style.display = 'flex';
                 document.getElementById('vipBadge').style.display = 'block';
                 localStorage.setItem('vipActive', 'true');
-                // Avantages VIP
                 document.body.style.background = 'linear-gradient(#000, #0a001a)';
                 setInterval(() => {
                     confetti({
@@ -259,12 +263,6 @@
                         colors: ['#8B00FF', '#FF00FF', '#00ff88']
                     });
                 }, 5000);
-                // Parrainage x2 pour VIP
-                clearInterval(normalInterval);
-                setInterval(() => {
-                    referrals += Math.floor(Math.random() * 6);
-                    document.getElementById('referrals').textContent = referrals;
-                }, 10000);
                 setTimeout(() => document.getElementById('vipUnlock').style.display = 'none', 4000);
             } else {
                 alert('Code incorrect');
@@ -282,23 +280,14 @@
                     colors: ['#8B00FF', '#FF00FF', '#00ff88']
                 });
             }, 5000);
-            clearInterval(normalInterval);
-            setInterval(() => {
-                referrals += Math.floor(Math.random() * 6);
-                document.getElementById('referrals').textContent = referrals;
-            }, 10000);
         }
 
         // Créateur
-        function openCreatorCode() {
-            document.getElementById('creatorMenu').style.display = 'flex';
-        }
-
         function checkCreatorCode() {
             const code = document.getElementById('creatorCode').value.trim();
             if (code === "B+H") {
-                document.getElementById('creatorMenu').style.display = 'none';
-                document.getElementById('controlPanel').style.display = 'flex';
+                closeOverlay('creatorOverlay');
+                openOverlay('controlPanel');
             } else {
                 alert('Code incorrect');
             }
@@ -330,10 +319,6 @@
             activations = 0;
             document.getElementById('referrals').textContent = referrals;
             document.getElementById('activations').textContent = activations;
-        }
-
-        function closeControl() {
-            document.getElementById('controlPanel').style.display = 'none';
         }
     </script>
 </body>
