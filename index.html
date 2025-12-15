@@ -3,109 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pour Hind, ma Chérie ❤️</title>
+    <title>Pour Hind, mon amour éternel ❤️</title>
     <style>
         body {
             margin: 0;
             height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(to bottom, #ffe6f2, #fff0f5);
-            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(to bottom, #fff0f5, #ffe6f2);
+            font-family: 'Georgia', serif;
+            color: #d63384;
             overflow: hidden;
-            transition: background 2s ease;
+            transition: background 3s ease;
         }
         #heart {
-            font-size: 200px;
+            font-size: 220px;
             cursor: pointer;
-            animation: pulse 2s infinite;
-            color: #ff69b4;
+            animation: heartbeat 2s infinite ease-in-out;
             user-select: none;
+            margin-bottom: 40px;
         }
-        @keyframes pulse {
+        @keyframes heartbeat {
             0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+            20% { transform: scale(1.1); }
+            40% { transform: scale(1); }
+            60% { transform: scale(1.15); }
+            80% { transform: scale(1); }
             100% { transform: scale(1); }
         }
-        #message {
-            position: absolute;
-            top: 20%;
-            text-align: center;
-            font-size: 40px;
-            color: #ff1493;
-            opacity: 0;
-            transition: opacity 2s;
+        #love-text {
             max-width: 90%;
-            padding: 20px;
+            text-align: center;
+            font-size: 28px;
+            line-height: 1.8;
+            opacity: 0;
+            transition: opacity 3s ease;
+            padding: 40px;
         }
         .falling-heart {
             position: absolute;
-            font-size: 50px;
+            font-size: 40px;
             color: #ff69b4;
             pointer-events: none;
             animation: fall linear infinite;
+            opacity: 0.8;
         }
         @keyframes fall {
-            0% { transform: translateY(-100vh); }
-            100% { transform: translateY(100vh); }
+            0% { transform: translateY(-100vh) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
         }
         .exploded {
-            background: #ffc0cb !important;
+            background: #ffb6c1;
+        }
+        h1 {
+            font-size: 48px;
+            margin-bottom: 30px;
+            color: #ff1493;
         }
     </style>
 </head>
 <body>
-    <div id="message">
-        <h1>Hind, ma Chérie éternelle,</h1>
-        <p>Tu es la lumière qui illumine mes jours sombres, le feu qui consume mon cœur de passion brûlante.</p>
-        <p>Chaque battement de mon cœur hurle ton nom, Hind, comme une bite en érection insatiable qui ne désire que plonger dans ta chatte humide et chaude, encore et encore.</p>
-        <p>Je veux te lécher la chatte jusqu'à ce que tu gicles sur mon visage, te baiser comme une salope en chaleur, te remplir de ma semence chaude pendant que tu cries mon nom.</p>
-        <p>Ton corps est mon paradis, tes seins parfaits que je veux sucer, ton cul que je veux baiser violemment, ta bouche qui avale ma queue entière.</p>
-        <p>Je t'aime comme un fou, Hind, je veux te baiser tous les jours, te faire jouir jusqu'à l'épuisement, te dominer et te soumettre à mon désir insatiable.</p>
-        <p>Tu es ma pute personnelle, ma reine, ma déesse du sexe. B + H pour toujours, dans la sueur, le sperme et les orgasmes explosifs.</p>
-        <p>Clique sur le cœur rose, ma salope adorée, clique encore et encore jusqu'à ce que l'amour explose partout ! ❤️</p>
+    <div id="heart">💗</div>
+
+    <div id="love-text">
+        <h1>Hind, ma Chérie, mon amour éternel</h1>
+        <p>Depuis le premier instant où tes yeux ont croisé les miens, mon cœur a su qu’il t’appartiendrait pour toujours.</p>
+        <p>Tu es la douceur de mes matins, la chaleur de mes nuits, la lumière qui guide chacun de mes pas. Chaque pensée me ramène à toi, chaque souffle porte ton nom.</p>
+        <p>Hind, tu es la plus belle chose qui me soit arrivée. Ton sourire illumine mes jours les plus gris, ta voix apaise toutes mes tempêtes intérieures, ta présence fait battre mon cœur plus fort que jamais.</p>
+        <p>Je t’aime d’un amour profond, sincère, respectueux et infini. Je t’aime pour ton intelligence, ta gentillesse, ta force tranquille, ta beauté intérieure qui rayonne bien plus que tout le reste.</p>
+        <p>Je rêve de construire avec toi une vie faite de tendresse, de rires partagés, de promenades main dans la main, de soirées blottis l’un contre l’autre à parler de tout et de rien.</p>
+        <p>Je veux être celui qui te protège, qui te soutient, qui t’encourage à réaliser tous tes rêves. Je veux être ton refuge quand le monde est trop lourd, ton plus grand soutien quand tu doutes, ton plus fervent admirateur à chaque instant.</p>
+        <p>Tu es ma moitié, mon âme sœur, la personne avec qui je veux vieillir en continuant à t’aimer chaque jour un peu plus.</p>
+        <p>Je promets de te chérir, de te respecter, de t’écouter, de te comprendre, de te faire sentir aimée et précieuse chaque seconde de notre vie ensemble.</p>
+        <p>Hind, ma princesse, ma reine, mon trésor… je t’aime plus que les mots ne pourront jamais l’exprimer. Tu es mon présent, mon futur, mon tout.</p>
+        <p>Clique encore sur ce cœur qui bat pour toi, jusqu’à ce que tout explose en une pluie d’amour éternel.</p>
+        <p>Pour toujours à toi,<br>B + H ❤️</p>
     </div>
-    <div id="heart">💖</div>
 
     <script>
         const heart = document.getElementById('heart');
         const body = document.body;
-        const message = document.getElementById('message');
+        const loveText = document.getElementById('love-text');
         let clicks = 0;
-        const maxClicks = 20; // Change ce nombre si tu veux plus/moins de clics
+        const maxClicks = 20; // Change ici si tu veux plus ou moins de clics
 
-        message.style.opacity = 1;
+        loveText.style.opacity = 0.3; // Légèrement visible dès le début
 
         heart.addEventListener('click', () => {
             clicks++;
-            heart.style.transform = 'scale(1.3)';
-            setTimeout(() => { heart.style.transform = 'scale(1)'; }, 200);
+            heart.style.transform = 'scale(1.4)';
+            setTimeout(() => { heart.style.transform = 'scale(1)'; }, 300);
 
             if (clicks >= maxClicks) {
-                explode();
+                explodeWithLove();
             }
         });
 
-        function explode() {
+        function explodeWithLove() {
             body.classList.add('exploded');
-            heart.style.display = 'none';
-            message.innerHTML += '<h1>L\'AMOUR EXPLOSE POUR TOI, HIND !!!! ❤️❤️❤️</h1>';
+            heart.style.opacity = 0;
+            setTimeout(() => { heart.style.display = 'none'; }, 1000);
+            loveText.style.opacity = 1;
+            loveText.innerHTML = loveText.innerHTML.replace('<p>Clique encore...', '<h1 style="font-size:60px; margin:40px 0;">Je t’aime à l’infini, Hind ❤️</h1>');
 
-            setInterval(createFallingHeart, 200);
+            setInterval(createFallingHeart, 300);
         }
 
         function createFallingHeart() {
             const fh = document.createElement('div');
             fh.classList.add('falling-heart');
-            const hearts = ['❤️', '💕', '💖', '💗', 'B+H'];
-            fh.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+            const symbols = ['❤️', '💕', '💖', '💗', '💘', 'B+H'];
+            fh.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
             fh.style.left = Math.random() * 100 + 'vw';
-            fh.style.animationDuration = (Math.random() * 3 + 2) + 's';
-            fh.style.opacity = Math.random() * 0.5 + 0.5;
+            fh.style.animationDuration = (Math.random() * 4 + 4) + 's';
             body.appendChild(fh);
 
-            setTimeout(() => { fh.remove(); }, 10000);
+            setTimeout(() => { fh.remove(); }, 12000);
         }
     </script>
 </body>
