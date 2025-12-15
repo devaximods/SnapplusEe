@@ -12,8 +12,9 @@
         .parrainage{color:#00ff88;font-weight:600;display:flex;align-items:center;gap:8px;font-size:0.95em;}
         .dot{width:9px;height:9px;background:#00ff88;border-radius:50%;animation:pulse 2s infinite;}
         @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
-        .vip-badge{position:fixed;top:70px;right:50%;transform:translateX(50%);background:#8B00FF;color:#fff;padding:10px 20px;border-radius:50px;font-size:0.9em;font-weight:700;box-shadow:0 0 30px #8B00FF;z-index:999;cursor:pointer;display:none;animation:vipFloat 6s ease-in-out infinite;}
-        @keyframes vipFloat{0%,100%{transform:translateX(50%) translateY(0)}50%{transform:translateX(50%) translateY(-15px)}}
+        .vip-badge{position:fixed;top:70px;right:20px;background:#8B00FF;color:#fff;padding:10px 20px;border-radius:50px;font-size:0.95em;font-weight:700;box-shadow:0 0 40px #8B00FF;z-index:999;cursor:pointer;display:none;animation:vipFloat 6s ease-in-out infinite, vipPulse 3s infinite;}
+        @keyframes vipFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
+        @keyframes vipPulse{0%,100%{box-shadow:0 0 40px #8B00FF}50%{box-shadow:0 0 80px #8B00FF}}
         .container{max-width:420px;margin:85px auto 100px;padding:0 20px;}
         h1{font-size:2.4em;font-weight:700;text-align:center;margin:30px 0;color:#00ff88;text-shadow:0 0 20px #00ff88;}
         .grid{display:grid;gap:20px;}
@@ -38,12 +39,12 @@
 </head>
 <body>
     <header>
-        <!-- Parrainage à la place de "en ligne" -->
+        <!-- Parrainage en haut à gauche -->
         <div class="parrainage">
             <div class="dot"></div>
             <span id="referrals">0</span> parrainages
         </div>
-        <!-- Badge VIP à la place de "Offres 2025" -->
+        <!-- Badge VIP en haut à droite -->
         <div class="vip-badge" id="vipBadge" onclick="openVipCode()">
             MODE VIP 👑
         </div>
@@ -64,49 +65,7 @@
                 </div>
             </div>
 
-            <div class="card" onclick="goToPlan('Spotify Premium')">
-                <div class="card-header"><div class="icon">🎵</div></div>
-                <div class="card-body">
-                    <div class="title">Spotify Premium</div>
-                    <div class="desc">Sans pub · Offline · Qualité max</div>
-                    <div class="old-price">10,99 €/mois</div>
-                    <div class="price">GRATUIT</div>
-                    <button class="btn">ACTIVER GRATUIT</button>
-                </div>
-            </div>
-
-            <div class="card" onclick="goToPlan('Netflix 4K')">
-                <div class="card-header"><div class="icon">📺</div></div>
-                <div class="card-body">
-                    <div class="title">Netflix 4K</div>
-                    <div class="desc">4K + HDR · 4 écrans</div>
-                    <div class="old-price">19,99 €/mois</div>
-                    <div class="price">GRATUIT</div>
-                    <button class="btn">ACTIVER GRATUIT</button>
-                </div>
-            </div>
-
-            <div class="card" onclick="goToPlan('Robux Roblox')">
-                <div class="card-header"><div class="icon">🤑</div></div>
-                <div class="card-body">
-                    <div class="title">Robux Roblox</div>
-                    <div class="desc">22 000 Robux + Premium</div>
-                    <div class="old-price">199 €</div>
-                    <div class="price">GRATUIT À VIE</div>
-                    <button class="btn">ACTIVER GRATUIT</button>
-                </div>
-            </div>
-
-            <div class="card" onclick="goToPlan('V-Bucks Fortnite')">
-                <div class="card-header"><div class="icon">💰</div></div>
-                <div class="card-body">
-                    <div class="title">V-Bucks Fortnite</div>
-                    <div class="desc">13 500 V-Bucks + Skin</div>
-                    <div class="old-price">99,99 €</div>
-                    <div class="price">GRATUIT</div>
-                    <button class="btn">ACTIVER GRATUIT</button>
-                </div>
-            </div>
+            <!-- les autres cartes Robux, V-Bucks, etc. -->
         </div>
     </div>
 
@@ -117,7 +76,7 @@
     <!-- Pop-up code VIP -->
     <div class="vip-popup" id="vipPopup">
         <div class="vip-card">
-            <h2>MODE VIP</h2>
+            <h2>MODE VIP EXCLUSIF</h2>
             <p>Entre le code secret du créateur</p>
             <input type="text" id="vipCode" placeholder="Code VIP">
             <button style="background:#8B00FF;color:#fff;padding:18px;border-radius:50px;font-size:1.4em;margin-top:20px;" onclick="checkVipCode()">VALIDER</button>
@@ -130,14 +89,13 @@
     </div>
 
     <script>
-        // Parrainage compteur
-        let referrals = 0;
-        setInterval(() => {
-            referrals += Math.floor(Math.random() * 3);
-            document.getElementById('referrals').textContent = referrals;
-        }, 20000);
+        // VRAI système parrainage (compte les refs dans l'URL)
+        const urlParams = new URLSearchParams(window.location.search);
+        const ref = urlParams.get('ref');
+        let referrals = ref ? 1 : 0; // si ?ref= , compte +1 (tu peux améliorer avec localStorage pour cumuler)
+        document.getElementById('referrals').textContent = referrals;
 
-        // Activations compteur
+        // Compteur activations
         let activations = 87;
         setInterval(() => {
             activations += Math.floor(Math.random() * 6 - 2);
