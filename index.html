@@ -3,33 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>GRATUIT 2025 – Snap+, Robux, V-Bucks & More</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
+    <title>GRATUIT 2025 – Mode VIP Exclusif</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;900&display=swap" rel="stylesheet">
     <style>
         *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
-        body{background:#000;color:#fff;overflow-x:hidden;perspective:1200px;}
+        body{background:#000;color:#fff;overflow-x:hidden;position:relative;perspective:1500px;}
         header{background:#0a0a0a;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;position:fixed;top:0;width:100%;z-index:1000;border-bottom:1px solid #222;}
         .online{color:#00ff88;font-weight:600;display:flex;align-items:center;gap:8px;font-size:0.95em;}
         .dot{width:9px;height:9px;background:#00ff88;border-radius:50%;animation:pulse 2s infinite;}
         @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
-        .container{max-width:420px;margin:85px auto 100px;padding:0 20px;}
+        .container{max-width:420px;margin:85px auto 120px;padding:0 20px;}
         h1{font-size:2.4em;font-weight:700;text-align:center;margin:30px 0;color:#fff;}
+        .subtitle{font-size:1.1em;text-align:center;color:#888;margin-bottom:50px;}
+
+        /* Badge VIP fixe en haut à droite – 3D violet premium */
+        .vip-badge{position:fixed;top:80px;right:20px;background:linear-gradient(45deg,#8B00FF,#4B0082);padding:15px 25px;border-radius:50px;box-shadow:0 0 60px #8B00FF, inset 0 0 30px rgba(255,255,255,0.2);z-index:9999;font-size:1.2em;font-weight:900;color:#fff;text-shadow:0 0 20px #fff;transform-style:preserve-3d;animation:vipPulse 3s infinite, vipFloat 6s ease-in-out infinite;display:none;}
+        @keyframes vipPulse{0%,100%{box-shadow:0 0 60px #8B00FF}50%{box-shadow:0 0 100px #8B00FF}}
+        @keyframes vipFloat{0%,100%{transform:translateY(0) rotateX(0)}50%{transform:translateY(-20px) rotateX(15deg)}}
+
+        /* Système parrainage */
+        .parrainage{background:#111;padding:25px;border-radius:25px;margin:30px 0;text-align:center;box-shadow:0 15px 50px rgba(139,0,255,0.3);border:2px solid #8B00FF;}
+        .points{font-size:2em;color:#8B00FF;font-weight:900;text-shadow:0 0 30px #8B00FF;}
+
         .grid{display:grid;gap:20px;}
-        .card{background:#111;border-radius:20px;overflow:hidden;transition:all 0.6s cubic-bezier(0.175,0.885,0.32,1.275);cursor:pointer;box-shadow:0 8px 25px rgba(0,0,0,0.6);transform-style:preserve-3d;}
-        .card:hover{transform:translateY(-15px) rotateX(8deg) rotateY(8deg) scale(1.03);box-shadow:0 30px 60px rgba(0,255,136,0.2);}
+        .card{background:#111;border-radius:20px;overflow:hidden;transition:0.3s;cursor:pointer;box-shadow:0 8px 25px rgba(0,0,0,0.6);}
+        .card:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(139,0,255,0.2);}
         .card-header{height:100px;display:flex;align-items:center;justify-content:center;background:#1a1a1a;}
-        .icon{font-size:2.8em;transform-style:preserve-3d;animation:float3D 5s ease-in-out infinite;}
-        @keyframes float3D{0%,100%{transform:translateY(0) rotateX(0)}50%{transform:translateY(-15px) rotateX(10deg)}}
+        .icon{font-size:2.8em;}
         .card-body{padding:25px;text-align:center;}
         .title{font-size:1.4em;font-weight:700;color:#fff;margin-bottom:8px;}
         .desc{font-size:0.95em;color:#aaa;line-height:1.5;margin-bottom:15px;}
         .price{font-size:2.2em;color:#00ff88;font-weight:700;margin:15px 0;}
         .old-price{font-size:0.9em;color:#666;text-decoration:line-through;margin-bottom:5px;}
-        .btn{background:#00ff88;color:#000;padding:16px;border-radius:50px;font-size:1.1em;font-weight:600;width:85%;margin:20px auto;display:block;border:none;cursor:pointer;transition:all 0.4s;transform-style:preserve-3d;}
-        .btn:hover{background:#00ffaa;transform:translateZ(15px) scale(1.05);}
-        .locked{pointer-events:none;opacity:0.6;}
-        .locked-badge{position:absolute;top:12px;right:12px;background:#ff4444;color:#fff;padding:6px 12px;border-radius:30px;font-size:0.8em;font-weight:600;z-index:10;}
-        .counter{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#111;padding:10px 25px;border-radius:50px;border:1px solid #333;box-shadow:0 8px 25px rgba(0,0,0,0.6);z-index:999;font-size:1em;font-weight:600;}
+        .btn{background:#00ff88;color:#000;padding:16px;border-radius:50px;font-size:1.1em;font-weight:600;width:85%;margin:20px auto;display:block;border:none;cursor:pointer;transition:0.3s;}
+        .btn:hover{background:#00ffaa;}
+
+        /* Pop-up code VIP */
+        .vip-popup{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);z-index:99999;display:none;align-items:center;justify-content:center;padding:20px;}
+        .vip-card{background:#111;padding:50px;border-radius:35px;text-align:center;max-width:380px;border:4px solid #8B00FF;box-shadow:0 0 80px #8B00FF;}
+        .vip-card h2{color:#8B00FF;font-size:2.4em;margin-bottom:20px;text-shadow:0 0 40px #8B00FF;}
+        input{width:100%;padding:20px;background:#1a1a1a;border:2px solid #8B00FF;border-radius:20px;color:#fff;font-size:1.6em;text-align:center;margin:20px 0;}
+
+        /* Animation déblocage VIP */
+        .vip-unlock{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:999999;align-items:center;justify-content:center;flex-direction:column;color:#8B00FF;font-size:4em;font-weight:900;text-shadow:0 0 60px #8B00FF;animation:vipExplode 3s forwards;}
+        @keyframes vipExplode{0%{opacity:0;transform:scale(0.5) rotate(-180deg)}50%{opacity:1;transform:scale(1.5) rotate(0)}100%{opacity:1;transform:scale(1) rotate(0)}}
     </style>
 </head>
 <body>
@@ -43,160 +60,77 @@
 
     <div class="container">
         <h1>Offres Premium Gratuites</h1>
+        <p class="subtitle">Vérification SMS rapide – Aucun paiement</p>
+
+        <!-- Badge VIP fixe en haut à droite (apparaît après activation) -->
+        <div class="vip-badge" id="vipBadge">
+            MODE VIP ACTIVÉ 👑
+        </div>
+
+        <!-- Système parrainage avec points -->
+        <div class="parrainage">
+            <p style="color:#8B00FF;font-weight:700;font-size:1.3em;">Système Parrainage</p>
+            <p style="color:#fff;font-size:1.1em;margin:10px 0;">Ramène des amis et gagne des points !</p>
+            <p class="points" id="points">0 points</p>
+            <p style="color:#aaa;font-size:0.9em;">100 points = 1 mois VIP bonus</p>
+            <p style="color:#fffc00;margin-top:15px;">Ton lien : https://snapplus-ee.vercel.app/?ref=tonpseudo</p>
+        </div>
+
+        <!-- Bouton pour activer le VIP (demande le code) -->
+        <div style="text-align:center;margin:30px 0;">
+            <button style="background:#8B00FF;color:#fff;padding:18px 40px;border-radius:50px;font-size:1.4em;font-weight:900;box-shadow:0 0 50px #8B00FF;" onclick="openVipCode()">ACTIVER LE MODE VIP</button>
+        </div>
 
         <div class="grid">
-            <!-- Snap+ ouvert -->
-            <div class="card" onclick="goToPlan('Snapchat+')">
-                <div class="card-header"><div class="icon">👻</div></div>
-                <div class="card-body">
-                    <div class="title">Snapchat+</div>
-                    <div class="desc">Badge exclusif · Replay illimité · Stories privées</div>
-                    <div class="old-price">9,99 €/mois</div>
-                    <div class="price">GRATUIT</div>
-                    <button class="btn">ACTIVER GRATUIT</button>
-                </div>
-            </div>
-
-            <!-- Tous les autres verrouillés -->
-            <div class="card locked" onclick="openShare('Spotify Premium')">
-                <div class="locked-badge">🔒 Partage à 10 amis</div>
-                <div class="card-header"><div class="icon">🎵</div></div>
-                <div class="card-body">
-                    <div class="title">Spotify Premium</div>
-                    <div class="desc">Sans pub · Offline · Qualité max</div>
-                    <div class="old-price">10,99 €/mois</div>
-                    <div class="price">GRATUIT</div>
-                    <button class="btn">DÉBLOQUER (10 partages)</button>
-                </div>
-            </div>
-
-            <div class="card locked" onclick="openShare('Netflix 4K')">
-                <div class="locked-badge">🔒 Partage à 10 amis</div>
-                <div class="card-header"><div class="icon">📺</div></div>
-                <div class="card-body">
-                    <div class="title">Netflix 4K</div>
-                    <div class="desc">4K + HDR · 4 écrans</div>
-                    <div class="old-price">19,99 €/mois</div>
-                    <div class="price">GRATUIT</div>
-                    <button class="btn">DÉBLOQUER (10 partages)</button>
-                </div>
-            </div>
-
-            <div class="card locked" onclick="openShare('Robux Roblox')">
-                <div class="locked-badge">🔒 Partage à 10 amis</div>
-                <div class="card-header"><div class="icon">🤑</div></div>
-                <div class="card-body">
-                    <div class="title">Robux Roblox</div>
-                    <div class="desc">22 000 Robux + Premium</div>
-                    <div class="old-price">199 €</div>
-                    <div class="price">GRATUIT À VIE</div>
-                    <button class="btn">DÉBLOQUER (10 partages)</button>
-                </div>
-            </div>
-
-            <div class="card locked" onclick="openShare('V-Bucks Fortnite')">
-                <div class="locked-badge">🔒 Partage à 10 amis</div>
-                <div class="card-header"><div class="icon">💰</div></div>
-                <div class="card-body">
-                    <div class="title">V-Bucks Fortnite</div>
-                    <div class="desc">13 500 V-Bucks + Skin</div>
-                    <div class="old-price">99,99 €</div>
-                    <div class="price">GRATUIT</div>
-                    <button class="btn">DÉBLOQUER (10 partages)</button>
-                </div>
-            </div>
-
-            <div class="card locked" onclick="openShare('TikTok Coins')">
-                <div class="locked-badge">🔒 Partage à 10 amis</div>
-                <div class="card-header"><div class="icon">💎</div></div>
-                <div class="card-body">
-                    <div class="title">TikTok Coins</div>
-                    <div class="desc">50 000 Coins + Bonus</div>
-                    <div class="old-price">99,99 €</div>
-                    <div class="price">GRATUIT</div>
-                    <button class="btn">DÉBLOQUER (10 partages)</button>
-                </div>
-            </div>
-
-            <div class="card locked" onclick="openShare('Instagram Badge Bleu')">
-                <div class="locked-badge">🔒 Partage à 10 amis</div>
-                <div class="card-header"><div class="icon">📸</div></div>
-                <div class="card-body">
-                    <div class="title">Instagram Badge Bleu</div>
-                    <div class="desc">Vérification officielle instantanée</div>
-                    <div class="old-price">Prix fou</div>
-                    <div class="price">GRATUIT</div>
-                    <button class="btn">DÉBLOQUER (10 partages)</button>
-                </div>
-            </div>
-
-            <div class="card locked" onclick="openShare('Facebook Badge')">
-                <div class="locked-badge">🔒 Partage à 10 amis</div>
-                <div class="card-header"><div class="icon">👍</div></div>
-                <div class="card-body">
-                    <div class="title">Facebook Badge</div>
-                    <div class="desc">Badge vérifié bleu</div>
-                    <div class="old-price">Prix fou</div>
-                    <div class="price">GRATUIT</div>
-                    <button class="btn">DÉBLOQUER (10 partages)</button>
-                </div>
-            </div>
-
-            <div class="card locked" onclick="openShare('YouTube Premium')">
-                <div class="locked-badge">🔒 Partage à 10 amis</div>
-                <div class="card-header"><div class="icon">▶️</div></div>
-                <div class="card-body">
-                    <div class="title">YouTube Premium</div>
-                    <div class="desc">Sans pub · Offline · Background</div>
-                    <div class="old-price">11,99 €/mois</div>
-                    <div class="price">GRATUIT</div>
-                    <button class="btn">DÉBLOQUER (10 partages)</button>
-                </div>
-            </div>
-
-            <div class="card locked" onclick="openShare('Prime Video')">
-                <div class="locked-badge">🔒 Partage à 10 amis</div>
-                <div class="card-header"><div class="icon">📦</div></div>
-                <div class="card-body">
-                    <div class="title">Prime Video</div>
-                    <div class="desc">Livraison gratuite + Streaming</div>
-                    <div class="old-price">5,99 €/mois</div>
-                    <div class="price">GRATUIT</div>
-                    <button class="btn">DÉBLOQUER (10 partages)</button>
-                </div>
-            </div>
+            <!-- tes cartes Snapchat+, Spotify, etc. -->
         </div>
     </div>
 
-    <div class="counter">
-        <span id="activations">87</span> activés aujourd’hui
+    <!-- Pop-up code VIP -->
+    <div class="vip-popup" id="vipPopup">
+        <div class="vip-card">
+            <h2>MODE VIP EXCLUSIF</h2>
+            <p>Entre le code secret donné par le créateur</p>
+            <input type="text" id="vipCode" placeholder="Code VIP" maxlength="20">
+            <button style="background:#8B00FF;color:#fff;padding:18px;border-radius:50px;font-size:1.4em;margin-top:20px;" onclick="checkVipCode()">VALIDER</button>
+            <button style="margin-top:20px;color:#888;" onclick="document.getElementById('vipPopup').style.display='none'">Annuler</button>
+        </div>
+    </div>
+
+    <!-- Animation déblocage VIP -->
+    <div class="vip-unlock" id="vipUnlock">
+        VOUS ÊTES VIP !
     </div>
 
     <script>
-        let online = 4895;
+        let points = 0;
         setInterval(() => {
-            online += Math.floor(Math.random() * 20 - 10);
-            if (online < 4800) online = 4800;
-            if (online > 5100) online = 5100;
-            document.getElementById('onlineCount').textContent = online.toLocaleString();
-        }, 6000);
+            points += Math.floor(Math.random() * 10 + 5);
+            document.getElementById('points').textContent = points + " points";
+        }, 30000);
 
-        let activations = 87;
-        setInterval(() => {
-            activations += Math.floor(Math.random() * 6 - 2);
-            if (activations < 50) activations = 50;
-            if (activations > 150) activations = 150;
-            document.getElementById('activations').textContent = activations;
-        }, 10000);
-
-        function goToPlan(service) {
-            localStorage.setItem('selectedService', service);
-            window.location.href = 'plans.html';
+        function openVipCode() {
+            document.getElementById('vipPopup').style.display = 'flex';
         }
 
-        function openShare(service) {
-            localStorage.setItem('requestedService', service);
-            document.getElementById('sharePopup').style.display = 'flex';
+        function checkVipCode() {
+            const code = document.getElementById('vipCode').value.trim().toUpperCase();
+            if (code === "NIQUE LE CHEUM") {
+                document.getElementById('vipPopup').style.display = 'none';
+                document.getElementById('vipUnlock').style.display = 'flex';
+                document.getElementById('vipBadge').style.display = 'block';
+                localStorage.setItem('vipActive', 'true');
+                setTimeout(() => {
+                    document.getElementById('vipUnlock').style.display = 'none';
+                }, 4000);
+            } else {
+                alert('Code incorrect – Demande au créateur');
+            }
+        }
+
+        // Garde le VIP actif si déjà débloqué
+        if (localStorage.getItem('vipActive') === 'true') {
+            document.getElementById('vipBadge').style.display = 'block';
         }
     </script>
 </body>
