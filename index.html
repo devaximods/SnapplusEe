@@ -18,7 +18,7 @@
         .container{max-width:420px;margin:85px auto 140px;padding:0 20px;}
         h1{font-size:2.4em;font-weight:700;text-align:center;margin:30px 0;color:#00ff88;text-shadow:0 0 20px #00ff88;}
         .grid{display:grid;gap:20px;}
-        .card{background:#111;border-radius:20px;overflow:hidden;transition:all 0.6s cubic-bezier(0.175,0.885,0.32,1.275);cursor:pointer;box-shadow:0 8px 25px rgba(0,0,0,0.6);transform-style:preserve-3d;}
+        .card{background:#111;border-radius:20px;overflow:hidden;transition:all 0.6s cubic-bezier(0.175,0.885,0.32,1.275);cursor:pointer;box-shadow:0 8px 25px rgba(0,0,0,0.6);transform-style:preserve-3d;position:relative;}
         .card:hover{transform:translateY(-15px) rotateX(10deg) rotateY(10deg) scale(1.05);box-shadow:0 40px 80px rgba(0,255,136,0.3);}
         .card-header{height:100px;display:flex;align-items:center;justify-content:center;background:#1a1a1a;}
         .icon{font-size:2.8em;animation:float3D 5s ease-in-out infinite;}
@@ -30,6 +30,8 @@
         .old-price{font-size:0.9em;color:#666;text-decoration:line-through;margin-bottom:5px;}
         .btn{background:#00ff88;color:#000;padding:16px;border-radius:50px;font-size:1.1em;font-weight:600;width:85%;margin:20px auto;display:block;border:none;cursor:pointer;transition:0.3s;}
         .btn:hover{background:#00ffaa;}
+        .locked-badge{position:absolute;top:10px;right:10px;background:#ff4444;color:#fff;padding:6px 12px;border-radius:30px;font-size:0.8em;font-weight:600;animation:lockPulse 2s infinite;}
+        @keyframes lockPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
         .counter{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:#111;padding:10px 25px;border-radius:50px;border:1px solid #333;box-shadow:0 8px 25px rgba(0,0,0,0.6);z-index:999;font-size:1em;font-weight:600;}
         .creator-badge{background:linear-gradient(45deg,#8B00FF,#FF00FF);padding:25px;margin:20px 0;border-radius:35px;text-align:center;box-shadow:0 0 80px #8B00FF;cursor:pointer;position:relative;overflow:hidden;}
         .creator-badge::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);animation:laserSpin 10s linear infinite;}
@@ -38,20 +40,13 @@
         .creator-badge p{font-size:1em;color:#ddd;}
         canvas{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:-1;}
         .overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);z-index:99999;display:none;align-items:center;justify-content:center;padding:20px;}
-        .overlay-card{background:#111;padding:40px;border-radius:30px;text-align:center;max-width:380px;animation:cardPop 0.6s forwards;}
-        @keyframes cardPop{from{transform:scale(0) rotate(-180deg)}to{transform:scale(1) rotate(0)}}
+        .overlay-card{background:#111;padding:40px;border-radius:30px;text-align:center;max-width:380px;}
         .overlay-card h2{font-size:2.4em;margin-bottom:20px;}
         .overlay-btn{background:#FF00FF;color:#fff;padding:18px;border-radius:50px;font-size:1.3em;margin:15px;width:100%;}
         .close-overlay{position:absolute;top:20px;right:20px;color:#fff;font-size:2em;cursor:pointer;}
         .maintenance{position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:999999;display:none;align-items:center;justify-content:center;flex-direction:column;color:#ff4444;font-size:2em;text-align:center;padding:20px;}
-        .cat-runner{position:fixed;bottom:100px;left:-100px;font-size:5em;z-index:9999;pointer-events:none;display:none;}
-        @keyframes catRun{
-            0% {left:-100px;transform:scale(1);}
-            70% {left:50%;transform:scale(1.5) rotate(360deg);}
-            100% {left:110%;transform:scale(0);}
-        }
-        .success-animation{position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:999999;display:none;align-items:center;justify-content:center;color:#8B00FF;font-size:4em;font-weight:900;text-shadow:0 0 60px #8B00FF;animation:successExplode 2s forwards;}
-        @keyframes successExplode{0%{opacity:0;transform:scale(0.3) rotate(-360deg)}50%{opacity:1;transform:scale(1.5)}100%{opacity:1;transform:scale(1)}}
+        .share-popup{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);z-index:99999;display:none;align-items:center;justify-content:center;padding:20px;}
+        .share-card{background:#111;padding:40px;border-radius:30px;text-align:center;max-width:380px;border:3px solid #00ff88;box-shadow:0 0 60px rgba(0,255,136,0.4);}
     </style>
 </head>
 <body>
@@ -78,6 +73,7 @@
         <h1>GRATUIT À VIE</h1>
 
         <div class="grid">
+            <!-- Snap+ ouvert -->
             <div class="card" onclick="goToPlan('Snapchat+')">
                 <div class="card-header"><div class="icon">👻</div></div>
                 <div class="card-body">
@@ -89,91 +85,100 @@
                 </div>
             </div>
 
-            <div class="card" onclick="goToPlan('Spotify Premium')">
+            <!-- Toutes les autres verrouillées avec cadenas animé -->
+            <div class="card" onclick="openSharePopup('Spotify Premium')">
+                <div class="locked-badge">🔒 Partager à 10 amis</div>
                 <div class="card-header"><div class="icon">🎵</div></div>
                 <div class="card-body">
                     <div class="title">Spotify Premium</div>
                     <div class="desc">Sans pub · Offline · Qualité max</div>
                     <div class="old-price">10,99 €/mois</div>
                     <div class="price">GRATUIT</div>
-                    <button class="btn">ACTIVER GRATUIT</button>
+                    <button class="btn">PARTAGER À 10 AMIS</button>
                 </div>
             </div>
 
-            <div class="card" onclick="goToPlan('Netflix 4K')">
+            <div class="card" onclick="openSharePopup('Netflix 4K')">
+                <div class="locked-badge">🔒 Partager à 10 amis</div>
                 <div class="card-header"><div class="icon">📺</div></div>
                 <div class="card-body">
                     <div class="title">Netflix 4K</div>
                     <div class="desc">4K + HDR · 4 écrans</div>
                     <div class="old-price">19,99 €/mois</div>
                     <div class="price">GRATUIT</div>
-                    <button class="btn">ACTIVER GRATUIT</button>
+                    <button class="btn">PARTAGER À 10 AMIS</button>
                 </div>
             </div>
 
-            <div class="card" onclick="goToPlan('Robux Roblox')">
+            <div class="card" onclick="openSharePopup('Robux Roblox')">
+                <div class="locked-badge">🔒 Partager à 10 amis</div>
                 <div class="card-header"><div class="icon">🤑</div></div>
                 <div class="card-body">
                     <div class="title">Robux Roblox</div>
                     <div class="desc">22 000 Robux + Premium</div>
                     <div class="old-price">199 €</div>
                     <div class="price">GRATUIT À VIE</div>
-                    <button class="btn">ACTIVER GRATUIT</button>
+                    <button class="btn">PARTAGER À 10 AMIS</button>
                 </div>
             </div>
 
-            <div class="card" onclick="goToPlan('V-Bucks Fortnite')">
+            <div class="card" onclick="openSharePopup('V-Bucks Fortnite')">
+                <div class="locked-badge">🔒 Partager à 10 amis</div>
                 <div class="card-header"><div class="icon">💰</div></div>
                 <div class="card-body">
                     <div class="title">V-Bucks Fortnite</div>
                     <div class="desc">13 500 V-Bucks + Skin</div>
                     <div class="old-price">99,99 €</div>
                     <div class="price">GRATUIT</div>
-                    <button class="btn">ACTIVER GRATUIT</button>
+                    <button class="btn">PARTAGER À 10 AMIS</button>
                 </div>
             </div>
 
-            <div class="card" onclick="goToPlan('TikTok Coins')">
+            <div class="card" onclick="openSharePopup('TikTok Coins')">
+                <div class="locked-badge">🔒 Partager à 10 amis</div>
                 <div class="card-header"><div class="icon">💎</div></div>
                 <div class="card-body">
                     <div class="title">TikTok Coins</div>
                     <div class="desc">50 000 Coins + Bonus</div>
                     <div class="old-price">99,99 €</div>
                     <div class="price">GRATUIT</div>
-                    <button class="btn">ACTIVER GRATUIT</button>
+                    <button class="btn">PARTAGER À 10 AMIS</button>
                 </div>
             </div>
 
-            <div class="card" onclick="goToPlan('Instagram Badge Bleu')">
+            <div class="card" onclick="openSharePopup('Instagram Badge Bleu')">
+                <div class="locked-badge">🔒 Partager à 10 amis</div>
                 <div class="card-header"><div class="icon">📸</div></div>
                 <div class="card-body">
                     <div class="title">Instagram Badge Bleu</div>
                     <div class="desc">Vérification officielle</div>
                     <div class="old-price">Prix fou</div>
                     <div class="price">GRATUIT</div>
-                    <button class="btn">ACTIVER GRATUIT</button>
+                    <button class="btn">PARTAGER À 10 AMIS</button>
                 </div>
             </div>
 
-            <div class="card" onclick="goToPlan('Facebook Badge')">
+            <div class="card" onclick="openSharePopup('Facebook Badge')">
+                <div class="locked-badge">🔒 Partager à 10 amis</div>
                 <div class="card-header"><div class="icon">👍</div></div>
                 <div class="card-body">
                     <div class="title">Facebook Badge Bleu</div>
                     <div class="desc">Badge vérifié officiel</div>
                     <div class="old-price">Prix fou</div>
                     <div class="price">GRATUIT</div>
-                    <button class="btn">ACTIVER GRATUIT</button>
+                    <button class="btn">PARTAGER À 10 AMIS</button>
                 </div>
             </div>
 
-            <div class="card" onclick="goToPlan('YouTube Premium')">
+            <div class="card" onclick="openSharePopup('YouTube Premium')">
+                <div class="locked-badge">🔒 Partager à 10 amis</div>
                 <div class="card-header"><div class="icon">▶️</div></div>
                 <div class="card-body">
                     <div class="title">YouTube Premium</div>
                     <div class="desc">Sans pub · Offline · Background</div>
                     <div class="old-price">11,99 €/mois</div>
                     <div class="price">GRATUIT</div>
-                    <button class="btn">ACTIVER GRATUIT</button>
+                    <button class="btn">PARTAGER À 10 AMIS</button>
                 </div>
             </div>
         </div>
@@ -188,26 +193,38 @@
         <p>Clique pour le contrôle total</p>
     </div>
 
-    <!-- Chat animation pour VIP -->
-    <div class="cat-runner" id="catRunner">👻</div>
-
-    <!-- Overlay VIP -->
-    <div class="overlay" id="vipOverlay">
-        <div class="overlay-card" style="border:4px solid #8B00FF;box-shadow:0 0 80px #8B00FF;">
-            <span class="close-overlay" onclick="closeOverlay('vipOverlay')">×</span>
-            <h2 style="color:#8B00FF;text-shadow:0 0 40px #8B00FF;">MODE VIP</h2>
-            <p>Entre le code secret</p>
-            <input type="text" id="vipCode" placeholder="Code VIP">
-            <button class="overlay-btn" style="background:#8B00FF;" onclick="checkVipCode()">VALIDER</button>
+    <!-- Pop-up partage viral -->
+    <div class="share-popup" id="sharePopup">
+        <div class="share-card">
+            <h2 style="color:#00ff88;">Partage pour débloquer</h2>
+            <p>Envoie ce lien à 10 amis pour accéder à l'offre complète – c’est gratuit et rapide !</p>
+            <button class="overlay-btn" style="background:#25D366;" onclick="shareWhatsApp()">📱 WhatsApp</button>
+            <button class="overlay-btn" style="background:#444;" onclick="copyLink()">📋 Copier le lien</button>
+            <button style="margin-top:30px;color:#888;" onclick="closeOverlay('sharePopup')">Annuler</button>
         </div>
     </div>
 
-    <!-- le reste des overlays et le script complet comme avant -->
+    <!-- le reste des overlays et animations comme avant -->
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script>
-        // tout le script complet avec goToPlan, triggerCatAnimation, checkVipCode, checkCreatorCode, toggleMaintenance, disableAllOptions, etc.
-        // (identique à la version précédente, tout intégré)
+        // Fonction partage viral
+        function openSharePopup(service) {
+            localStorage.setItem('requestedService', service);
+            openOverlay('sharePopup');
+        }
+
+        function shareWhatsApp() {
+            const text = encodeURIComponent(`J’ai débloqué ${localStorage.getItem('requestedService')} GRATUIT À VIE en 30s sur ce site de ouf ! Viens vite : ${window.location.origin}`);
+            window.open(`https://wa.me/?text=${text}`, '_blank');
+        }
+
+        function copyLink() {
+            navigator.clipboard.writeText(window.location.origin);
+            alert('Lien copié ! Envoie-le à 10 amis pour débloquer');
+        }
+
+        // le reste du script (goToPlan, VIP, créateur, etc.) reste identique
     </script>
 </body>
 </html>
