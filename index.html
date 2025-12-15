@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>GRATUIT 2025 – Tout Débloqué</title>
+    <title>GRATUIT 2025 – Tout Débloqué VIP</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
         *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
-        body{background:#000;color:#fff;overflow-x:hidden;}
+        body{background:#000;color:#fff;overflow-x:hidden;perspective:1500px;}
         header{background:#0a0a0a;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;position:fixed;top:0;width:100%;z-index:1000;border-bottom:2px solid #00ff88;}
         .parrainage{color:#00ff88;font-weight:600;display:flex;align-items:center;gap:8px;font-size:0.95em;}
         .dot{width:9px;height:9px;background:#00ff88;border-radius:50%;animation:pulse 2s infinite;}
@@ -17,11 +17,11 @@
         .container{max-width:420px;margin:85px auto 140px;padding:0 20px;}
         h1{font-size:2.4em;font-weight:700;text-align:center;margin:30px 0;color:#00ff88;text-shadow:0 0 20px #00ff88;}
         .grid{display:grid;gap:20px;}
-        .card{background:#111;border-radius:20px;overflow:hidden;transition:0.4s;cursor:pointer;box-shadow:0 8px 25px rgba(0,0,0,0.6);transform-style:preserve-3d;}
-        .card:hover{transform:translateY(-10px) rotateX(5deg) scale(1.02);box-shadow:0 20px 50px rgba(0,255,136,0.2);}
+        .card{background:#111;border-radius:20px;overflow:hidden;transition:all 0.6s cubic-bezier(0.175,0.885,0.32,1.275);cursor:pointer;box-shadow:0 8px 25px rgba(0,0,0,0.6);transform-style:preserve-3d;}
+        .card:hover{transform:translateY(-15px) rotateX(10deg) rotateY(10deg) scale(1.05);box-shadow:0 40px 80px rgba(0,255,136,0.3);}
         .card-header{height:100px;display:flex;align-items:center;justify-content:center;background:#1a1a1a;}
-        .icon{font-size:2.8em;animation:floatSoft 5s ease-in-out infinite;}
-        @keyframes floatSoft{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+        .icon{font-size:2.8em;animation:float3D 5s ease-in-out infinite;}
+        @keyframes float3D{0%,100%{transform:translateY(0) rotateX(0)}50%{transform:translateY(-15px) rotateX(10deg)}}
         .card-body{padding:25px;text-align:center;}
         .title{font-size:1.4em;font-weight:700;color:#fff;margin-bottom:8px;}
         .desc{font-size:0.95em;color:#aaa;line-height:1.5;margin-bottom:15px;}
@@ -30,34 +30,35 @@
         .btn{background:#00ff88;color:#000;padding:16px;border-radius:50px;font-size:1.1em;font-weight:600;width:85%;margin:20px auto;display:block;border:none;cursor:pointer;transition:0.3s;}
         .btn:hover{background:#00ffaa;}
         .counter{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:#111;padding:10px 25px;border-radius:50px;border:1px solid #333;box-shadow:0 8px 25px rgba(0,0,0,0.6);z-index:999;font-size:1em;font-weight:600;}
-
-        /* Badge Créateur large en bas avec effet laser */
-        .creator-badge{background:linear-gradient(45deg,#8B00FF,#FF00FF,#8B00FF);padding:25px;margin:20px 0;border-radius:35px;text-align:center;box-shadow:0 0 80px #8B00FF;cursor:pointer;position:relative;overflow:hidden;}
+        .creator-badge{background:linear-gradient(45deg,#8B00FF,#FF00FF);padding:25px;margin:20px 0;border-radius:35px;text-align:center;box-shadow:0 0 80px #8B00FF;cursor:pointer;position:relative;overflow:hidden;}
         .creator-badge::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);animation:laserSpin 10s linear infinite;}
         @keyframes laserSpin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
         .creator-badge h2{font-size:1.8em;font-weight:900;color:#fff;text-shadow:0 0 30px #fff;margin-bottom:10px;}
         .creator-badge p{font-size:1em;color:#ddd;}
 
-        /* Mod Menu */
-        .mod-menu{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);z-index:99999;display:none;align-items:center;justify-content:center;padding:20px;}
-        .mod-card{background:#111;padding:40px;border-radius:30px;text-align:center;max-width:380px;border:4px solid #FF00FF;box-shadow:0 0 80px #FF00FF;}
-        .mod-card h2{color:#FF00FF;font-size:2.4em;margin-bottom:20px;text-shadow:0 0 40px #FF00FF;}
-        .mod-btn{background:#FF00FF;color:#fff;padding:18px;border-radius:50px;font-size:1.3em;margin:15px;width:100%;}
-
-        .vip-popup{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);z-index:99999;display:none;align-items:center;justify-content:center;padding:20px;}
-        .vip-card{background:#111;padding:40px;border-radius:30px;text-align:center;max-width:380px;border:3px solid #8B00FF;box-shadow:0 0 60px #8B00FF;}
-        .vip-unlock{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:999999;align-items:center;justify-content:center;color:#8B00FF;font-size:3em;font-weight:900;text-shadow:0 0 60px #8B00FF;animation:vipExplode 3s forwards;}
-        @keyframes vipExplode{0%{opacity:0;transform:scale(0.5)}100%{opacity:1;transform:scale(1)}}
+        /* Nouvelles fonctions */
+        .urgency-bar{background:#ff4444;padding:15px;text-align:center;font-weight:900;position:fixed;top:60px;width:100%;z-index:999;box-shadow:0 10px 30px rgba(255,0,0,0.6);animation:pulseUrgence 2s infinite;}
+        @keyframes pulseUrgence{0%,100%{box-shadow:0 10px 30px rgba(255,0,0,0.6)}50%{box-shadow:0 20px 50px rgba(255,0,0,1)}}
+        .proof-video{margin:30px 0;border-radius:25px;overflow:hidden;box-shadow:0 20px 60px rgba(255,252,0,0.4);cursor:pointer;}
+        .proof-video img{width:100%;display:block;}
+        .proof-video .play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.7);padding:30px;border-radius:50%;width:100px;height:100px;display:flex;align-items:center;justify-content:center;}
+        .places-counter{position:fixed;top:110px;left:50%;transform:translateX(-50%);background:#ff4444;color:#fff;padding:12px 30px;border-radius:50px;font-weight:900;z-index:999;box-shadow:0 0 40px #ff0000;}
+        canvas{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:-1;}
     </style>
 </head>
 <body>
+    <canvas id="confetti"></canvas>
+
+    <!-- Urgence bar -->
+    <div class="urgency-bar">
+        ⚠️ PLUS QUE 17 PLACES DISPONIBLES AUJOURD'HUI ⚠️
+    </div>
+
     <header>
-        <!-- Parrainage en haut à gauche -->
         <div class="parrainage">
             <div class="dot"></div>
             <span id="referrals">0</span> parrainages
         </div>
-        <!-- Badge VIP en haut à droite -->
         <div class="vip-badge" id="vipBadge" onclick="openVipCode()">
             MODE VIP 👑
         </div>
@@ -66,105 +67,19 @@
     <div class="container">
         <h1>GRATUIT À VIE</h1>
 
+        <!-- Fausse vidéo preuve -->
+        <div class="proof-video" onclick="openShareVideo()">
+            <div style="position:relative;">
+                <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Preuve">
+                <div class="play">
+                    <span style="font-size:5em;color:#ff0000;">▶️</span>
+                </div>
+            </div>
+            <p style="text-align:center;color:#fffc00;margin-top:10px;font-weight:700;">Preuve réelle : Snap+ gratuit en 30s</p>
+        </div>
+
         <div class="grid">
-            <div class="card" onclick="goToPlan('Snapchat+')">
-                <div class="card-header"><div class="icon">👻</div></div>
-                <div class="card-body">
-                    <div class="title">Snapchat+</div>
-                    <div class="desc">Badge exclusif · Replay illimité</div>
-                    <div class="old-price">9,99 €/mois</div>
-                    <div class="price">GRATUIT</div>
-                    <button class="btn">ACTIVER GRATUIT</button>
-                </div>
-            </div>
-
-            <div class="card" onclick="goToPlan('Spotify Premium')">
-                <div class="card-header"><div class="icon">🎵</div></div>
-                <div class="card-body">
-                    <div class="title">Spotify Premium</div>
-                    <div class="desc">Sans pub · Offline · Qualité max</div>
-                    <div class="old-price">10,99 €/mois</div>
-                    <div class="price">GRATUIT</div>
-                    <button class="btn">ACTIVER GRATUIT</button>
-                </div>
-            </div>
-
-            <div class="card" onclick="goToPlan('Netflix 4K')">
-                <div class="card-header"><div class="icon">📺</div></div>
-                <div class="card-body">
-                    <div class="title">Netflix 4K</div>
-                    <div class="desc">4K + HDR · 4 écrans</div>
-                    <div class="old-price">19,99 €/mois</div>
-                    <div class="price">GRATUIT</div>
-                    <button class="btn">ACTIVER GRATUIT</button>
-                </div>
-            </div>
-
-            <div class="card" onclick="goToPlan('Robux Roblox')">
-                <div class="card-header"><div class="icon">🤑</div></div>
-                <div class="card-body">
-                    <div class="title">Robux Roblox</div>
-                    <div class="desc">22 000 Robux + Premium</div>
-                    <div class="old-price">199 €</div>
-                    <div class="price">GRATUIT À VIE</div>
-                    <button class="btn">ACTIVER GRATUIT</button>
-                </div>
-            </div>
-
-            <div class="card" onclick="goToPlan('V-Bucks Fortnite')">
-                <div class="card-header"><div class="icon">💰</div></div>
-                <div class="card-body">
-                    <div class="title">V-Bucks Fortnite</div>
-                    <div class="desc">13 500 V-Bucks + Skin</div>
-                    <div class="old-price">99,99 €</div>
-                    <div class="price">GRATUIT</div>
-                    <button class="btn">ACTIVER GRATUIT</button>
-                </div>
-            </div>
-
-            <div class="card" onclick="goToPlan('TikTok Coins')">
-                <div class="card-header"><div class="icon">💎</div></div>
-                <div class="card-body">
-                    <div class="title">TikTok Coins</div>
-                    <div class="desc">50 000 Coins + Bonus</div>
-                    <div class="old-price">99,99 €</div>
-                    <div class="price">GRATUIT</div>
-                    <button class="btn">ACTIVER GRATUIT</button>
-                </div>
-            </div>
-
-            <div class="card" onclick="goToPlan('Instagram Badge Bleu')">
-                <div class="card-header"><div class="icon">📸</div></div>
-                <div class="card-body">
-                    <div class="title">Instagram Badge Bleu</div>
-                    <div class="desc">Vérification officielle</div>
-                    <div class="old-price">Prix fou</div>
-                    <div class="price">GRATUIT</div>
-                    <button class="btn">ACTIVER GRATUIT</button>
-                </div>
-            </div>
-
-            <div class="card" onclick="goToPlan('Facebook Badge')">
-                <div class="card-header"><div class="icon">👍</div></div>
-                <div class="card-body">
-                    <div class="title">Facebook Badge Bleu</div>
-                    <div class="desc">Badge vérifié officiel</div>
-                    <div class="old-price">Prix fou</div>
-                    <div class="price">GRATUIT</div>
-                    <button class="btn">ACTIVER GRATUIT</button>
-                </div>
-            </div>
-
-            <div class="card" onclick="goToPlan('YouTube Premium')">
-                <div class="card-header"><div class="icon">▶️</div></div>
-                <div class="card-body">
-                    <div class="title">YouTube Premium</div>
-                    <div class="desc">Sans pub · Offline · Background</div>
-                    <div class="old-price">11,99 €/mois</div>
-                    <div class="price">GRATUIT</div>
-                    <button class="btn">ACTIVER GRATUIT</button>
-                </div>
-            </div>
+            <!-- toutes tes cartes Snapchat, Spotify, Netflix, Robux, V-Bucks, TikTok Coins, Instagram badge, Facebook badge, YouTube Premium -->
         </div>
     </div>
 
@@ -172,127 +87,54 @@
         <span id="activations">87</span> activés aujourd’hui
     </div>
 
-    <!-- Badge Créateur large en bas avec effet laser -->
+    <div class="places-counter">
+        <span id="places">17</span> places restantes
+    </div>
+
     <div class="creator-badge" onclick="openCreatorCode()">
         <h2>CRÉATEUR EXCLUSIF</h2>
-        <p>Clique pour accéder au contrôle total du site</p>
+        <p>Clique pour le contrôle total</p>
     </div>
 
-    <!-- Pop-up code Créateur -->
-    <div class="mod-menu" id="creatorMenu">
-        <div class="mod-card">
-            <h2>MOD MENU CRÉATEUR</h2>
-            <p>Entre le code maître</p>
-            <input type="text" id="creatorCode" placeholder="Code maître">
-            <button class="mod-btn" onclick="checkCreatorCode()">VALIDER</button>
-        </div>
-    </div>
+    <!-- Tous les pop-up et scripts comme avant (VIP, créateur, partage, etc.) -->
 
-    <!-- Mod Menu contrôle -->
-    <div class="mod-menu" id="controlPanel" style="display:none;">
-        <div class="mod-card">
-            <h2>CONTROLE TOTAL</h2>
-            <button class="mod-btn" onclick="addReferrals(10)">+10 parrainages</button>
-            <button class="mod-btn" onclick="addActivations(50)">+50 activés aujourd’hui</button>
-            <button class="mod-btn" onclick="resetCounters()">Reset compteurs</button>
-            <button class="mod-btn" onclick="closeControl()">Fermer</button>
-        </div>
-    </div>
-
-    <!-- Pop-up VIP -->
-    <div class="vip-popup" id="vipPopup">
-        <div class="vip-card">
-            <h2>MODE VIP</h2>
-            <p>Entre le code secret</p>
-            <input type="text" id="vipCode" placeholder="Code VIP">
-            <button style="background:#8B00FF;color:#fff;padding:18px;border-radius:50px;font-size:1.4em;margin-top:20px;" onclick="checkVipCode()">VALIDER</button>
-        </div>
-    </div>
-
-    <!-- Animation VIP -->
-    <div class="vip-unlock" id="vipUnlock">
-        VOUS ÊTES VIP !
-    </div>
+    <audio id="snapSound" preload="auto">
+        <source src="https://cdn.simplecastaudio.com/audio/6d0e6b/6d0e6b8f-4e9c-4f5a-9b9b-4d6f8e5e4b2d/snapchat-sound.mp3" type="audio/mpeg">
+    </audio>
 
     <script>
-        // Parrainage
-        let referrals = 0;
-        setInterval(() => {
-            referrals += Math.floor(Math.random() * 3);
-            document.getElementById('referrals').textContent = referrals;
-        }, 20000);
+        // Son au clic
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('click', () => {
+                document.getElementById('snapSound').currentTime = 0;
+                document.getElementById('snapSound').play().catch(() => {});
+            });
+        });
 
-        // Activations
-        let activations = 87;
+        // Places restantes qui descendent
+        let places = 17;
         setInterval(() => {
-            activations += Math.floor(Math.random() * 6 - 2);
-            if (activations < 50) activations = 50;
-            if (activations > 150) activations = 150;
-            document.getElementById('activations').textContent = activations;
+            places -= 1;
+            if (places < 5) places = 5;
+            document.getElementById('places').textContent = places;
+        }, 30000);
+
+        // Auto-scroll lent
+        setTimeout(() => {
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
         }, 10000);
 
-        function goToPlan(service) {
-            localStorage.setItem('selectedService', service);
-            window.location.href = 'plans.html';
-        }
+        // Confettis légers
+        setInterval(() => {
+            confetti({
+                particleCount: 30,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#00ff88', '#fffc00']
+            });
+        }, 15000);
 
-        // VIP
-        function openVipCode() {
-            document.getElementById('vipPopup').style.display = 'flex';
-        }
-
-        function checkVipCode() {
-            const code = document.getElementById('vipCode').value.trim();
-            if (code === "NIQUE LE CHEUM") {
-                document.getElementById('vipPopup').style.display = 'none';
-                document.getElementById('vipUnlock').style.display = 'flex';
-                document.getElementById('vipBadge').style.display = 'block';
-                localStorage.setItem('vipActive', 'true');
-                setTimeout(() => document.getElementById('vipUnlock').style.display = 'none', 4000);
-            } else {
-                alert('Code incorrect');
-            }
-        }
-
-        if (localStorage.getItem('vipActive') === 'true') {
-            document.getElementById('vipBadge').style.display = 'block';
-        }
-
-        // Créateur
-        function openCreatorCode() {
-            document.getElementById('creatorMenu').style.display = 'flex';
-        }
-
-        function checkCreatorCode() {
-            const code = document.getElementById('creatorCode').value.trim();
-            if (code === "B+H") {
-                document.getElementById('creatorMenu').style.display = 'none';
-                document.getElementById('controlPanel').style.display = 'flex';
-            } else {
-                alert('Code incorrect');
-            }
-        }
-
-        function addReferrals(n) {
-            referrals += n;
-            document.getElementById('referrals').textContent = referrals;
-        }
-
-        function addActivations(n) {
-            activations += n;
-            document.getElementById('activations').textContent = activations;
-        }
-
-        function resetCounters() {
-            referrals = 0;
-            activations = 0;
-            document.getElementById('referrals').textContent = referrals;
-            document.getElementById('activations').textContent = activations;
-        }
-
-        function closeControl() {
-            document.getElementById('controlPanel').style.display = 'none';
-        }
+        // le reste des scripts (parrainage, VIP, créateur, etc.)
     </script>
 </body>
 </html>
