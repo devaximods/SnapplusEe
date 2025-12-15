@@ -217,7 +217,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script>
-        // Fonctions overlay génériques (plus de bug écran noir)
+        // Fonctions overlay
         function openOverlay(id) {
             document.getElementById(id).style.display = 'flex';
         }
@@ -229,7 +229,6 @@
         // Compteurs
         let referrals = 0;
         let activations = 87;
-        let allOptionsDisabled = false;
 
         setInterval(() => {
             referrals += Math.floor(Math.random() * 3);
@@ -299,7 +298,6 @@
         }
 
         function disableAllOptions() {
-            allOptionsDisabled = true;
             document.querySelectorAll('.card').forEach(card => {
                 if (!card.querySelector('.title').textContent.includes('Snapchat+')) {
                     card.style.display = 'none';
@@ -308,7 +306,6 @@
         }
 
         function enableAllOptions() {
-            allOptionsDisabled = false;
             document.querySelectorAll('.card').forEach(card => {
                 card.style.display = 'block';
             });
