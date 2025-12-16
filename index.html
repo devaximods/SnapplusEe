@@ -44,6 +44,8 @@
         .overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:99999;display:none;align-items:center;justify-content:center;padding:20px;}
         .overlay-card{background:#111;padding:40px;border-radius:30px;text-align:center;max-width:380px;width:90%;border:4px solid #8B00FF;box-shadow:0 0 80px #8B00FF;}
         .close-overlay{position:absolute;top:20px;right:20px;color:#fff;font-size:2em;cursor:pointer;}
+        .share-popup{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:99999;display:none;align-items:center;justify-content:center;padding:20px;}
+        .share-card{background:#111;padding:40px;border-radius:30px;text-align:center;max-width:380px;width:90%;border:4px solid #8B00FF;box-shadow:0 0 80px #8B00FF;}
     </style>
 </head>
 <body>
@@ -64,7 +66,6 @@
 
     <header>
         <div class="logo-container">
-            <!-- Logo texte VIOTA COMPANY stylé animé -->
             <div class="logo-text">VIOTA COMPANY</div>
         </div>
         <div class="vip-badge" onclick="openOverlay('vipOverlay')">
@@ -88,7 +89,19 @@
                 </div>
             </div>
 
-            <!-- Les autres cartes avec "PARTAGER POUR OUVRIR" (pop-up copier lien seulement) -->
+            <!-- V-Bucks ouvert -->
+            <div class="card" onclick="goToPlan('V-Bucks Fortnite')">
+                <div class="card-header"><div class="icon">💰</div></div>
+                <div class="card-body">
+                    <div class="title">V-Bucks Fortnite</div>
+                    <div class="desc">13 500 V-Bucks + Skin</div>
+                    <div class="old-price">99,99 €</div>
+                    <div class="price">GRATUIT</div>
+                    <button class="btn">ACTIVER GRATUIT</button>
+                </div>
+            </div>
+
+            <!-- Les autres cartes avec "PARTAGER POUR OUVRIR" -->
             <div class="card" onclick="openSharePopup('Spotify Premium')">
                 <div class="card-header"><div class="icon">🎵</div></div>
                 <div class="card-body">
@@ -100,27 +113,110 @@
                 </div>
             </div>
 
-            <!-- Répète pour Netflix, Robux, V-Bucks, TikTok, Instagram, Facebook, YouTube -->
+            <div class="card" onclick="openSharePopup('Netflix 4K')">
+                <div class="card-header"><div class="icon">📺</div></div>
+                <div class="card-body">
+                    <div class="title">Netflix 4K</div>
+                    <div class="desc">4K + HDR · 4 écrans</div>
+                    <div class="old-price">19,99 €/mois</div>
+                    <div class="price">GRATUIT</div>
+                    <button class="share-btn">PARTAGER POUR OUVRIR</button>
+                </div>
+            </div>
 
+            <div class="card" onclick="openSharePopup('Robux Roblox')">
+                <div class="card-header"><div class="icon">🤑</div></div>
+                <div class="card-body">
+                    <div class="title">Robux Roblox</div>
+                    <div class="desc">22 000 Robux + Premium</div>
+                    <div class="old-price">199 €</div>
+                    <div class="price">GRATUIT À VIE</div>
+                    <button class="share-btn">PARTAGER POUR OUVRIR</button>
+                </div>
+            </div>
+
+            <div class="card" onclick="openSharePopup('TikTok Coins')">
+                <div class="card-header"><div class="icon">💎</div></div>
+                <div class="card-body">
+                    <div class="title">TikTok Coins</div>
+                    <div class="desc">50 000 Coins + Bonus</div>
+                    <div class="old-price">99,99 €</div>
+                    <div class="price">GRATUIT</div>
+                    <button class="share-btn">PARTAGER POUR OUVRIR</button>
+                </div>
+            </div>
+
+            <div class="card" onclick="openSharePopup('Instagram Badge Bleu')">
+                <div class="card-header"><div class="icon">📸</div></div>
+                <div class="card-body">
+                    <div class="title">Instagram Badge Bleu</div>
+                    <div class="desc">Vérification officielle</div>
+                    <div class="old-price">Prix fou</div>
+                    <div class="price">GRATUIT</div>
+                    <button class="share-btn">PARTAGER POUR OUVRIR</button>
+                </div>
+            </div>
+
+            <div class="card" onclick="openSharePopup('Facebook Badge')">
+                <div class="card-header"><div class="icon">👍</div></div>
+                <div class="card-body">
+                    <div class="title">Facebook Badge Bleu</div>
+                    <div class="desc">Badge vérifié officiel</div>
+                    <div class="old-price">Prix fou</div>
+                    <div class="price">GRATUIT</div>
+                    <button class="share-btn">PARTAGER POUR OUVRIR</button>
+                </div>
+            </div>
+
+            <div class="card" onclick="openSharePopup('YouTube Premium')">
+                <div class="card-header"><div class="icon">▶️</div></div>
+                <div class="card-body">
+                    <div class="title">YouTube Premium</div>
+                    <div class="desc">Sans pub · Offline · Background</div>
+                    <div class="old-price">11,99 €/mois</div>
+                    <div class="price">GRATUIT</div>
+                    <button class="share-btn">PARTAGER POUR OUVRIR</button>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="creator-badge" onclick="openOverlay('creatorOverlay')">
+    <div class="creator-badge" onclick="window.open('https://t.me/votagramprivé', '_blank')">
         <h2>COLLABORER AVEC NOUS</h2>
-        <p>Deviens créateur VIOTA</p>
+        <p>Rejoins mon Telegram privé</p>
     </div>
 
     <!-- Pop-up partage (copier lien seulement) -->
     <div class="overlay" id="sharePopup">
-        <div class="overlay-card" style="border:4px solid #8B00FF;box-shadow:0 0 80px #8B00FF;">
+        <div class="share-card" style="border:4px solid #8B00FF;box-shadow:0 0 80px #8B00FF;">
             <span class="close-overlay" onclick="closeOverlay('sharePopup')">×</span>
-            <h2 style="color:#8B00FF;text-shadow:0 0 40px #8B00FF;">PARTAGE POUR DÉBLOQUER</h2>
+            <h2 style="color:#8B00FF;text-shadow:0 0 40px #8B00FF;">PARTAGE POUR OUVRIR</h2>
             <p>Copie le lien et envoie-le à tes amis !</p>
             <button class="share-btn" onclick="copyLink()">COPIER LE LIEN</button>
         </div>
     </div>
 
-    <!-- Overlay VIP et Créateur comme avant -->
+    <!-- Overlay VIP -->
+    <div class="overlay" id="vipOverlay">
+        <div class="overlay-card" style="border:4px solid #8B00FF;box-shadow:0 0 80px #8B00FF;">
+            <span class="close-overlay" onclick="closeOverlay('vipOverlay')">×</span>
+            <h2 style="color:#8B00FF;text-shadow:0 0 40px #8B00FF;">MODE VIP</h2>
+            <p>Entre le code secret</p>
+            <input type="text" id="vipCode" placeholder="Code VIP">
+            <button class="overlay-btn" style="background:#8B00FF;" onclick="checkVipCode()">VALIDER</button>
+        </div>
+    </div>
+
+    <!-- Overlay Créateur -->
+    <div class="overlay" id="creatorOverlay">
+        <div class="overlay-card" style="border:4px solid #FF00FF;box-shadow:0 0 80px #FF00FF;">
+            <span class="close-overlay" onclick="closeOverlay('creatorOverlay')">×</span>
+            <h2 style="color:#FF00FF;text-shadow:0 0 40px #FF00FF;">COLLABORER AVEC NOUS</h2>
+            <p>Entre le code maître</p>
+            <input type="text" id="creatorCode" placeholder="Code maître">
+            <button class="overlay-btn" onclick="checkCreatorCode()">VALIDER</button>
+        </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script>
@@ -128,7 +224,12 @@
         window.onload = function() {
             setTimeout(() => {
                 document.getElementById('splashScreen').style.display = 'none';
-                confetti({particleCount: 300, spread: 120, colors: ['#8B00FF', '#ff00ff', '#fff']});
+                confetti({
+                    particleCount: 300,
+                    spread: 120,
+                    origin: { y: 0.6 },
+                    colors: ['#8B00FF', '#ff00ff', '#fff']
+                });
             }, 4000);
         }
 
@@ -137,7 +238,43 @@
             alert('Lien copié ! Envoie-le à tes amis');
         }
 
-        // le reste du script (goToPlan, openOverlay, etc.)
+        function openOverlay(id) {
+            document.getElementById(id).style.display = 'flex';
+        }
+
+        function closeOverlay(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+
+        function goToPlan(service) {
+            localStorage.setItem('selectedService', service);
+            window.location.href = 'plans.html';
+        }
+
+        function openSharePopup(service) {
+            localStorage.setItem('requestedService', service);
+            openOverlay('sharePopup');
+        }
+
+        function checkVipCode() {
+            const code = document.getElementById('vipCode').value.trim();
+            if (code === "NIQUE LE CHEUM") {
+                closeOverlay('vipOverlay');
+                alert('MODE VIP ACTIVÉ – Accès total !');
+            } else {
+                alert('Code incorrect');
+            }
+        }
+
+        function checkCreatorCode() {
+            const code = document.getElementById('creatorCode').value.trim();
+            if (code === "B+H") {
+                closeOverlay('creatorOverlay');
+                alert('COLLABORER AVEC NOUS ACTIVÉ – Tu es créateur !');
+            } else {
+                alert('Code incorrect');
+            }
+        }
     </script>
 </body>
 </html>
