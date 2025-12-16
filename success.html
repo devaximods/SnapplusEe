@@ -6,7 +6,8 @@
     <title>Activation réussie !</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
-        body{background:#000;color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;font-family:'Inter',sans-serif;overflow:hidden;}
+        body, html {height:100%;margin:0;padding:0;overflow:hidden;background:#000;color:#fff;font-family:'Inter',sans-serif;}
+        .wrapper{height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;}
         .card{background:#111;border-radius:28px;padding:50px 30px;text-align:center;box-shadow:0 20px 60px rgba(139,0,255,0.2);max-width:380px;width:100%;position:relative;overflow:hidden;}
         .icon{font-size:6em;margin-bottom:20px;color:#8B00FF;text-shadow:0 0 40px #8B00FF;animation:spin 4s infinite linear;}
         @keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
@@ -24,15 +25,17 @@
 </head>
 <body>
     <canvas id="confetti"></canvas>
-    <div class="card">
-        <div class="icon">🎉</div>
-        <h1>Félicitations !</h1>
-        <div class="explosion"></div>
-        <p class="message">Activation réussie ! Ton offre est débloquée ❤️</p>
-        <p>Profite bien de tout ce que tu as gagné !</p>
-        <p>Reviens quand tu veux pour d’autres offres cosmiques</p>
-        <p style="font-size:1.1em;color:#8B00FF;margin-top:30px;">Activation entre 1h et 5h – Partage le lien à tes amis pour accélérer !</p>
-        <button class="btn" onclick="window.location.href='index.html'">Nouvelle offre</button>
+    <div class="wrapper">
+        <div class="card">
+            <div class="icon">🎉</div>
+            <h1>Félicitations !</h1>
+            <div class="explosion"></div>
+            <p class="message">Activation réussie ! Ton offre est débloquée ❤️</p>
+            <p>Profite bien de tout ce que tu as gagné !</p>
+            <p>Reviens quand tu veux pour d’autres offres cosmiques</p>
+            <p style="font-size:1.1em;color:#8B00FF;margin-top:30px;">Activation entre 1h et 5h – Partage le lien à tes amis pour accélérer !</p>
+            <button class="btn" onclick="window.location.href='index.html'">Nouvelle offre</button>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
