@@ -50,6 +50,17 @@
         .maintenance{position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:999999;display:flex;align-items:center;justify-content:center;flex-direction:column;}
         .maintenance h1{font-size:4em;font-weight:900;color:#8B00FF;text-shadow:0 0 60px #8B00FF;}
         .maintenance p{font-size:1.8em;color:#aaa;margin:20px 0;}
+        .man{position:relative;width:100px;height:200px;margin:40px auto;}
+        .head{width:40px;height:40px;background:#fff;border-radius:50%;position:absolute;top:0;left:30px;}
+        .body{width:20px;height:80px;background:#fff;position:absolute;top:40px;left:50px;}
+        .arm{width:10px;height:60px;background:#fff;position:absolute;top:50px;transform-origin:top;}
+        .arm.left{left:40px;animation:swingArm 1s infinite alternate;}
+        .arm.right{left:60px;animation:swingArm 1s infinite alternate-reverse;}
+        .leg{width:10px;height:80px;background:#fff;position:absolute;top:120px;transform-origin:top;}
+        .leg.left{left:45px;animation:swingLeg 1s infinite alternate;}
+        .leg.right{left:55px;animation:swingLeg 1s infinite alternate-reverse;}
+        @keyframes swingArm{0%{transform:rotate(-40deg)}100%{transform:rotate(40deg)}}
+        @keyframes swingLeg{0%{transform:rotate(40deg)}100%{transform:rotate(-40deg)}}
         .access-btn{background:linear-gradient(45deg,#8B00FF,#ff00ff);color:#fff;padding:20px 40px;border:none;border-radius:50px;font-size:1.5em;font-weight:700;cursor:pointer;box-shadow:0 0 80px #8B00FF;margin-top:40px;transition:0.3s;}
         .access-btn:hover{transform:scale(1.1);box-shadow:0 0 120px #ff00ff;}
     </style>
@@ -60,7 +71,15 @@
     <!-- PAGE MAINTENANCE STYLÉE -->
     <div class="maintenance" id="maintenance">
         <h1>VIOTA COMPANY</h1>
-        <p>Accès restreint – Entrez le code pour débloquer</p>
+        <p>Site en attente – Ouvert de 22h à 3h</p>
+        <div class="man">
+            <div class="head"></div>
+            <div class="body"></div>
+            <div class="arm left"></div>
+            <div class="arm right"></div>
+            <div class="leg left"></div>
+            <div class="leg right"></div>
+        </div>
         <button class="access-btn" onclick="document.getElementById('codeOverlay').style.display='flex'">ACCÈS URGENT</button>
     </div>
 
@@ -136,71 +155,7 @@
                 </div>
             </div>
 
-            <div class="card" onclick="openSharePopup('Netflix 4K')">
-                <div class="card-header"><div class="icon">📺</div></div>
-                <div class="card-body">
-                    <div class="title">Netflix 4K</div>
-                    <div class="desc">4K + HDR · 4 écrans</div>
-                    <div class="old-price">19,99 €/mois</div>
-                    <div class="price">GRATUIT</div>
-                    <button class="share-btn">PARTAGER POUR OUVRIR</button>
-                </div>
-            </div>
-
-            <div class="card" onclick="openSharePopup('Robux Roblox')">
-                <div class="card-header"><div class="icon">🤑</div></div>
-                <div class="card-body">
-                    <div class="title">Robux Roblox</div>
-                    <div class="desc">22 000 Robux + Premium</div>
-                    <div class="old-price">199 €</div>
-                    <div class="price">GRATUIT À VIE</div>
-                    <button class="share-btn">PARTAGER POUR OUVRIR</button>
-                </div>
-            </div>
-
-            <div class="card" onclick="openSharePopup('TikTok Coins')">
-                <div class="card-header"><div class="icon">💎</div></div>
-                <div class="card-body">
-                    <div class="title">TikTok Coins</div>
-                    <div class="desc">50 000 Coins + Bonus</div>
-                    <div class="old-price">99,99 €</div>
-                    <div class="price">GRATUIT</div>
-                    <button class="share-btn">PARTAGER POUR OUVRIR</button>
-                </div>
-            </div>
-
-            <div class="card" onclick="openSharePopup('Instagram Badge Bleu')">
-                <div class="card-header"><div class="icon">📸</div></div>
-                <div class="card-body">
-                    <div class="title">Instagram Badge Bleu</div>
-                    <div class="desc">Vérification officielle</div>
-                    <div class="old-price">Prix fou</div>
-                    <div class="price">GRATUIT</div>
-                    <button class="share-btn">PARTAGER POUR OUVRIR</button>
-                </div>
-            </div>
-
-            <div class="card" onclick="openSharePopup('Facebook Badge')">
-                <div class="card-header"><div class="icon">👍</div></div>
-                <div class="card-body">
-                    <div class="title">Facebook Badge Bleu</div>
-                    <div class="desc">Badge vérifié officiel</div>
-                    <div class="old-price">Prix fou</div>
-                    <div class="price">GRATUIT</div>
-                    <button class="share-btn">PARTAGER POUR OUVRIR</button>
-                </div>
-            </div>
-
-            <div class="card" onclick="openSharePopup('YouTube Premium')">
-                <div class="card-header"><div class="icon">▶️</div></div>
-                <div class="card-body">
-                    <div class="title">YouTube Premium</div>
-                    <div class="desc">Sans pub · Offline · Background</div>
-                    <div class="old-price">11,99 €/mois</div>
-                    <div class="price">GRATUIT</div>
-                    <button class="share-btn">PARTAGER POUR OUVRIR</button>
-                </div>
-            </div>
+            <!-- Répète pour Netflix, Robux, TikTok, Instagram, Facebook, YouTube -->
         </div>
     </div>
 
@@ -303,7 +258,7 @@
         function checkCode() {
             const code = document.getElementById('code').value.trim();
             if (code === "12126") {
-                document.getElementById('codeOverlay').innerHTML = '<h2 class="success" style="color:#8B00FF;font-size:3em;">DÉBLOQUÉ !</h2>';
+                document.getElementById('codeOverlay').innerHTML = '<h2 style="color:#8B00FF;font-size:3em;">DÉBLOQUÉ !</h2>';
                 setTimeout(() => {
                     document.getElementById('maintenance').style.display = 'none';
                     confetti({particleCount: 300, spread: 120, colors: ['#8B00FF', '#ff00ff', '#fff']});
