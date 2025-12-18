@@ -51,10 +51,8 @@
         .maintenance h1{font-size:4em;font-weight:900;color:#8B00FF;text-shadow:0 0 60px #8B00FF;}
         .maintenance p{font-size:1.8em;color:#aaa;margin:20px 0;}
         .man{position:relative;width:100px;height:200px;margin:40px auto;}
-        .head{width:40px;height:40px;background:#fff;border-radius:50%;position:absolute;top:0;left:30px;animation:headBob 1s infinite alternate;}
-        @keyframes headBob{0%{top:0}100%{top:10px}}
-        .body{width:20px;height:80px;background:#fff;position:absolute;top:40px;left:50px;animation:bodyStretch 2s infinite alternate;}
-        @keyframes bodyStretch{0%{height:80px}100%{height:100px}}
+        .head{width:40px;height:40px;background:#fff;border-radius:50%;position:absolute;top:0;left:30px;}
+        .body{width:20px;height:80px;background:#fff;position:absolute;top:40px;left:50px;}
         .arm{width:10px;height:60px;background:#fff;position:absolute;top:50px;transform-origin:top;}
         .arm.left{left:40px;animation:swingArm 1s infinite alternate;}
         .arm.right{left:60px;animation:swingArm 1s infinite alternate-reverse;}
@@ -82,7 +80,6 @@
             <div class="leg left"></div>
             <div class="leg right"></div>
         </div>
-        <p style="font-size:1.2em;color:#8B00FF;margin-top:20px;">DEMANDER À VOTRE FOURNISSEUR DU SITE</p>
         <button class="access-btn" onclick="document.getElementById('codeOverlay').style.display='flex'">ACCÈS URGENT</button>
     </div>
 
