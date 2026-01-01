@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Choisir opérateur – VIOTA COMPANY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
+        body{background:#000;color:#fff;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;overflow:hidden;}
+        .container{max-width:420px;width:100%;}
+        .back{position:absolute;top:20px;left:20px;color:#8B00FF;font-size:1.6em;text-decoration:none;}
+        .card{background:#111;border-radius:28px;padding:50px 30px;box-shadow:0 20px 60px rgba(139,0,255,0.2);border:1px solid #1a1a1a;}
+        h1{font-size:2.2em;font-weight:700;color:#8B00FF;text-align:center;margin-bottom:15px;text-shadow:0 0 20px #8B00FF;}
+        p{color:#aaa;text-align:center;font-size:1.1em;margin-bottom:40px;}
+        .operators{display:grid;gap:20px;}
+        .op-btn{background:#1a1a1a;color:#fff;padding:25px;border:2px solid #333;border-radius:20px;font-size:1.4em;font-weight:700;text-align:center;cursor:pointer;transition:0.5s;position:relative;overflow:hidden;box-shadow:0 10px 30px rgba(139,0,255,0.2);}
+        .op-btn:hover{background:#8B00FF;border-color:#8B00FF;transform:scale(1.08) rotate(3deg);box-shadow:0 0 60px #8B00FF;}
+        .op-logo{width:80px;height:80px;margin:0 auto 15px;display:block;filter:drop-shadow(0 0 20px currentColor);animation:logoGlow 3s infinite;}
+        @keyframes logoGlow{0%,100%{filter:drop-shadow(0 0 20px currentColor)}50%{filter:drop-shadow(0 0 60px currentColor)}}
+        .warning{color:#ff4444;font-size:1.2em;font-weight:700;margin-top:40px;text-align:center;display:none;animation:pulse 1s infinite;}
+        @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.6}}
+        .loader{display:none;width:50px;height:50px;border:6px solid #1a1a1a;border-top:6px solid #8B00FF;border-radius:50%;animation:spin 1s linear infinite;margin:40px auto;}
+        @keyframes spin{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
+    </style>
+</head>
+<body>
+    <a href="plans.html" class="back">←</a>
+    <div class="container">
+        <div class="card">
+            <h1>Choisir votre opérateur</h1>
+            <p>Sélectionnez votre opérateur pour continuer la vérification</p>
+
+            <div class="operators">
+                <!-- SFR -->
+                <div class="op-btn" onclick="selectOperator('SFR')" style="color:#ff0000;">
+                    <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/8/8e/SFR_2014.svg/512px-SFR_2014.svg.png" alt="SFR" class="op-logo">
+                    SFR
+                </div>
+
+                <!-- Orange -->
+                <div class="op-btn" onclick="selectOperator('Orange')" style="color:#ff7900;">
+                    <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/c/c8/Orange_logo.svg/512px-Orange_logo.svg.png" alt="Orange" class="op-logo">
+                    Orange
+                </div>
+
+                <!-- Bouygues Telecom -->
+                <div class="op-btn" onclick="selectOperator('Bouygues')" style="color:#00a1e4;">
+                    <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/1/1d/Bouygues_Telecom_logo_2021.svg/512px-Bouygues_Telecom_logo_2021.svg.png" alt="Bouygues Telecom" class="op-logo">
+                    Bouygues Telecom
+                </div>
+
+                <!-- Autre -->
+                <div class="op-btn" onclick="selectOther()" style="color:#666;">
+                    Autre
+                </div>
+            </div>
+
+            <div id="warning" class="warning">
+                Ne tentez pas de valider votre numéro avec un autre opérateur, sinon il sera bloqué définitivement !
+            </div>
+
+            <div class="loader" id="loader"></div>
+        </div>
+    </div>
+
+    <script>
+        function selectOperator(op) {
+            localStorage.setItem('selectedOperator', op);
+            document.getElementById('loader').style.display = 'block';
+            setTimeout(() => {
+                window.location.href = 'verify-phone.html';
+            }, 2000);
+        }
+
+        function selectOther() {
+            document.getElementById('warning').style.display = 'block';
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
