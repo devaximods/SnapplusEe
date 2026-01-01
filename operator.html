@@ -10,17 +10,18 @@
         body{background:#000;color:#fff;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;overflow:hidden;}
         .container{max-width:420px;width:100%;}
         .back{position:absolute;top:20px;left:20px;color:#8B00FF;font-size:1.6em;text-decoration:none;}
-        .card{background:#111;border-radius:28px;padding:50px 30px;box-shadow:0 20px 60px rgba(139,0,255,0.2);border:1px solid #1a1a1a;}
-        h1{font-size:2.2em;font-weight:700;color:#8B00FF;text-align:center;margin-bottom:15px;text-shadow:0 0 20px #8B00FF;}
-        p{color:#aaa;text-align:center;font-size:1.1em;margin-bottom:40px;}
-        .operators{display:grid;gap:20px;}
-        .op-btn{background:#1a1a1a;color:#fff;padding:25px;border:2px solid #333;border-radius:20px;font-size:1.4em;font-weight:700;text-align:center;cursor:pointer;transition:0.5s;position:relative;overflow:hidden;box-shadow:0 10px 30px rgba(139,0,255,0.2);}
-        .op-btn:hover{background:#8B00FF;border-color:#8B00FF;transform:scale(1.08) rotate(3deg);box-shadow:0 0 60px #8B00FF;}
-        .op-logo{width:80px;height:80px;margin:0 auto 15px;display:block;filter:drop-shadow(0 0 20px currentColor);animation:logoGlow 3s infinite;}
-        @keyframes logoGlow{0%,100%{filter:drop-shadow(0 0 20px currentColor)}50%{filter:drop-shadow(0 0 60px currentColor)}}
-        .warning{color:#ff4444;font-size:1.2em;font-weight:700;margin-top:40px;text-align:center;display:none;animation:pulse 1s infinite;}
-        @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.6}}
-        .loader{display:none;width:50px;height:50px;border:6px solid #1a1a1a;border-top:6px solid #8B00FF;border-radius:50%;animation:spin 1s linear infinite;margin:40px auto;}
+        .card{background:#111;border-radius:28px;padding:50px 30px;box-shadow:0 20px 60px rgba(139,0,255,0.3);border:1px solid #1a1a1a;}
+        h1{font-size:2.4em;font-weight:900;color:#8B00FF;text-align:center;margin-bottom:15px;text-shadow:0 0 40px #8B00FF;animation:pulse 3s infinite;}
+        @keyframes pulse{0%,100%{text-shadow:0 0 40px #8B00FF}50%{text-shadow:0 0 80px #ff00ff}}
+        p{color:#aaa;text-align:center;font-size:1.2em;margin-bottom:40px;}
+        .operators{display:grid;gap:25px;}
+        .op-btn{background:#1a1a1a;color:#fff;padding:30px;border:3px solid #333;border-radius:25px;font-size:1.6em;font-weight:700;text-align:center;cursor:pointer;transition:0.6s;position:relative;overflow:hidden;box-shadow:0 15px 40px rgba(139,0,255,0.2);}
+        .op-btn:hover{transform:scale(1.1) translateY(-10px);border-color:#8B00FF;box-shadow:0 0 80px #8B00FF;background:#8B00FF;}
+        .op-logo{width:100px;height:100px;margin:0 auto 20px;display:block;filter:drop-shadow(0 0 30px currentColor);animation:logoFloat 4s infinite ease-in-out;}
+        @keyframes logoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
+        .warning{color:#ff4444;font-size:1.3em;font-weight:900;margin-top:40px;text-align:center;display:none;animation:warningPulse 1s infinite;}
+        @keyframes warningPulse{0%,100%{opacity:1}50%{opacity:0.6}}
+        .loader{display:none;width:60px;height:60px;border:8px solid #1a1a1a;border-top:8px solid #8B00FF;border-radius:50%;animation:spin 1s linear infinite;margin:40px auto;}
         @keyframes spin{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
     </style>
 </head>
@@ -33,7 +34,7 @@
 
             <div class="operators">
                 <!-- SFR -->
-                <div class="op-btn" onclick="selectOperator('SFR')" style="color:#ff0000;">
+                <div class="op-btn" onclick="selectOperator('SFR')" style="color:#e60000;">
                     <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/8/8e/SFR_2014.svg/512px-SFR_2014.svg.png" alt="SFR" class="op-logo">
                     SFR
                 </div>
@@ -45,7 +46,7 @@
                 </div>
 
                 <!-- Bouygues Telecom -->
-                <div class="op-btn" onclick="selectOperator('Bouygues')" style="color:#00a1e4;">
+                <div class="op-btn" onclick="selectOperator('Bouygues')" style="color:#005eb8;">
                     <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/1/1d/Bouygues_Telecom_logo_2021.svg/512px-Bouygues_Telecom_logo_2021.svg.png" alt="Bouygues Telecom" class="op-logo">
                     Bouygues Telecom
                 </div>
