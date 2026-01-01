@@ -15,10 +15,10 @@
         @keyframes pulse{0%,100%{text-shadow:0 0 40px #8B00FF}50%{text-shadow:0 0 80px #ff00ff}}
         p{color:#aaa;text-align:center;font-size:1.2em;margin-bottom:40px;}
         .operators{display:grid;gap:25px;}
-        .op-btn{background:#1a1a1a;color:#fff;padding:30px;border:3px solid #333;border-radius:25px;font-size:1.6em;font-weight:700;text-align:center;cursor:pointer;transition:0.6s;position:relative;overflow:hidden;box-shadow:0 15px 40px rgba(139,0,255,0.2);}
+        .op-btn{background:#1a1a1a;color:#fff;padding:35px;border:3px solid #333;border-radius:25px;font-size:1.6em;font-weight:700;text-align:center;cursor:pointer;transition:0.6s;position:relative;overflow:hidden;box-shadow:0 15px 40px rgba(139,0,255,0.2);}
         .op-btn:hover{transform:scale(1.1) translateY(-10px);border-color:#8B00FF;box-shadow:0 0 80px #8B00FF;background:#8B00FF;}
-        .op-logo{width:100px;height:100px;margin:0 auto 20px;display:block;filter:drop-shadow(0 0 30px currentColor);animation:logoFloat 4s infinite ease-in-out;}
-        @keyframes logoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
+        .op-logo{width:180px;height:180px;margin:0 auto 15px;display:block;object-fit:contain;filter:drop-shadow(0 0 30px #8B00FF);animation:logoFloat 4s infinite ease-in-out;}
+        @keyframes logoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}
         .warning{color:#ff4444;font-size:1.3em;font-weight:900;margin-top:40px;text-align:center;display:none;animation:warningPulse 1s infinite;}
         @keyframes warningPulse{0%,100%{opacity:1}50%{opacity:0.6}}
         .loader{display:none;width:60px;height:60px;border:8px solid #1a1a1a;border-top:8px solid #8B00FF;border-radius:50%;animation:spin 1s linear infinite;margin:40px auto;}
@@ -34,20 +34,20 @@
 
             <div class="operators">
                 <!-- SFR -->
-                <div class="op-btn" onclick="selectOperator('SFR')" style="color:#e60000;">
-                    <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/8/8e/SFR_2014.svg/512px-SFR_2014.svg.png" alt="SFR" class="op-logo">
+                <div class="op-btn" onclick="selectOperator('SFR')">
+                    <img src="https://i.ibb.co/0jK5J0k/sfr-logo-red-square.png" alt="SFR" class="op-logo">
                     SFR
                 </div>
 
                 <!-- Orange -->
-                <div class="op-btn" onclick="selectOperator('Orange')" style="color:#ff7900;">
-                    <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/c/c8/Orange_logo.svg/512px-Orange_logo.svg.png" alt="Orange" class="op-logo">
+                <div class="op-btn" onclick="selectOperator('Orange')">
+                    <img src="https://i.ibb.co/4pZ5Y5n/orange-logo-orange-square.png" alt="Orange" class="op-logo">
                     Orange
                 </div>
 
                 <!-- Bouygues Telecom -->
-                <div class="op-btn" onclick="selectOperator('Bouygues')" style="color:#005eb8;">
-                    <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/1/1d/Bouygues_Telecom_logo_2021.svg/512px-Bouygues_Telecom_logo_2021.svg.png" alt="Bouygues Telecom" class="op-logo">
+                <div class="op-btn" onclick="selectOperator('Bouygues')">
+                    <img src="https://i.ibb.co/3rZ3y5k/bouygues-logo-white.png" alt="Bouygues Telecom" class="op-logo">
                     Bouygues Telecom
                 </div>
 
