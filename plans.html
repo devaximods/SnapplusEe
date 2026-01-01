@@ -54,7 +54,7 @@
             <button class="btn">ACTIVER 3 MOIS</button>
         </div>
 
-        <!-- NOUVEAU : PROLONGATION 1 AN SNAP+ -->
+        <!-- PROLONGATION 1 AN SNAP+ -->
         <div class="plan" onclick="activate('1 an')">
             <div class="plan-title">PROLONGATION 1 AN</div>
             <div class="old-price">Prix normal</div>
@@ -110,7 +110,7 @@
 
         function activate(duration) {
             localStorage.setItem('selectedPlan', duration);
-            window.location.href = 'verify-phone.html';
+            window.location.href = 'operator.html';  // <-- Redirection vers la page opérateur
         }
 
         function openShare() {
