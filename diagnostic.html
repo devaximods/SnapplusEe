@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>NOOR & BH • Diagnostic Maquillage Ultime</title>
+  <title>NOOR & BH • Diagnostic Beauté</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500&display=swap" rel="stylesheet">
@@ -20,108 +20,161 @@
     * { margin:0; padding:0; box-sizing:border-box; }
     body { background: var(--bg); color: var(--text); font-family: 'Playfair Display', serif; min-height: 100vh; padding: 80px 20px 60px; }
     .container { max-width: 760px; margin: 0 auto; text-align: center; }
-    .intro h1 { font-size: clamp(2.8rem, 8vw, 4.5rem); font-weight: 400; letter-spacing: 0.1em; color: var(--gold-main); margin-bottom: 1.5rem; }
-    .intro p { font-size: clamp(1.4rem, 4vw, 1.9rem); font-weight: 300; margin-bottom: 4rem; }
-    .start-btn { padding: 18px 72px; font-size: 1.45rem; letter-spacing: 0.4em; color: white; background: var(--gold-dark); border: none; cursor: pointer; transition: all 0.45s; text-transform: uppercase; }
-    .start-btn:hover { background: var(--gold-main); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(166,124,82,0.3); }
+    h1 { font-size: clamp(2.8rem, 8vw, 4.5rem); font-weight: 400; letter-spacing: 0.1em; color: var(--gold-main); margin-bottom: 1.5rem; }
+    .progress { font-size: 1.2rem; color: var(--gold-main); margin-bottom: 1rem; letter-spacing: 0.15em; }
     .question { display: none; animation: fadeIn 0.6s forwards; }
     .question.active { display: block; }
-    .question h2 { font-size: clamp(2.3rem, 6.5vw, 3.6rem); color: var(--gold-dark); margin: 1.5rem 0 2.8rem; letter-spacing: 0.08em; }
-    .small { font-size: 1.1rem; font-weight: 300; opacity: 0.8; display: block; margin-top: 0.5rem; }
-    .options { display: flex; flex-direction: column; gap: 1.2rem; max-width: 520px; margin: 0 auto 3.5rem; }
-    .option { padding: 22px 28px; font-size: 1.4rem; letter-spacing: 0.12em; background: white; border: 1px solid var(--soft-border); cursor: pointer; transition: all 0.4s ease; }
-    .option:hover { border-color: var(--gold-main); transform: translateX(12px); box-shadow: 0 10px 40px rgba(193,154,110,0.15); }
-    .option.selected { background: var(--gold-dark); color: white; border-color: var(--gold-dark); transform: translateX(18px); }
-    .upload-zone { margin: 2rem auto; max-width: 480px; }
-    .upload-label { display: block; padding: 24px 32px; font-size: 1.35rem; letter-spacing: 0.2em; background: var(--gold-dark); color: white; cursor: pointer; transition: all 0.4s; text-transform: uppercase; margin: 1.5rem 0; }
+    h2 { font-size: clamp(2.2rem, 6vw, 3.4rem); color: var(--gold-dark); margin: 1.5rem 0 2.5rem; letter-spacing: 0.08em; }
+    .options { display: flex; flex-direction: column; gap: 1.2rem; max-width: 540px; margin: 0 auto 3rem; }
+    .option { padding: 20px 28px; font-size: 1.35rem; background: white; border: 1px solid var(--soft-border); cursor: pointer; transition: all 0.4s; }
+    .option:hover { border-color: var(--gold-main); transform: translateX(10px); box-shadow: 0 10px 40px rgba(193,154,110,0.15); }
+    .option.selected { background: var(--gold-dark); color: white; border-color: var(--gold-dark); transform: translateX(16px); }
+    .upload-zone { margin: 2rem auto; max-width: 500px; }
+    .upload-label { display: block; padding: 22px 40px; font-size: 1.35rem; background: var(--gold-dark); color: white; cursor: pointer; transition: all 0.4s; text-transform: uppercase; margin: 2rem 0; }
     .upload-label:hover { background: var(--gold-main); transform: translateY(-4px); }
     input[type="file"] { display: none; }
-    #emailInput { width: 100%; max-width: 480px; padding: 18px 24px; font-size: 1.3rem; border: 1px solid var(--gold-main); background: white; color: var(--text); margin: 2rem auto 3rem; font-family: 'Playfair Display', serif; }
-    .progress { font-size: 1.2rem; color: var(--gold-main); margin-bottom: 1rem; letter-spacing: 0.15em; }
+    #analyzing { display: none; margin: 3rem auto; font-size: 1.5rem; color: var(--gold-dark); letter-spacing: 0.1em; }
+    .loader { width: 240px; height: 5px; background: var(--soft-border); margin: 1.5rem auto; position: relative; overflow: hidden; border-radius: 3px; }
+    .loader-bar { width: 0; height: 100%; background: var(--gold-main); position: absolute; left: 0; animation: load 6s linear forwards; }
+    @keyframes load { to { width: 100%; } }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
     .result { display:none; }
     .result.active { display: block; }
-    .product-card { background: white; border: 1px solid var(--soft-border); margin: 2rem 0; padding: 2rem; text-align: left; }
-    .product-title { font-size: 1.8rem; color: var(--gold-dark); margin-bottom: 0.8rem; }
-    .product-desc { font-size: 1.3rem; line-height: 1.6; margin-bottom: 1rem; }
-    .product-price { font-size: 1.6rem; font-weight: bold; color: var(--gold-main); }
-    @keyframes fadeIn { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+    .product-card { background: white; border: 1px solid var(--soft-border); margin: 2.5rem 0; padding: 2rem; text-align: left; }
+    .product-title { font-size: 1.9rem; color: var(--gold-dark); margin-bottom: 1rem; }
+    .product-desc { font-size: 1.35rem; line-height: 1.65; margin-bottom: 1.2rem; }
+    .product-price { font-size: 1.7rem; font-weight: bold; color: var(--gold-main); }
   </style>
 </head>
 <body>
 
   <div class="container">
+    <h1>Diagnostic Beauté</h1>
 
-    <div class="intro" id="intro">
-      <h1>Diagnostic Maquillage Ultime</h1>
-      <p>Réponds sans filtre, on avance tout seul, chef Badou.</p>
-      <button class="start-btn" onclick="startQuiz()">Je commence</button>
-    </div>
-
+    <!-- Question 1 -->
     <div class="question" id="q1">
-      <div class="progress">1/6</div>
-      <h2>Quel est votre objectif principal ?</h2>
+      <div class="progress">1/10</div>
+      <h2>1. Comment définiriez-vous la nature de votre peau ?</h2>
       <div class="options">
-        <div class="option" data-value="naturel">Un teint parfait et naturel (Effet "no-makeup")</div>
-        <div class="option" data-value="camoufler">Camoufler les imperfections (Acné, rougeurs, taches)</div>
-        <div class="option" data-value="soiree">Un look sophistiqué pour le soir</div>
+        <div class="option" data-value="grasse">Grasse (brillances fréquentes)</div>
+        <div class="option" data-value="seche">Sèche (tiraillements, zones sèches)</div>
+        <div class="option" data-value="mixte">Mixte (brille seulement sur le nez/front)</div>
+        <div class="option" data-value="sensible">Sensible (réagit facilement)</div>
       </div>
     </div>
 
+    <!-- Question 2 -->
     <div class="question" id="q2">
-      <div class="progress">2/6</div>
-      <h2>Comment décririez-vous votre type de peau ?</h2>
+      <div class="progress">2/10</div>
+      <h2>2. Quelle est votre préoccupation principale ?</h2>
       <div class="options">
-        <div class="option" data-value="grasse">Grasse (Elle brille pendant la journée)</div>
-        <div class="option" data-value="seche">Sèche (Elle tiraille ou pèle un peu)</div>
-        <div class="option" data-value="mixte">Mixte (Brille sur le nez/front, mais sèche sur les joues)</div>
-        <div class="option" data-value="sensible">Sensible (Rougit facilement)</div>
+        <div class="option" data-value="cernes">Cacher mes cernes</div>
+        <div class="option" data-value="rougeurs">Camoufler mes rougeurs / imperfections</div>
+        <div class="option" data-value="pores">Lisser mes pores et mon grain de peau</div>
+        <div class="option" data-value="eclat">Retrouver de l'éclat (teint terne)</div>
       </div>
     </div>
 
+    <!-- Question 3 -->
     <div class="question" id="q3">
-      <div class="progress">3/6</div>
-      <h2>Quel fini préférez-vous pour votre teint ?</h2>
+      <div class="progress">3/10</div>
+      <h2>3. À quelle fréquence votre peau présente-t-elle des imperfections ?</h2>
       <div class="options">
-        <div class="option" data-value="mat">Mat (Pas de brillance du tout)</div>
-        <div class="option" data-value="dewy">Lumineux / Dewy (Peau bien hydratée et éclatante)</div>
-        <div class="option" data-value="satine">Satiné (Entre les deux)</div>
+        <div class="option" data-value="rarement">Rarement (peau nette)</div>
+        <div class="option" data-value="occasionnellement">Occasionnellement (périodes de stress/hormones)</div>
+        <div class="option" data-value="regulierement">Régulièrement (acné ou taches)</div>
       </div>
     </div>
 
+    <!-- Question 4 -->
     <div class="question" id="q4">
-      <div class="progress">4/6</div>
-      <h2>Analyse de votre carnation</h2>
-      <p class="small">Pour une précision maximale, téléchargez un selfie pris à la lumière du jour (face à une fenêtre).</p>
+      <div class="progress">4/10</div>
+      <h2>4. Quel type de couvrance recherchez-vous pour votre fond de teint ?</h2>
+      <div class="options">
+        <div class="option" data-value="legere">Légère (on voit encore mes grains de beauté)</div>
+        <div class="option" data-value="moyenne">Moyenne (unifie bien le teint)</div>
+        <div class="option" data-value="totale">Totale (cache tout, fini parfait)</div>
+      </div>
+    </div>
+
+    <!-- Question 5 -->
+    <div class="question" id="q5">
+      <div class="progress">5/10</div>
+      <h2>5. Quel fini préférez-vous sur votre visage ?</h2>
+      <div class="options">
+        <div class="option" data-value="mat">Mat (zéro brillance, effet velours)</div>
+        <div class="option" data-value="lumineux">Lumineux (teint frais, effet mouillé/glowy)</div>
+        <div class="option" data-value="naturel">Naturel (entre les deux)</div>
+      </div>
+    </div>
+
+    <!-- Question 6 -->
+    <div class="question" id="q6">
+      <div class="progress">6/10</div>
+      <h2>6. Quel est votre style de maquillage quotidien ?</h2>
+      <div class="options">
+        <div class="option" data-value="minimaliste">Minimaliste (mascara et un peu de teint)</div>
+        <div class="option" data-value="classique">Classique (teint, yeux et lèvres travaillés)</div>
+        <div class="option" data-value="sophistique">Sophistiqué (contouring, liner, look complet)</div>
+      </div>
+    </div>
+
+    <!-- Question 7 - PHOTO -->
+    <div class="question" id="q7">
+      <div class="progress">7/10</div>
+      <h2>7. Téléchargez votre selfie à la lumière du jour</h2>
+      <p class="small">Face à une fenêtre, sans maquillage si possible, pour une analyse précise de votre carnation.</p>
       <div class="upload-zone">
-        <label class="upload-label" for="selfie">Uploader ton selfie</label>
+        <label class="upload-label" for="selfie">Choisir votre photo</label>
         <input type="file" id="selfie" accept="image/*">
       </div>
-    </div>
-
-    <div class="question" id="q5">
-      <div class="progress">5/6</div>
-      <h2>Quelle est la couleur de vos veines à l'intérieur de votre poignet ? <span class="small">(Astuce de pro pour le sous-ton)</span></h2>
-      <div class="options">
-        <div class="option" data-value="froid">Bleues ou violettes (Sous-ton Froid)</div>
-        <div class="option" data-value="chaud">Vertes (Sous-ton Chaud)</div>
-        <div class="option" data-value="neutre">Je ne sais pas / Mélange des deux (Sous-ton Neutre)</div>
+      <div id="analyzing">
+        Analyse en cours...
+        <div class="loader"><div class="loader-bar"></div></div>
       </div>
     </div>
 
-    <div class="question" id="q6">
-      <div class="progress">6/6</div>
-      <h2>Où dois-je t’envoyer ton ordonnance qui va te faire jouir la peau ?</h2>
-      <input type="email" id="emailInput" placeholder="ta.chatte@email.com" required>
+    <!-- Question 8 -->
+    <div class="question" id="q8">
+      <div class="progress">8/10</div>
+      <h2>8. Combien de temps accordez-vous à votre routine le matin ?</h2>
+      <div class="options">
+        <div class="option" data-value="5min">Moins de 5 minutes</div>
+        <div class="option" data-value="10-20min">Entre 10 et 20 minutes</div>
+        <div class="option" data-value="temps">Je prends tout mon temps</div>
+      </div>
     </div>
 
+    <!-- Question 9 -->
+    <div class="question" id="q9">
+      <div class="progress">9/10</div>
+      <h2>9. Utilisez-vous des accessoires pour vous maquiller ?</h2>
+      <div class="options">
+        <div class="option" data-value="doigts">Mes doigts uniquement</div>
+        <div class="option" data-value="pinceaux">Pinceaux et éponges</div>
+        <div class="option" data-value="recommandation">Je veux que vous m'en recommandiez</div>
+      </div>
+    </div>
+
+    <!-- Question 10 - Budget -->
+    <div class="question" id="q10">
+      <div class="progress">10/10</div>
+      <h2>10. Quel budget global souhaitez-vous allouer à cette nouvelle routine ?</h2>
+      <div class="options">
+        <div class="option" data-value="bas">Moins de 100 €</div>
+        <div class="option" data-value="moyen">100 € – 250 €</div>
+        <div class="option" data-value="eleve">250 € – 500 €</div>
+        <div class="option" data-value="luxe">500 € et plus</div>
+      </div>
+    </div>
+
+    <!-- Résultat -->
     <div class="result" id="result">
-      <h1>Ton Ordonnance Maquillage est là, chef Badou</h1>
-      <p style="font-size:1.6rem; margin:2rem 0;">On a tout capté. Ta peau va se faire démonter et reconstruire comme une pute en chaleur. Voici les produits qui vont te coller à la peau comme un gode bien lubrifié.</p>
-
+      <h1>Votre Ordonnance Beauté Personnalisée</h1>
+      <p style="font-size:1.6rem; margin:2rem 0 4rem;">Analyse terminée. Voici les produits qui correspondent précisément à votre peau, votre style et votre budget.</p>
       <div id="productsContainer"></div>
-
-      <button onclick="restartQuiz()" style="margin-top:4rem; padding:18px 60px; font-size:1.4rem; letter-spacing:0.35em; background:transparent; border:1px solid var(--gold-dark); color:var(--gold-dark); cursor:pointer; text-transform:uppercase; transition:all 0.4s;">
-        Recommencer, salope
+      <button onclick="restartDiagnostic()" style="margin-top:4rem; padding:18px 64px; font-size:1.4rem; letter-spacing:0.35em; background:transparent; border:1px solid var(--gold-dark); color:var(--gold-dark); cursor:pointer; text-transform:uppercase; transition:all 0.4s;">
+        Recommencer le diagnostic
       </button>
     </div>
 
@@ -132,87 +185,121 @@
     let current = -1;
     let selections = {};
 
-    function startQuiz() {
-      document.getElementById('intro').style.display = 'none';
+    function startDiagnostic() {
+      document.querySelector('.intro')?.remove(); // si besoin
       nextQuestion();
     }
 
     function nextQuestion() {
-      if (current >= 0) {
-        questions[current].classList.remove('active');
-      }
+      if (current >= 0) questions[current].classList.remove('active');
       current++;
       if (current < questions.length) {
         questions[current].classList.add('active');
 
-        if (current < 3 || current === 4) {
+        // Auto-advance sur les questions à choix
+        if (current !== 6) { // sauf la photo
           const opts = questions[current].querySelectorAll('.option');
           opts.forEach(opt => {
             opt.onclick = () => {
               opts.forEach(o => o.classList.remove('selected'));
               opt.classList.add('selected');
               selections[`q${current+1}`] = opt.dataset.value;
-              setTimeout(nextQuestion, 900);
+              setTimeout(nextQuestion, 950);
             };
           });
         }
 
-        if (current === 3) {
+        // Photo + simulation analyse
+        if (current === 6) {
           const fileInput = document.getElementById('selfie');
-          fileInput.onchange = () => {
-            if (fileInput.files.length > 0) setTimeout(nextQuestion, 1400);
-          };
-          setTimeout(() => {
-            if (!fileInput.files.length) nextQuestion();
-          }, 10000);
-        }
+          const analyzing = document.getElementById('analyzing');
 
-        if (current === 5) {
-          const email = document.getElementById('emailInput');
-          email.oninput = () => {
-            if (email.value.includes('@') && email.value.length > 6) {
-              setTimeout(showResult, 1600);
+          fileInput.onchange = () => {
+            if (fileInput.files.length > 0) {
+              analyzing.style.display = 'block';
+              setTimeout(() => {
+                analyzing.style.display = 'none';
+                nextQuestion();
+              }, 6200); // simulation analyse 6.2s
             }
           };
+
+          // Avance auto après 12s max si pas de photo
+          setTimeout(() => {
+            if (!fileInput.files.length) {
+              analyzing.style.display = 'block';
+              setTimeout(() => {
+                analyzing.style.display = 'none';
+                nextQuestion();
+              }, 6200);
+            }
+          }, 12000);
         }
+      } else {
+        showResult();
       }
     }
 
     function showResult() {
-      document.querySelectorAll('.question').forEach(q => q.classList.remove('active'));
-      const res = document.getElementById('result');
-      res.classList.add('active');
+      document.querySelectorAll('.question').forEach(q => q.style.display = 'none');
+      document.getElementById('result').classList.add('active');
 
-      const objectif = selections.q1 || 'naturel';
-      const typePeau = selections.q2 || 'mixte';
-      const fini = selections.q3 || 'satine';
-      const sousTon = selections.q5 || 'neutre';
-
-      const budget = Math.random() > 0.4 ? 'petit' : 'aucune';
+      // Logique produits (simulation intelligente selon réponses)
+      const peau = selections.q1 || 'mixte';
+      const preoccupation = selections.q2 || 'eclat';
+      const imperfections = selections.q3 || 'rarement';
+      const couvrance = selections.q4 || 'moyenne';
+      const fini = selections.q5 || 'naturel';
+      const style = selections.q6 || 'minimaliste';
+      const temps = selections.q8 || '10-20min';
+      const accessoires = selections.q9 || 'recommandation';
+      const budget = selections.q10 || 'moyen';
 
       let produits = [];
 
-      if (objectif === 'naturel') {
-        produits.push({nom: "Fond de teint NARS Natural Radiant Longwear", desc: "Teint zéro défaut mais zéro masque, glow discret qui te fait ressembler à une chatte fraîchement léchée.", prix: budget === 'petit' ? "32€ (promo Sephora)" : "45€"});
-        produits.push({nom: "Highlighter Rare Beauty Positive Light", desc: "Quelques gouttes sur les pommettes et ta face brille comme un clito excité au soleil.", prix: budget === 'petit' ? "28€" : "38€"});
+      // Fond de teint / base
+      let fond = {nom: "Fond de teint", prix: "38–62 €", desc: ""};
+      if (couvrance === 'totale') fond.nom += " Estée Lauder Double Wear Stay-in-Place";
+      else if (couvrance === 'moyenne') fond.nom += " NARS Natural Radiant Longwear";
+      else fond.nom += " Glossier Stretch Fluid Foundation";
+      fond.desc = "Couvrance " + couvrance + " – adapté à votre peau " + peau + " et fini " + fini + ".";
+      if (budget === 'bas') fond.prix = "22–35 € (promos incluses)";
+      produits.push(fond);
+
+      // Correcteur / anticernes
+      if (preoccupation === 'cernes' || imperfections !== 'rarement') {
+        produits.push({
+          nom: "Correcteur Tarte Shape Tape OU N°7 Protect & Perfect",
+          desc: "Cache cernes et imperfections sans marquer, texture crémeuse mais légère.",
+          prix: budget === 'bas' ? "18–29 €" : "32–45 €"
+        });
       }
 
-      if (objectif === 'camoufler') {
-        produits.push({nom: "Correcteur Tarte Shape Tape", desc: "Cache tes boutons, tes rougeurs, tes taches comme si t’avais jamais eu de vie sexuelle chaotique.", prix: budget === 'petit' ? "29€ (soldes)" : "36€"});
-        produits.push({nom: "Poudre HD Laura Mercier", desc: "Fixe tout sans plâtrer, ta peau mate mais respirante comme un cul après une bonne douche.", prix: budget === 'petit' ? "24€ promo" : "42€"});
+      // Highlighter / éclat
+      if (preoccupation === 'eclat' || fini === 'lumineux') {
+        produits.push({
+          nom: "Highlighter Rare Beauty Positive Light OU RMS Beauty Living Luminizer",
+          desc: "Effet glowy naturel, sublime les pommettes sans paillettes agressives.",
+          prix: budget === 'bas' ? "24–32 €" : "38–54 €"
+        });
       }
 
-      if (objectif === 'soiree') {
-        produits.push({nom: "Fenty Beauty Pro Filt'r Soft Matte", desc: "Teint sculpté, zéro brillance, prêt à te faire baiser sous les néons toute la nuit.", prix: "38€"});
-        produits.push({nom: "Pat McGrath Mothership Eyeshadow Palette", desc: "Fumée sexy, paillettes qui te font ressembler à une star du porno chic.", prix: budget === 'petit' ? "Pas dispo low cost, 128€ full" : "128€"});
+      // Primer
+      if (peau === 'grasse' || style !== 'minimaliste') {
+        produits.push({
+          nom: "Primer Milk Makeup Hydro Grip OU e.l.f. Poreless Putty",
+          desc: "Contrôle brillance / lisse pores – idéal pour votre peau " + peau + ".",
+          prix: budget === 'bas' ? "12–28 €" : "34–42 €"
+        });
       }
 
-      if (fini === 'dewy') {
-        produits.push({nom: "Glossier Futuredew Serum Foundation", desc: "Peau mouillée, hydratée, prête à recevoir des compliments comme des jets de foutre.", prix: budget === 'petit' ? "34€" : "34€"});
-      }
-
-      if (typePeau === 'grasse') {
-        produits.push({nom: "Primer Milk Makeup Hydro Grip", desc: "Contrôle le sébum comme un poing autour d’une bite, zéro brillance en soirée.", prix: "36€"});
+      // Accessoires recommandés
+      if (accessoires === 'recommandation') {
+        produits.push({
+          nom: "Kit débutant : éponge Beautyblender + pinceaux Real Techniques",
+          desc: "Pour un application propre et rapide, même si vous avez peu de temps.",
+          prix: "28–55 €"
+        });
       }
 
       const container = document.getElementById('productsContainer');
@@ -229,16 +316,23 @@
       });
     }
 
-    function restartQuiz() {
+    function restartDiagnostic() {
       current = -1;
       selections = {};
       document.getElementById('result').classList.remove('active');
-      document.getElementById('intro').style.display = 'block';
+      document.querySelectorAll('.question').forEach(q => {
+        q.classList.remove('active');
+        q.style.display = 'none';
+      });
+      document.getElementById('q1').classList.add('active');
+      document.getElementById('q1').style.display = 'block';
       document.querySelectorAll('.option').forEach(el => el.classList.remove('selected'));
       document.getElementById('selfie').value = '';
-      document.getElementById('emailInput').value = '';
       document.getElementById('productsContainer').innerHTML = '';
     }
+
+    // Démarrage
+    document.getElementById('q1').classList.add('active');
   </script>
 
 </body>
