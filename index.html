@@ -2,19 +2,18 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=0.55.5"/>
-  <title>NOOR & BH </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NOOR & BH • Beauté & Lumière</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500&family=Cormorant+Garamond:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --beige-clair: #f8f5f1;
-      --beige-fonce: #e8dfce;
-      --gold-soft: #d4b978;
-      --gold-deep: #b8975e;
-      --text-dark: #2f2a24;
-      --text-light: #5c5449;
+      --bg: #f9f6f2;
+      --gold-light: #d9c39e;
+      --gold-medium: #c4a978;
+      --gold-dark: #a88352;
+      --text-main: #1a1612;
     }
 
     * {
@@ -24,155 +23,118 @@
     }
 
     body {
-      background-color: var(--beige-clair);
-      color: var(--text-dark);
-      font-family: 'Cormorant Garamond', serif;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    .hero {
+      background: var(--bg);
+      color: var(--text-main);
+      font-family: 'Playfair Display', serif;
       height: 100vh;
-      min-height: 780px;
       display: flex;
       align-items: center;
       justify-content: center;
-      text-align: center;
-      position: relative;
-      background: linear-gradient(180deg, #f8f5f1 0%, #f0e9dd 100%);
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 30% 20%, rgba(212,185,120,0.08) 0%, transparent 60%);
-      pointer-events: none;
-    }
-
-    .content {
-      max-width: 780px;
-      padding: 0 24px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .logo-main {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(3.8rem, 12vw, 9.2rem);
-      font-weight: 300;
-      letter-spacing: 0.35em;
-      color: var(--gold-soft);
-      margin-bottom: 0.15em;
-      text-shadow: 0 4px 40px rgba(180,140,80,0.15);
-    }
-
-    .logo-subtitle {
-      font-size: clamp(1.35rem, 4.5vw, 2.1rem);
-      font-weight: 400;
-      letter-spacing: 0.6em;
-      color: var(--gold-deep);
-      margin-bottom: 2.8rem;
-    }
-
-    .brand-line {
-      font-size: clamp(1.9rem, 5.8vw, 3.4rem);
-      font-weight: 300;
-      color: var(--text-dark);
-      margin: 1.2rem 0 2.4rem;
-      letter-spacing: 0.08em;
-    }
-
-    .promise {
-      font-size: clamp(1.25rem, 3.2vw, 1.65rem);
-      color: var(--text-light);
-      max-width: 620px;
-      margin: 0 auto 3.5rem;
-      font-style: italic;
-      line-height: 1.75;
-    }
-
-    .cta-button {
-      display: inline-block;
-      padding: 18px 68px;
-      font-family: 'Playfair Display', serif;
-      font-size: 1.35rem;
-      letter-spacing: 0.4em;
-      color: white;
-      background: var(--gold-deep);
-      border: none;
-      border-radius: 0;
-      cursor: pointer;
-      transition: all 0.4s ease;
-      text-transform: uppercase;
-      position: relative;
       overflow: hidden;
     }
 
-    .cta-button:hover {
-      background: var(--gold-soft);
-      transform: translateY(-4px);
-      box-shadow: 0 18px 48px rgba(180,140,80,0.28);
+    .container {
+      text-align: center;
+      padding: 40px 20px;
+      max-width: 720px;
     }
 
-    .cta-button::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
+    .logo {
+      font-size: clamp(5.5rem, 18vw, 11rem);
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      color: var(--gold-medium);
+      line-height: 0.92;
+      margin-bottom: 0.1em;
+      text-shadow: 0 6px 40px rgba(164,137,82,0.18);
+    }
+
+    .logo-amp {
+      font-size: clamp(2.8rem, 9vw, 5.2rem);
+      letter-spacing: 0.12em;
+      color: var(--gold-dark);
+      margin: -0.4em 0 1.2em;
+    }
+
+    .tagline {
+      font-size: clamp(1.45rem, 4.2vw, 2.1rem);
+      font-weight: 300;
+      color: var(--text-main);
+      margin: 0 0 2.8rem;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1.4s forwards 0.6s;
+    }
+
+    .typing {
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 3px solid var(--gold-dark);
+      animation: typing 4.2s steps(38) forwards 1.2s, blink 0.8s step-end infinite;
       width: 0;
-      height: 0;
-      background: rgba(255,255,255,0.25);
-      border-radius: 50%;
-      transform: translate(-50%, -50%);
-      transition: width 0.6s ease, height 0.6s ease;
-      pointer-events: none;
     }
 
-    .cta-button:active::after {
-      width: 400px;
-      height: 400px;
+    .cta {
+      display: inline-block;
+      padding: 18px 64px;
+      font-size: 1.4rem;
+      letter-spacing: 0.45em;
+      color: white;
+      background: var(--gold-dark);
+      border: none;
+      cursor: pointer;
+      transition: all 0.45s ease;
+      text-transform: uppercase;
+      margin-top: 1.8rem;
+      opacity: 0;
+      animation: fadeIn 1.2s forwards 5.8s;
     }
 
-    .marble-line {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 180px;
-      background: linear-gradient(to top, #e8dfce 0%, transparent 100%);
-      pointer-events: none;
+    .cta:hover {
+      background: var(--gold-medium);
+      transform: scale(1.06);
+      box-shadow: 0 20px 60px rgba(164,137,82,0.32);
     }
 
-    @media (max-width: 768px) {
-      .logo-main       { letter-spacing: 0.25em; }
-      .logo-subtitle   { letter-spacing: 0.4em; }
-      .brand-line      { margin: 0.8rem 0 1.8rem; }
-      .promise         { font-size: 1.18rem; }
-      .cta-button      { padding: 16px 48px; font-size: 1.2rem; letter-spacing: 0.35em; }
+    @keyframes typing {
+      to { width: 100%; }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    @media (max-width: 640px) {
+      .logo { letter-spacing: 0.12em; }
+      .logo-amp { letter-spacing: 0.08em; }
+      .cta { padding: 16px 48px; font-size: 1.25rem; letter-spacing: 0.35em; }
     }
   </style>
 </head>
 <body>
 
-  <section class="hero">
-    <div class="content">
-      <h1 class="logo-main">NOOR</h1>
-      <div class="logo-subtitle">& BH</div>
-      
-      <h2 class="brand-line">BEAUTÉ • LUMIÈRE • VÉRITÉ</h2>
-      
-      <p class="promise">
-        Oublie les teintes au hasard.<br>
-        Ton visage parle. Nous l’écoutons.<br>
-        Diagnostic scientifique + ordonnance sur mesure.
-      </p>
+  <div class="container">
+    <div class="logo">NOOR</div>
+    <div class="logo-amp">& BH</div>
 
-      <button class="cta-button" onclick="window.location.href='#quiz'">Commencer mon diagnostic</button>
+    <div class="tagline">
+      <span class="typing">Ton visage décide. Pas le hasard.</span>
     </div>
 
-    <div class="marble-line"></div>
-  </section>
+    <button class="cta" onclick="window.location.href='#diagnostic'">Lancer le diagnostic</button>
+  </div>
 
 </body>
 </html>
