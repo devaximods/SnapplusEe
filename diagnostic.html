@@ -1,9 +1,10 @@
+<!-- diagnostic.html -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>NOOR & BH • Diagnostic Maquillage Complet</title>
+  <title>NOOR & BH • Diagnostic Maquillage Ultime</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500&display=swap" rel="stylesheet">
@@ -52,11 +53,10 @@
 
     <div class="intro" id="intro">
       <h1>Diagnostic Maquillage Ultime</h1>
-      <p>Tout ce que t’as demandé, chef Badou. On va te faire une peau qui fait bander les miroirs. Réponds cash, ça avance solo.</p>
-      <button class="start-btn" onclick="startQuiz()">Je me lance</button>
+      <p>Réponds sans filtre, on avance tout seul, chef Badou.</p>
+      <button class="start-btn" onclick="startQuiz()">Je commence</button>
     </div>
 
-    <!-- Toutes les questions que tu as envoyées, sans merde d'avant -->
     <div class="question" id="q1">
       <div class="progress">1/6</div>
       <h2>Quel est votre objectif principal ?</h2>
@@ -111,10 +111,9 @@
     <div class="question" id="q6">
       <div class="progress">6/6</div>
       <h2>Où dois-je t’envoyer ton ordonnance qui va te faire jouir la peau ?</h2>
-      <input type="email" id="emailInput" placeholder="ta chatte@email.com" required>
+      <input type="email" id="emailInput" placeholder="ta.chatte@email.com" required>
     </div>
 
-    <!-- Résultat avec produits simulés (prix bas si petit budget, sinon full luxe) -->
     <div class="result" id="result">
       <h1>Ton Ordonnance Maquillage est là, chef Badou</h1>
       <p style="font-size:1.6rem; margin:2rem 0;">On a tout capté. Ta peau va se faire démonter et reconstruire comme une pute en chaleur. Voici les produits qui vont te coller à la peau comme un gode bien lubrifié.</p>
@@ -146,7 +145,6 @@
       if (current < questions.length) {
         questions[current].classList.add('active');
 
-        // Auto sur choix simples
         if (current < 3 || current === 4) {
           const opts = questions[current].querySelectorAll('.option');
           opts.forEach(opt => {
@@ -159,7 +157,6 @@
           });
         }
 
-        // Upload (q4)
         if (current === 3) {
           const fileInput = document.getElementById('selfie');
           fileInput.onchange = () => {
@@ -170,7 +167,6 @@
           }, 10000);
         }
 
-        // Email (q6) → résultat
         if (current === 5) {
           const email = document.getElementById('emailInput');
           email.oninput = () => {
@@ -187,13 +183,12 @@
       const res = document.getElementById('result');
       res.classList.add('active');
 
-      // Logique produits hardcore selon choix
       const objectif = selections.q1 || 'naturel';
       const typePeau = selections.q2 || 'mixte';
       const fini = selections.q3 || 'satine';
       const sousTon = selections.q5 || 'neutre';
-      // Budget fictif (pas demandé ici, on simule petit/moyen/haut)
-      const budget = Math.random() > 0.4 ? 'petit' : 'aucune'; // 60% petit budget pour tester
+
+      const budget = Math.random() > 0.4 ? 'petit' : 'aucune';
 
       let produits = [];
 
@@ -203,13 +198,13 @@
       }
 
       if (objectif === 'camoufler') {
-        produits.push({nom: "Correcteur Tarte Shape Tape", desc: "Cache tes boutons, tes rougeurs, tes taches comme si t’avais jamais eu de vie sexuelle chaotique.", prix: budget === 'petit' ? "29€ (soldes)", "36€"});
+        produits.push({nom: "Correcteur Tarte Shape Tape", desc: "Cache tes boutons, tes rougeurs, tes taches comme si t’avais jamais eu de vie sexuelle chaotique.", prix: budget === 'petit' ? "29€ (soldes)" : "36€"});
         produits.push({nom: "Poudre HD Laura Mercier", desc: "Fixe tout sans plâtrer, ta peau mate mais respirante comme un cul après une bonne douche.", prix: budget === 'petit' ? "24€ promo" : "42€"});
       }
 
       if (objectif === 'soiree') {
         produits.push({nom: "Fenty Beauty Pro Filt'r Soft Matte", desc: "Teint sculpté, zéro brillance, prêt à te faire baiser sous les néons toute la nuit.", prix: "38€"});
-        produits.push({nom: "Pat McGrath Mothership Eyeshadow Palette", desc: "Fumée sexy, paillettes qui te font ressembler à une star du porno chic.", prix: budget === 'petit' ? "Pas dispo low cost, 128€ full envoi" : "128€"});
+        produits.push({nom: "Pat McGrath Mothership Eyeshadow Palette", desc: "Fumée sexy, paillettes qui te font ressembler à une star du porno chic.", prix: budget === 'petit' ? "Pas dispo low cost, 128€ full" : "128€"});
       }
 
       if (fini === 'dewy') {
@@ -220,7 +215,6 @@
         produits.push({nom: "Primer Milk Makeup Hydro Grip", desc: "Contrôle le sébum comme un poing autour d’une bite, zéro brillance en soirée.", prix: "36€"});
       }
 
-      // Affichage
       const container = document.getElementById('productsContainer');
       container.innerHTML = '';
       produits.forEach(p => {
