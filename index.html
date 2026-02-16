@@ -126,32 +126,30 @@
       background: var(--gold-dark);
     }
 
-    .nav {
-      display: flex;
-      justify-content: space-between;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    .nav button {
-      padding: 14px 40px;
-      font-size: 1.25rem;
-      letter-spacing: 0.25em;
-      background: transparent;
-      border: 1px solid var(--gold-dark);
-      color: var(--gold-dark);
-      cursor: pointer;
-      transition: all 0.35s;
-    }
-
-    .nav button:hover {
-      background: var(--gold-dark);
+    .next-auto {
+      margin-top: 4rem;
+      padding: 16px 56px;
+      font-size: 1.32rem;
+      letter-spacing: 0.35em;
       color: white;
+      background: var(--gold-dark);
+      border: none;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      text-transform: uppercase;
+      opacity: 0;
+      pointer-events: none;
     }
 
-    .nav button:disabled {
-      opacity: 0.4;
-      cursor: not-allowed;
+    .next-auto.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .next-auto:hover {
+      background: var(--gold-main);
+      transform: translateY(-3px);
+      box-shadow: 0 16px 48px rgba(166,124,82,0.28);
     }
 
     .result {
@@ -218,8 +216,7 @@
 
     @media (max-width: 640px) {
       .options { grid-template-columns: 1fr; }
-      .nav { flex-direction: column; gap: 1rem; }
-      .nav button { width: 100%; }
+      .next-auto { padding: 14px 44px; font-size: 1.2rem; letter-spacing: 0.3em; }
     }
   </style>
 </head>
@@ -245,10 +242,7 @@
         <div class="option" data-value="lotion">Lotion / Démaquillant et nettoyant</div>
         <div class="option" data-value="masque">Masque visage</div>
       </div>
-      <div class="nav">
-        <button disabled>Précédent</button>
-        <button onclick="nextQuestion(1)">Suivant</button>
-      </div>
+      <button class="next-auto" id="next1">Suivant →</button>
     </div>
 
     <div class="question" id="q2">
@@ -260,10 +254,7 @@
         <div class="option" data-value="rougeurs">Rougeurs et peau sensible</div>
         <div class="option" data-value="fermete">Manque de fermeté et élasticité</div>
       </div>
-      <div class="nav">
-        <button onclick="prevQuestion(2)">Précédent</button>
-        <button onclick="nextQuestion(2)">Suivant</button>
-      </div>
+      <button class="next-auto" id="next2">Suivant →</button>
     </div>
 
     <div class="question" id="q3">
@@ -272,17 +263,14 @@
         <div class="option" data-value="petit">Je veux des petits prix</div>
         <div class="option" data-value="aucune">Cela n'a pas d'importance</div>
       </div>
-      <div class="nav">
-        <button onclick="prevQuestion(3)">Précédent</button>
-        <button onclick="showResult()">Résultat</button>
-      </div>
+      <button class="next-auto" id="next3">Résultat →</button>
     </div>
 
     <!-- Resultat -->
     <div class="result" id="result">
       <h1>Vous avez trouvé le soin parfait !</h1>
       <p>Voici notre sélection recommandée pour vous…</p>
-      <div class="products-placeholder">[Ici viendront tes produits personnalisés selon les choix – sérum hydratant 60€, crème de nuit réparatrice 85€, etc.]</div>
+      <div class="products-placeholder">[Tes produits ultra-personnalisés viendront ici – genre sérum qui te remplit les pores comme une queue bien chaude, crème qui hydrate ta peau jusqu’à l’orgasme, etc.]</div>
       <div class="btn-group">
         <button class="see-more">Voir plus de produits</button>
         <button class="restart" onclick="restartQuiz()">Recommencer le quiz</button>
@@ -292,65 +280,50 @@
   </div>
 
   <script>
-    let currentQuestion = 0;
-    const selections = { q1: [], q2: '', q3: '' };
+    let selections = { q1: [], q2: '', q3: '' };
 
     function startQuiz() {
       document.getElementById('intro').style.display = 'none';
       document.getElementById('q1').classList.add('active');
-      currentQuestion = 1;
+      checkSelection('q1', 'next1');
     }
 
-    function nextQuestion(q) {
-      if (q === 1) {
-        const selected = document.querySelectorAll('#q1 .option.selected');
-        if (selected.length === 0) return alert("Choisis au moins un soin !");
-        selections.q1 = Array.from(selected).map(el => el.dataset.value);
-      }
-      if (q === 2) {
-        const selected = document.querySelector('#q2 .option.selected');
-        if (!selected) return alert("Choisis ta principale préoccupation !");
-        selections.q2 = selected.dataset.value;
-      }
+    function checkSelection(qId, nextBtnId) {
+      const options = document.querySelector(`#${qId} .options`);
+      const nextBtn = document.getElementById(nextBtnId);
 
-      document.querySelector(`#q${q}`).classList.remove('active');
-      document.querySelector(`#q${q+1}`).classList.add('active');
-      currentQuestion = q + 1;
+      const observer = new MutationObserver(() => {
+        const selectedCount = options.querySelectorAll('.selected').length;
+        const isMulti = options.classList.contains('multi');
+        const minNeeded = isMulti ? 1 : 1;
+        nextBtn.style.opacity = selectedCount >= minNeeded ? '1' : '0';
+        nextBtn.style.pointerEvents = selectedCount >= minNeeded ? 'auto' : 'none';
+      });
+
+      observer.observe(options, { childList: true, subtree: true, attributes: true });
+
+      // Check initial
+      const selectedCount = options.querySelectorAll('.selected').length;
+      nextBtn.style.opacity = selectedCount >= 1 ? '1' : '0';
+      nextBtn.style.pointerEvents = selectedCount >= 1 ? 'auto' : 'none';
     }
 
-    function prevQuestion(q) {
-      document.querySelector(`#q${q}`).classList.remove('active');
-      document.querySelector(`#q${q-1}`).classList.add('active');
-      currentQuestion = q - 1;
-    }
-
-    function showResult() {
-      const selected = document.querySelector('#q3 .option.selected');
-      if (!selected) return alert("Choisis ta préférence prix !");
-      selections.q3 = selected.dataset.value;
-
-      document.querySelector(`#q3`).classList.remove('active');
-      document.getElementById('result').classList.add('active');
-    }
-
-    function restartQuiz() {
-      document.getElementById('result').classList.remove('active');
-      document.getElementById('intro').style.display = 'block';
-      currentQuestion = 0;
-      selections.q1 = [];
-      selections.q2 = '';
-      selections.q3 = '';
-
-      document.querySelectorAll('.option').forEach(el => el.classList.remove('selected'));
-    }
-
-    // Gestion des clics sur options
+    // Auto next on click if conditions met
     document.querySelectorAll('.option').forEach(opt => {
       opt.addEventListener('click', () => {
         const parent = opt.parentElement;
         if (parent.classList.contains('single')) {
           parent.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
           opt.classList.add('selected');
+          // Trigger auto next après 800ms pour voir le choix
+          setTimeout(() => {
+            const qNum = opt.closest('.question').id.replace('q', '');
+            if (qNum < 3) {
+              nextStep(parseInt(qNum));
+            } else {
+              showResult();
+            }
+          }, 800);
         } else if (parent.classList.contains('multi')) {
           const max = parseInt(parent.dataset.max);
           const current = parent.querySelectorAll('.selected').length;
@@ -359,9 +332,50 @@
           } else if (current < max) {
             opt.classList.add('selected');
           }
+          // Si max atteint, auto next après 1.2s
+          if (parent.querySelectorAll('.selected').length === max) {
+            setTimeout(() => {
+              const qNum = opt.closest('.question').id.replace('q', '');
+              nextStep(parseInt(qNum));
+            }, 1200);
+          }
         }
       });
     });
+
+    function nextStep(current) {
+      document.querySelector(`#q${current}`).classList.remove('active');
+      if (current < 3) {
+        document.querySelector(`#q${current + 1}`).classList.add('active');
+        const nextId = `next${current + 1}`;
+        checkSelection(`q${current + 1}`, nextId);
+      } else {
+        showResult();
+      }
+    }
+
+    function showResult() {
+      // Sauvegarde dernière sélection si besoin
+      const q3Selected = document.querySelector('#q3 .option.selected');
+      if (q3Selected) selections.q3 = q3Selected.dataset.value;
+
+      document.querySelector('#q3').classList.remove('active');
+      document.getElementById('result').classList.add('active');
+    }
+
+    function restartQuiz() {
+      document.getElementById('result').classList.remove('active');
+      document.getElementById('intro').style.display = 'block';
+      selections = { q1: [], q2: '', q3: '' };
+      document.querySelectorAll('.option').forEach(el => el.classList.remove('selected'));
+      document.querySelectorAll('.next-auto').forEach(btn => {
+        btn.style.opacity = '0';
+        btn.style.pointerEvents = 'none';
+      });
+    }
+
+    // Initial check for q1
+    checkSelection('q1', 'next1');
   </script>
 
 </body>
