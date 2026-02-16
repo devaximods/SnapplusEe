@@ -1,9 +1,10 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>NOOR & BH • Diagnostic Maquillage Complet</title>
+  <title>NOOR & BH • Beauté Sans Mensonge</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500&display=swap" rel="stylesheet">
@@ -14,238 +15,120 @@
       --gold-main: #c19a6e;
       --gold-dark: #a67c52;
       --text: #1c1814;
-      --soft-border: rgba(166,124,82,0.22);
     }
+
     * { margin:0; padding:0; box-sizing:border-box; }
-    body { background: var(--bg); color: var(--text); font-family: 'Playfair Display', serif; min-height: 100vh; padding: 80px 20px 60px; }
-    .container { max-width: 760px; margin: 0 auto; text-align: center; }
-    .intro h1 { font-size: clamp(2.8rem, 8vw, 4.5rem); font-weight: 400; letter-spacing: 0.1em; color: var(--gold-main); margin-bottom: 1.5rem; }
-    .intro p { font-size: clamp(1.4rem, 4vw, 1.9rem); font-weight: 300; margin-bottom: 4rem; }
-    .start-btn { padding: 18px 72px; font-size: 1.45rem; letter-spacing: 0.4em; color: white; background: var(--gold-dark); border: none; cursor: pointer; transition: all 0.45s; text-transform: uppercase; }
-    .start-btn:hover { background: var(--gold-main); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(166,124,82,0.3); }
-    .question { display: none; animation: fadeIn 0.6s forwards; }
-    .question.active { display: block; }
-    .question h2 { font-size: clamp(2.3rem, 6.5vw, 3.6rem); color: var(--gold-dark); margin: 1.5rem 0 2.8rem; letter-spacing: 0.08em; }
-    .small { font-size: 1.1rem; font-weight: 300; opacity: 0.8; display: block; margin-top: 0.5rem; }
-    .options { display: flex; flex-direction: column; gap: 1.2rem; max-width: 520px; margin: 0 auto 3.5rem; }
-    .option { padding: 22px 28px; font-size: 1.4rem; letter-spacing: 0.12em; background: white; border: 1px solid var(--soft-border); cursor: pointer; transition: all 0.4s ease; }
-    .option:hover { border-color: var(--gold-main); transform: translateX(12px); box-shadow: 0 10px 40px rgba(193,154,110,0.15); }
-    .option.selected { background: var(--gold-dark); color: white; border-color: var(--gold-dark); transform: translateX(18px); }
-    .upload-zone { margin: 2rem auto; max-width: 480px; }
-    .upload-label { display: block; padding: 24px 32px; font-size: 1.35rem; letter-spacing: 0.2em; background: var(--gold-dark); color: white; cursor: pointer; transition: all 0.4s; text-transform: uppercase; margin: 1.5rem 0; }
-    .upload-label:hover { background: var(--gold-main); transform: translateY(-4px); }
-    input[type="file"] { display: none; }
-    #emailInput { width: 100%; max-width: 480px; padding: 18px 24px; font-size: 1.3rem; border: 1px solid var(--gold-main); background: white; color: var(--text); margin: 2rem auto 3rem; font-family: 'Playfair Display', serif; }
-    .progress { font-size: 1.2rem; color: var(--gold-main); margin-bottom: 1rem; letter-spacing: 0.15em; }
-    .result { display:none; }
-    .result.active { display: block; }
-    .product-card { background: white; border: 1px solid var(--soft-border); margin: 2rem 0; padding: 2rem; text-align: left; }
-    .product-title { font-size: 1.8rem; color: var(--gold-dark); margin-bottom: 0.8rem; }
-    .product-desc { font-size: 1.3rem; line-height: 1.6; margin-bottom: 1rem; }
-    .product-price { font-size: 1.6rem; font-weight: bold; color: var(--gold-main); }
-    @keyframes fadeIn { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Playfair Display', serif;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero {
+      text-align: center;
+      max-width: 680px;
+      padding: 0 24px;
+    }
+
+    .logo-block {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 0.35em;
+      margin-bottom: 2.4rem;
+    }
+
+    .noor {
+      font-size: clamp(4.6rem, 13vw, 7.8rem);
+      font-weight: 400;
+      letter-spacing: 0.13em;
+      color: var(--gold-main);
+      line-height: 0.88;
+      text-shadow: 0 4px 32px rgba(161,124,82,0.16);
+    }
+
+    .amp {
+      font-size: clamp(3.0rem, 8.5vw, 5.0rem);
+      font-weight: 300;
+      letter-spacing: 0.07em;
+      color: var(--gold-dark);
+      line-height: 0.9;
+    }
+
+    .typing-container {
+      font-size: clamp(1.35rem, 3.8vw, 1.75rem);
+      font-weight: 300;
+      max-width: 640px;
+      margin: 0 auto 3.2rem;
+      line-height: 1.68;
+      height: 3.2em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .typing {
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 3px solid var(--gold-dark);
+      width: 0;
+      animation: typing 5.2s steps(68) forwards 0.8s, blink 0.75s step-end infinite;
+    }
+
+    .cta {
+      display: inline-block;
+      padding: 16px 56px;
+      font-size: 1.32rem;
+      letter-spacing: 0.38em;
+      color: white;
+      background: var(--gold-dark);
+      border: none;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      text-transform: uppercase;
+      opacity: 0;
+      animation: revealCTA 1s forwards 6.4s;
+    }
+
+    .cta:hover {
+      background: var(--gold-main);
+      transform: translateY(-3px);
+      box-shadow: 0 16px 48px rgba(166,124,82,0.28);
+    }
+
+    @keyframes typing { to { width: 100%; } }
+    @keyframes blink { 50% { border-color: transparent; } }
+    @keyframes revealCTA { to { opacity: 1; } }
+
+    @media (max-width: 640px) {
+      .logo-block { gap: 0.25em; }
+      .noor { letter-spacing: 0.1em; }
+      .amp { font-size: clamp(2.4rem, 7vw, 4rem); }
+      .typing { font-size: 1.22rem; }
+      .cta { padding: 14px 44px; font-size: 1.18rem; letter-spacing: 0.32em; }
+    }
   </style>
 </head>
 <body>
 
-  <div class="container">
-
-    <div class="intro" id="intro">
-      <h1>Diagnostic Maquillage Ultime</h1>
-      <p>Tout ce que t’as demandé, chef Badou. On va te faire une peau qui fait bander les miroirs. Réponds cash, ça avance solo.</p>
-      <button class="start-btn" onclick="startQuiz()">Je me lance</button>
+  <div class="hero">
+    <div class="logo-block">
+      <div class="noor">NOOR</div>
+      <div class="amp">& BH</div>
     </div>
 
-    <!-- Toutes les questions que tu as envoyées, sans merde d'avant -->
-    <div class="question" id="q1">
-      <div class="progress">1/6</div>
-      <h2>Quel est votre objectif principal ?</h2>
-      <div class="options">
-        <div class="option" data-value="naturel">Un teint parfait et naturel (Effet "no-makeup")</div>
-        <div class="option" data-value="camoufler">Camoufler les imperfections (Acné, rougeurs, taches)</div>
-        <div class="option" data-value="soiree">Un look sophistiqué pour le soir</div>
-      </div>
+    <div class="typing-container">
+      <span class="typing">Ton vrai visage décide. Pas un algorithme moyen, pas un filtre Instagram. On lit ta carnation, ta texture, tes zones sèches ou grasses. Résultat : des produits qui collent à ta peau, pas à une pub. Fini les 40€ jetés à la poubelle.</span>
     </div>
 
-    <div class="question" id="q2">
-      <div class="progress">2/6</div>
-      <h2>Comment décririez-vous votre type de peau ?</h2>
-      <div class="options">
-        <div class="option" data-value="grasse">Grasse (Elle brille pendant la journée)</div>
-        <div class="option" data-value="seche">Sèche (Elle tiraille ou pèle un peu)</div>
-        <div class="option" data-value="mixte">Mixte (Brille sur le nez/front, mais sèche sur les joues)</div>
-        <div class="option" data-value="sensible">Sensible (Rougit facilement)</div>
-      </div>
-    </div>
-
-    <div class="question" id="q3">
-      <div class="progress">3/6</div>
-      <h2>Quel fini préférez-vous pour votre teint ?</h2>
-      <div class="options">
-        <div class="option" data-value="mat">Mat (Pas de brillance du tout)</div>
-        <div class="option" data-value="dewy">Lumineux / Dewy (Peau bien hydratée et éclatante)</div>
-        <div class="option" data-value="satine">Satiné (Entre les deux)</div>
-      </div>
-    </div>
-
-    <div class="question" id="q4">
-      <div class="progress">4/6</div>
-      <h2>Analyse de votre carnation</h2>
-      <p class="small">Pour une précision maximale, téléchargez un selfie pris à la lumière du jour (face à une fenêtre).</p>
-      <div class="upload-zone">
-        <label class="upload-label" for="selfie">Uploader ton selfie</label>
-        <input type="file" id="selfie" accept="image/*">
-      </div>
-    </div>
-
-    <div class="question" id="q5">
-      <div class="progress">5/6</div>
-      <h2>Quelle est la couleur de vos veines à l'intérieur de votre poignet ? <span class="small">(Astuce de pro pour le sous-ton)</span></h2>
-      <div class="options">
-        <div class="option" data-value="froid">Bleues ou violettes (Sous-ton Froid)</div>
-        <div class="option" data-value="chaud">Vertes (Sous-ton Chaud)</div>
-        <div class="option" data-value="neutre">Je ne sais pas / Mélange des deux (Sous-ton Neutre)</div>
-      </div>
-    </div>
-
-    <div class="question" id="q6">
-      <div class="progress">6/6</div>
-      <h2>Où dois-je t’envoyer ton ordonnance qui va te faire jouir la peau ?</h2>
-      <input type="email" id="emailInput" placeholder="ta chatte@email.com" required>
-    </div>
-
-    <!-- Résultat avec produits simulés (prix bas si petit budget, sinon full luxe) -->
-    <div class="result" id="result">
-      <h1>Ton Ordonnance Maquillage est là, chef Badou</h1>
-      <p style="font-size:1.6rem; margin:2rem 0;">On a tout capté. Ta peau va se faire démonter et reconstruire comme une pute en chaleur. Voici les produits qui vont te coller à la peau comme un gode bien lubrifié.</p>
-
-      <div id="productsContainer"></div>
-
-      <button onclick="restartQuiz()" style="margin-top:4rem; padding:18px 60px; font-size:1.4rem; letter-spacing:0.35em; background:transparent; border:1px solid var(--gold-dark); color:var(--gold-dark); cursor:pointer; text-transform:uppercase; transition:all 0.4s;">
-        Recommencer, salope
-      </button>
-    </div>
-
+    <button class="cta" onclick="window.location.href='diagnostic.html'">Lancer mon diagnostic</button>
   </div>
-
-  <script>
-    const questions = document.querySelectorAll('.question');
-    let current = -1;
-    let selections = {};
-
-    function startQuiz() {
-      document.getElementById('intro').style.display = 'none';
-      nextQuestion();
-    }
-
-    function nextQuestion() {
-      if (current >= 0) {
-        questions[current].classList.remove('active');
-      }
-      current++;
-      if (current < questions.length) {
-        questions[current].classList.add('active');
-
-        // Auto sur choix simples
-        if (current < 3 || current === 4) {
-          const opts = questions[current].querySelectorAll('.option');
-          opts.forEach(opt => {
-            opt.onclick = () => {
-              opts.forEach(o => o.classList.remove('selected'));
-              opt.classList.add('selected');
-              selections[`q${current+1}`] = opt.dataset.value;
-              setTimeout(nextQuestion, 900);
-            };
-          });
-        }
-
-        // Upload (q4)
-        if (current === 3) {
-          const fileInput = document.getElementById('selfie');
-          fileInput.onchange = () => {
-            if (fileInput.files.length > 0) setTimeout(nextQuestion, 1400);
-          };
-          setTimeout(() => {
-            if (!fileInput.files.length) nextQuestion();
-          }, 10000);
-        }
-
-        // Email (q6) → résultat
-        if (current === 5) {
-          const email = document.getElementById('emailInput');
-          email.oninput = () => {
-            if (email.value.includes('@') && email.value.length > 6) {
-              setTimeout(showResult, 1600);
-            }
-          };
-        }
-      }
-    }
-
-    function showResult() {
-      document.querySelectorAll('.question').forEach(q => q.classList.remove('active'));
-      const res = document.getElementById('result');
-      res.classList.add('active');
-
-      // Logique produits hardcore selon choix
-      const objectif = selections.q1 || 'naturel';
-      const typePeau = selections.q2 || 'mixte';
-      const fini = selections.q3 || 'satine';
-      const sousTon = selections.q5 || 'neutre';
-      // Budget fictif (pas demandé ici, on simule petit/moyen/haut)
-      const budget = Math.random() > 0.4 ? 'petit' : 'aucune'; // 60% petit budget pour tester
-
-      let produits = [];
-
-      if (objectif === 'naturel') {
-        produits.push({nom: "Fond de teint NARS Natural Radiant Longwear", desc: "Teint zéro défaut mais zéro masque, glow discret qui te fait ressembler à une chatte fraîchement léchée.", prix: budget === 'petit' ? "32€ (promo Sephora)" : "45€"});
-        produits.push({nom: "Highlighter Rare Beauty Positive Light", desc: "Quelques gouttes sur les pommettes et ta face brille comme un clito excité au soleil.", prix: budget === 'petit' ? "28€" : "38€"});
-      }
-
-      if (objectif === 'camoufler') {
-        produits.push({nom: "Correcteur Tarte Shape Tape", desc: "Cache tes boutons, tes rougeurs, tes taches comme si t’avais jamais eu de vie sexuelle chaotique.", prix: budget === 'petit' ? "29€ (soldes)", "36€"});
-        produits.push({nom: "Poudre HD Laura Mercier", desc: "Fixe tout sans plâtrer, ta peau mate mais respirante comme un cul après une bonne douche.", prix: budget === 'petit' ? "24€ promo" : "42€"});
-      }
-
-      if (objectif === 'soiree') {
-        produits.push({nom: "Fenty Beauty Pro Filt'r Soft Matte", desc: "Teint sculpté, zéro brillance, prêt à te faire baiser sous les néons toute la nuit.", prix: "38€"});
-        produits.push({nom: "Pat McGrath Mothership Eyeshadow Palette", desc: "Fumée sexy, paillettes qui te font ressembler à une star du porno chic.", prix: budget === 'petit' ? "Pas dispo low cost, 128€ full envoi" : "128€"});
-      }
-
-      if (fini === 'dewy') {
-        produits.push({nom: "Glossier Futuredew Serum Foundation", desc: "Peau mouillée, hydratée, prête à recevoir des compliments comme des jets de foutre.", prix: budget === 'petit' ? "34€" : "34€"});
-      }
-
-      if (typePeau === 'grasse') {
-        produits.push({nom: "Primer Milk Makeup Hydro Grip", desc: "Contrôle le sébum comme un poing autour d’une bite, zéro brillance en soirée.", prix: "36€"});
-      }
-
-      // Affichage
-      const container = document.getElementById('productsContainer');
-      container.innerHTML = '';
-      produits.forEach(p => {
-        const card = document.createElement('div');
-        card.className = 'product-card';
-        card.innerHTML = `
-          <div class="product-title">${p.nom}</div>
-          <div class="product-desc">${p.desc}</div>
-          <div class="product-price">${p.prix}</div>
-        `;
-        container.appendChild(card);
-      });
-    }
-
-    function restartQuiz() {
-      current = -1;
-      selections = {};
-      document.getElementById('result').classList.remove('active');
-      document.getElementById('intro').style.display = 'block';
-      document.querySelectorAll('.option').forEach(el => el.classList.remove('selected'));
-      document.getElementById('selfie').value = '';
-      document.getElementById('emailInput').value = '';
-      document.getElementById('productsContainer').innerHTML = '';
-    }
-  </script>
 
 </body>
 </html>
