@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NOOR & BH • Diagnostic Beauté</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f9f7f3;
+      --gold-light: #d8c0a0;
+      --gold-main: #c19a6e;
+      --gold-dark: #a67c52;
+      --text: #1c1814;
+      --border-soft: rgba(166,124,82,0.25);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Playfair Display', serif;
+      min-height: 100vh;
+      padding: 60px 20px 40px;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .header {
+      margin-bottom: 3.5rem;
+    }
+
+    .title {
+      font-size: clamp(2.4rem, 7vw, 3.8rem);
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      color: var(--gold-main);
+      margin-bottom: 0.8rem;
+    }
+
+    .subtitle {
+      font-size: clamp(1.25rem, 3.5vw, 1.65rem);
+      font-weight: 300;
+      color: var(--text);
+      opacity: 0.9;
+    }
+
+    .budget-section {
+      margin: 4rem 0 5rem;
+    }
+
+    .budget-label {
+      font-size: 1.4rem;
+      letter-spacing: 0.15em;
+      margin-bottom: 1.8rem;
+      color: var(--gold-dark);
+      text-transform: uppercase;
+    }
+
+    .budget-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      justify-content: center;
+    }
+
+    .budget-btn {
+      padding: 16px 32px;
+      font-size: 1.28rem;
+      letter-spacing: 0.25em;
+      color: var(--gold-dark);
+      background: transparent;
+      border: 1px solid var(--gold-main);
+      cursor: pointer;
+      transition: all 0.35s ease;
+      min-width: 140px;
+    }
+
+    .budget-btn:hover,
+    .budget-btn.active {
+      background: var(--gold-main);
+      color: white;
+      border-color: var(--gold-main);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(193,154,110,0.22);
+    }
+
+    .next-step {
+      margin-top: 5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.8s ease;
+    }
+
+    .next-step.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .loader {
+      width: 180px;
+      height: 4px;
+      background: var(--border-soft);
+      margin: 2.5rem auto;
+      position: relative;
+      overflow: hidden;
+      border-radius: 2px;
+    }
+
+    .loader-bar {
+      width: 0;
+      height: 100%;
+      background: var(--gold-dark);
+      position: absolute;
+      left: 0;
+      top: 0;
+      animation: load 4.5s forwards linear;
+    }
+
+    .status-text {
+      font-size: 1.45rem;
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      color: var(--gold-dark);
+      margin-top: 1.8rem;
+      opacity: 0;
+      animation: fadeInStatus 1.2s forwards 1s;
+    }
+
+    @keyframes load {
+      to { width: 100%; }
+    }
+
+    @keyframes fadeInStatus {
+      to { opacity: 1; }
+    }
+
+    .file-upload {
+      margin-top: 4rem;
+      opacity: 0;
+      transition: opacity 1s forwards 5.5s;
+    }
+
+    .file-upload.visible {
+      opacity: 1;
+    }
+
+    .upload-label {
+      display: inline-block;
+      padding: 18px 48px;
+      font-size: 1.3rem;
+      letter-spacing: 0.3em;
+      color: white;
+      background: var(--gold-dark);
+      cursor: pointer;
+      transition: all 0.4s ease;
+      text-transform: uppercase;
+      border: none;
+    }
+
+    .upload-label:hover {
+      background: var(--gold-main);
+      transform: translateY(-3px);
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+
+    @media (max-width: 640px) {
+      .budget-buttons { gap: 0.8rem; }
+      .budget-btn { padding: 14px 24px; font-size: 1.15rem; min-width: 120px; }
+      .title { font-size: 2.8rem; }
+      .subtitle { font-size: 1.35rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header">
+      <h1 class="title">Diagnostic Beauté</h1>
+      <p class="subtitle">On commence par ton budget réel</p>
+    </div>
+
+    <div class="budget-section">
+      <div class="budget-label">Ton budget max pour ta routine parfaite</div>
+      
+      <div class="budget-buttons">
+        <button class="budget-btn" data-value="50">50 €</button>
+        <button class="budget-btn" data-value="100">100 €</button>
+        <button class="budget-btn" data-value="200">200 €</button>
+        <button class="budget-btn" data-value="400">400 €</button>
+        <button class="budget-btn" data-value="1000">1000 €+</button>
+      </div>
+    </div>
+
+    <div class="next-step" id="nextStep">
+      <div class="loader">
+        <div class="loader-bar"></div>
+      </div>
+      <div class="status-text">On cherche ton maquillage parfait… au juste prix</div>
+
+      <div class="file-upload" id="uploadSection">
+        <label class="upload-label" for="selfie">Uploader ton selfie maintenant</label>
+        <input type="file" id="selfie" accept="image/*">
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const buttons = document.querySelectorAll('.budget-btn');
+    const nextStep = document.getElementById('nextStep');
+    const uploadSection = document.getElementById('uploadSection');
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        setTimeout(() => {
+          nextStep.classList.add('visible');
+          setTimeout(() => {
+            uploadSection.classList.add('visible');
+          }, 5500);
+        }, 400);
+      });
+    });
+  </script>
+
+</body>
+</html>
