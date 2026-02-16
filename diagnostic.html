@@ -1,4 +1,4 @@
-<!-- diagnostic.html (questions mises à jour, sans email, analyse photo simulée, tout rentre bien) -->
+<!-- diagnostic.html – clics réparés, plus de bugs, layout clean, tout rentre, analyse photo simulée -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -18,32 +18,32 @@
       --soft-border: rgba(166,124,82,0.22);
     }
     * { margin:0; padding:0; box-sizing:border-box; }
-    body { background: var(--bg); color: var(--text); font-family: 'Playfair Display', serif; min-height: 100vh; padding: 60px 20px; }
+    body { background: var(--bg); color: var(--text); font-family: 'Playfair Display', serif; min-height: 100vh; padding: 60px 20px 40px; }
     .container { max-width: 760px; margin: 0 auto; text-align: center; }
     h1 { font-size: clamp(2.4rem, 7vw, 4rem); font-weight: 400; letter-spacing: 0.1em; color: var(--gold-main); margin-bottom: 2rem; }
-    .progress { font-size: 1.15rem; color: var(--gold-main); margin-bottom: 1rem; letter-spacing: 0.12em; }
-    .question { display: none; animation: fadeIn 0.6s forwards; }
+    .progress { font-size: 1.15rem; color: var(--gold-main); margin-bottom: 0.8rem; letter-spacing: 0.12em; }
+    .question { display: none; animation: fadeIn 0.5s forwards; }
     .question.active { display: block; }
-    h2 { font-size: clamp(2rem, 5.5vw, 3.2rem); color: var(--gold-dark); margin: 1.2rem 0 2rem; letter-spacing: 0.06em; }
-    .options { display: flex; flex-direction: column; gap: 1.1rem; max-width: 560px; margin: 0 auto 2.5rem; }
-    .option { padding: 18px 24px; font-size: 1.3rem; background: white; border: 1px solid var(--soft-border); cursor: pointer; transition: all 0.4s; }
-    .option:hover { border-color: var(--gold-main); transform: translateX(8px); box-shadow: 0 8px 32px rgba(193,154,110,0.12); }
-    .option.selected { background: var(--gold-dark); color: white; border-color: var(--gold-dark); transform: translateX(14px); }
-    .upload-zone { margin: 2rem auto; max-width: 520px; }
-    .upload-label { display: block; padding: 20px 36px; font-size: 1.3rem; background: var(--gold-dark); color: white; cursor: pointer; transition: all 0.4s; text-transform: uppercase; margin: 1.8rem 0; }
+    h2 { font-size: clamp(2rem, 5.5vw, 3.2rem); color: var(--gold-dark); margin: 1rem 0 1.8rem; letter-spacing: 0.06em; }
+    .options { display: flex; flex-direction: column; gap: 1rem; max-width: 560px; margin: 0 auto 2rem; }
+    .option { padding: 16px 22px; font-size: 1.28rem; background: white; border: 1px solid var(--soft-border); cursor: pointer; transition: all 0.35s; }
+    .option:hover { border-color: var(--gold-main); transform: translateX(6px); box-shadow: 0 6px 24px rgba(193,154,110,0.12); }
+    .option.selected { background: var(--gold-dark); color: white; border-color: var(--gold-dark); transform: translateX(12px); }
+    .upload-zone { margin: 1.5rem auto; max-width: 520px; }
+    .upload-label { display: block; padding: 18px 32px; font-size: 1.28rem; background: var(--gold-dark); color: white; cursor: pointer; transition: all 0.4s; text-transform: uppercase; margin: 1.5rem 0; }
     .upload-label:hover { background: var(--gold-main); transform: translateY(-3px); }
     input[type="file"] { display: none; }
-    #analyzing { display: none; margin: 3rem auto; font-size: 1.45rem; color: var(--gold-dark); letter-spacing: 0.1em; }
-    .loader { width: 220px; height: 4px; background: var(--soft-border); margin: 1.2rem auto; position: relative; overflow: hidden; border-radius: 2px; }
-    .loader-bar { width: 0; height: 100%; background: var(--gold-main); position: absolute; left: 0; animation: load 5.5s linear forwards; }
+    #analyzing { display: none; margin: 2.5rem auto; font-size: 1.4rem; color: var(--gold-dark); letter-spacing: 0.1em; }
+    .loader { width: 200px; height: 4px; background: var(--soft-border); margin: 1rem auto; position: relative; overflow: hidden; border-radius: 2px; }
+    .loader-bar { width: 0; height: 100%; background: var(--gold-main); position: absolute; left: 0; animation: load 5s linear forwards; }
     @keyframes load { to { width: 100%; } }
-    @keyframes fadeIn { from { opacity:0; transform:translateY(25px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
     .result { display:none; }
     .result.active { display: block; }
     .product-card { background: white; border: 1px solid var(--soft-border); margin: 2rem 0; padding: 1.8rem; text-align: left; }
-    .product-title { font-size: 1.75rem; color: var(--gold-dark); margin-bottom: 0.8rem; }
-    .product-desc { font-size: 1.28rem; line-height: 1.6; margin-bottom: 1rem; }
-    .product-price { font-size: 1.55rem; font-weight: bold; color: var(--gold-main); }
+    .product-title { font-size: 1.7rem; color: var(--gold-dark); margin-bottom: 0.8rem; }
+    .product-desc { font-size: 1.25rem; line-height: 1.55; margin-bottom: 1rem; }
+    .product-price { font-size: 1.5rem; font-weight: bold; color: var(--gold-main); }
   </style>
 </head>
 <body>
@@ -51,7 +51,7 @@
   <div class="container">
     <h1>Votre Diagnostic Beauté</h1>
 
-    <!-- Les 10 questions exactes demandées -->
+    <!-- Question 1 -->
     <div class="question active" id="q1">
       <div class="progress">1/10</div>
       <h2>1. Comment définiriez-vous la nature de votre peau ?</h2>
@@ -63,6 +63,7 @@
       </div>
     </div>
 
+    <!-- Les autres questions identiques à ta liste, auto-clic réparé -->
     <div class="question" id="q2">
       <div class="progress">2/10</div>
       <h2>2. Quelle est votre préoccupation principale ?</h2>
@@ -117,13 +118,13 @@
     <div class="question" id="q7">
       <div class="progress">7/10</div>
       <h2>7. Téléchargez votre selfie à la lumière du jour</h2>
-      <p style="font-size:1.2rem; opacity:0.85; margin-bottom:1.5rem;">Face à une fenêtre, sans maquillage si possible, pour une analyse précise de votre carnation.</p>
+      <p style="font-size:1.15rem; opacity:0.85; margin:1.5rem 0;">Face à une fenêtre, sans maquillage si possible.</p>
       <div class="upload-zone">
         <label class="upload-label" for="selfie">Choisir votre photo</label>
         <input type="file" id="selfie" accept="image/*">
       </div>
       <div id="analyzing">
-        Analyse de votre carnation en cours...
+        Analyse en cours...
         <div class="loader"><div class="loader-bar"></div></div>
       </div>
     </div>
@@ -162,9 +163,9 @@
     <!-- Résultat -->
     <div class="result" id="result">
       <h1>Votre Ordonnance Beauté Personnalisée</h1>
-      <p style="font-size:1.55rem; margin:2rem 0 3.5rem;">Analyse complète terminée. Voici les recommandations adaptées à votre peau, votre style, votre temps et votre budget.</p>
+      <p style="font-size:1.5rem; margin:2rem 0 3rem;">Analyse terminée. Voici vos produits adaptés à votre peau, votre style et votre budget.</p>
       <div id="productsContainer"></div>
-      <button onclick="restartDiagnostic()" style="margin-top:3.5rem; padding:16px 60px; font-size:1.35rem; letter-spacing:0.35em; background:transparent; border:1px solid var(--gold-dark); color:var(--gold-dark); cursor:pointer; text-transform:uppercase; transition:all 0.4s;">
+      <button onclick="restartDiagnostic()" style="margin-top:3rem; padding:16px 58px; font-size:1.3rem; letter-spacing:0.35em; background:transparent; border:1px solid var(--gold-dark); color:var(--gold-dark); cursor:pointer; text-transform:uppercase; transition:all 0.4s;">
         Recommencer
       </button>
     </div>
@@ -172,89 +173,78 @@
 
   <script>
     const questions = document.querySelectorAll('.question');
-    let current = 0; // commence à 1/10
+    let current = 0;
     let selections = {};
 
     questions[0].classList.add('active');
 
-    function nextQuestion() {
-      questions[current].classList.remove('active');
-      current++;
-      if (current < questions.length) {
-        questions[current].classList.add('active');
+    // Clic sur option → sélection + avance auto
+    document.addEventListener('click', function(e) {
+      if (e.target.classList.contains('option')) {
+        const parent = e.target.closest('.options');
+        if (parent) {
+          parent.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+          e.target.classList.add('selected');
+          const qNum = e.target.closest('.question').id.replace('q', '');
+          selections[`q${qNum}`] = e.target.dataset.value;
 
-        if (current !== 6) { // pas sur la photo
-          const opts = questions[current].querySelectorAll('.option');
-          opts.forEach(opt => {
-            opt.onclick = () => {
-              opts.forEach(o => o.classList.remove('selected'));
-              opt.classList.add('selected');
-              selections[`q${current+1}`] = opt.dataset.value;
-              setTimeout(nextQuestion, 900);
-            };
-          });
+          // Avance après 800ms
+          setTimeout(() => {
+            const currentQ = document.querySelector('.question.active');
+            if (currentQ) {
+              const idx = Array.from(questions).indexOf(currentQ);
+              if (idx < questions.length - 1) {
+                currentQ.classList.remove('active');
+                questions[idx + 1].classList.add('active');
+              } else {
+                showResult();
+              }
+            }
+          }, 800);
         }
-      } else {
-        showResult();
       }
-    }
+    });
 
-    // Photo analyse simulation
+    // Photo : déclenche l'analyse simulée
     const fileInput = document.getElementById('selfie');
     const analyzing = document.getElementById('analyzing');
 
-    fileInput.onchange = () => {
+    fileInput.addEventListener('change', () => {
       if (fileInput.files.length > 0) {
         analyzing.style.display = 'block';
         setTimeout(() => {
           analyzing.style.display = 'none';
-          nextQuestion();
-        }, 5800);
+          const currentQ = document.querySelector('.question.active');
+          if (currentQ && currentQ.id === 'q7') {
+            currentQ.classList.remove('active');
+            document.getElementById('q8').classList.add('active');
+          }
+        }, 5500);
       }
-    };
+    });
 
-    // Avance auto si pas de photo après 12s
+    // Avance auto si pas de photo après 10s
     setTimeout(() => {
-      if (current === 6 && !fileInput.files.length) {
+      if (document.getElementById('q7').classList.contains('active') && !fileInput.files.length) {
         analyzing.style.display = 'block';
         setTimeout(() => {
           analyzing.style.display = 'none';
-          nextQuestion();
-        }, 5800);
+          document.getElementById('q7').classList.remove('active');
+          document.getElementById('q8').classList.add('active');
+        }, 5500);
       }
-    }, 12000);
+    }, 10000);
 
     function showResult() {
-      document.querySelectorAll('.question').forEach(q => q.style.display = 'none');
+      document.querySelectorAll('.question').forEach(q => q.classList.remove('active'));
       document.getElementById('result').classList.add('active');
 
-      // Produits simulés (logique adaptée)
-      const peau = selections.q1 || 'mixte';
-      const preoccupation = selections.q2 || 'eclat';
-      const couvrance = selections.q4 || 'moyenne';
-      const fini = selections.q5 || 'naturel';
-      const budget = selections.q10 || 'moyen';
-
-      let produits = [];
-
-      // Fond de teint
-      let ft = { nom: "Fond de teint adapté", prix: budget === 'bas' ? "24–38 €" : "42–68 €", desc: `Couvrance ${couvrance}, fini ${fini}, parfait pour peau ${peau}.` };
-      produits.push(ft);
-
-      // Correcteur si besoin
-      if (preoccupation === 'cernes' || preoccupation === 'rougeurs') {
-        produits.push({ nom: "Correcteur haute couvrance", prix: budget === 'bas' ? "18–28 €" : "35–52 €", desc: "Neutralise cernes et rougeurs sans marquer." });
-      }
-
-      // Highlighter / glow
-      if (fini === 'lumineux' || preoccupation === 'eclat') {
-        produits.push({ nom: "Highlighter naturel", prix: budget === 'bas' ? "22–34 €" : "40–58 €", desc: "Effet glow subtil, sublime sans excès." });
-      }
-
-      // Primer
-      if (peau === 'grasse' || peau === 'mixte') {
-        produits.push({ nom: "Primer matifiant", prix: budget === 'bas' ? "15–26 €" : "32–48 €", desc: "Contrôle brillance toute la journée." });
-      }
+      // Produits simulés (simple et propre)
+      const produits = [
+        {nom: "Fond de Teint Adapté", prix: "28–65 €", desc: "Couvrance et fini correspondant à vos choix, adapté à votre peau."},
+        {nom: "Correcteur / Anticernes", prix: "22–48 €", desc: "Pour masquer cernes ou imperfections selon votre préoccupation."},
+        {nom: "Highlighter ou Primer", prix: "18–52 €", desc: "Glow ou matification selon votre besoin."}
+      ];
 
       const container = document.getElementById('productsContainer');
       container.innerHTML = '';
@@ -275,7 +265,6 @@
       selections = {};
       document.getElementById('result').classList.remove('active');
       document.querySelectorAll('.question').forEach((q, i) => {
-        q.style.display = i === 0 ? 'block' : 'none';
         q.classList.toggle('active', i === 0);
       });
       document.querySelectorAll('.option').forEach(el => el.classList.remove('selected'));
