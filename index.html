@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>NOOR & BH • Beauté Sans Mensonge</title>
+  <title>NOOR & BH • Beauté & Wellness</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500&display=swap" rel="stylesheet">
@@ -23,112 +23,87 @@
       background: var(--bg);
       color: var(--text);
       font-family: 'Playfair Display', serif;
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-    }
-
-    .hero {
-      text-align: center;
-      max-width: 680px;
-      padding: 0 24px;
+      padding: 40px 20px;
     }
 
     .logo-block {
       display: flex;
       align-items: baseline;
       justify-content: center;
-      gap: 0.35em;
-      margin-bottom: 2.4rem;
+      gap: 0.4em;
+      margin-bottom: 3rem;
     }
 
     .noor {
-      font-size: clamp(4.6rem, 13vw, 7.8rem);
+      font-size: clamp(5.5rem, 16vw, 9.5rem);
       font-weight: 400;
-      letter-spacing: 0.13em;
+      letter-spacing: 0.12em;
       color: var(--gold-main);
-      line-height: 0.88;
-      text-shadow: 0 4px 32px rgba(161,124,82,0.16);
+      line-height: 0.85;
     }
 
     .amp {
-      font-size: clamp(3.0rem, 8.5vw, 5.0rem);
+      font-size: clamp(3.2rem, 9vw, 5.8rem);
       font-weight: 300;
-      letter-spacing: 0.07em;
+      letter-spacing: 0.06em;
       color: var(--gold-dark);
       line-height: 0.9;
     }
 
-    .typing-container {
-      font-size: clamp(1.35rem, 3.8vw, 1.75rem);
+    .tagline {
+      font-size: clamp(1.5rem, 4.5vw, 2.2rem);
       font-weight: 300;
-      max-width: 640px;
-      margin: 0 auto 3.2rem;
-      line-height: 1.68;
-      height: 3.2em;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .typing {
-      display: inline-block;
-      overflow: hidden;
-      white-space: nowrap;
-      border-right: 3px solid var(--gold-dark);
-      width: 0;
-      animation: typing 5.2s steps(68) forwards 0.8s, blink 0.75s step-end infinite;
+      max-width: 720px;
+      text-align: center;
+      line-height: 1.6;
+      margin: 0 auto 4rem;
+      opacity: 0.9;
     }
 
     .cta {
-      display: inline-block;
-      padding: 16px 56px;
-      font-size: 1.32rem;
-      letter-spacing: 0.38em;
+      padding: 18px 68px;
+      font-size: 1.45rem;
+      letter-spacing: 0.4em;
       color: white;
       background: var(--gold-dark);
       border: none;
       cursor: pointer;
-      transition: all 0.4s ease;
+      transition: all 0.45s ease;
       text-transform: uppercase;
-      opacity: 0;
-      animation: revealCTA 1s forwards 6.4s;
     }
 
     .cta:hover {
       background: var(--gold-main);
-      transform: translateY(-3px);
-      box-shadow: 0 16px 48px rgba(166,124,82,0.28);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(166,124,82,0.28);
     }
 
-    @keyframes typing { to { width: 100%; } }
-    @keyframes blink { 50% { border-color: transparent; } }
-    @keyframes revealCTA { to { opacity: 1; } }
-
     @media (max-width: 640px) {
-      .logo-block { gap: 0.25em; }
-      .noor { letter-spacing: 0.1em; }
-      .amp { font-size: clamp(2.4rem, 7vw, 4rem); }
-      .typing { font-size: 1.22rem; }
-      .cta { padding: 14px 44px; font-size: 1.18rem; letter-spacing: 0.32em; }
+      .logo-block { gap: 0.3em; }
+      .noor { letter-spacing: 0.09em; }
+      .amp { font-size: clamp(2.8rem, 8vw, 4.8rem); }
+      .cta { padding: 16px 52px; font-size: 1.3rem; letter-spacing: 0.35em; }
     }
   </style>
 </head>
 <body>
 
-  <div class="hero">
-    <div class="logo-block">
-      <div class="noor">NOOR</div>
-      <div class="amp">& BH</div>
-    </div>
-
-    <div class="typing-container">
-      <span class="typing">Ton vrai visage décide. Pas un algorithme moyen, pas un filtre Instagram. On lit ta carnation, ta texture, tes zones sèches ou grasses. Résultat : des produits qui collent à ta peau, pas à une pub. Fini les 40€ jetés à la poubelle.</span>
-    </div>
-
-    <button class="cta" onclick="window.location.href='diagnostic.html'">Lancer mon diagnostic</button>
+  <div class="logo-block">
+    <div class="noor">NOOR</div>
+    <div class="amp">& BH</div>
   </div>
+
+  <p class="tagline">
+    Diagnostic scientifique de votre carnation et de vos besoins réels.<br>
+    Produits recommandés qui correspondent exactement à votre peau et à votre budget.
+  </p>
+
+  <button class="cta" onclick="window.location.href='diagnostic.html'">Lancer le diagnostic</button>
 
 </body>
 </html>
