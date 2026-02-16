@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>NOOR & BH • Diagnostic Beauté</title>
+  <title>NOOR & BH • Diagnostic Maquillage</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500&display=swap" rel="stylesheet">
@@ -14,229 +14,301 @@
       --gold-main: #c19a6e;
       --gold-dark: #a67c52;
       --text: #1c1814;
-      --border-soft: rgba(166,124,82,0.25);
+      --soft-border: rgba(166,124,82,0.22);
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin:0; padding:0; box-sizing:border-box; }
 
     body {
       background: var(--bg);
       color: var(--text);
       font-family: 'Playfair Display', serif;
       min-height: 100vh;
-      padding: 60px 20px 40px;
+      padding: 80px 20px 60px;
     }
 
-    .container {
-      max-width: 720px;
-      margin: 0 auto;
-      text-align: center;
-    }
+    .container { max-width: 760px; margin: 0 auto; text-align: center; }
 
-    .header {
-      margin-bottom: 3.5rem;
-    }
-
-    .title {
-      font-size: clamp(2.4rem, 7vw, 3.8rem);
+    .intro h1 {
+      font-size: clamp(2.8rem, 8vw, 4.5rem);
       font-weight: 400;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.1em;
       color: var(--gold-main);
-      margin-bottom: 0.8rem;
+      margin-bottom: 1.5rem;
     }
 
-    .subtitle {
-      font-size: clamp(1.25rem, 3.5vw, 1.65rem);
+    .intro p {
+      font-size: clamp(1.4rem, 4vw, 1.9rem);
       font-weight: 300;
-      color: var(--text);
-      opacity: 0.9;
+      margin-bottom: 4rem;
     }
 
-    .budget-section {
-      margin: 4rem 0 5rem;
-    }
-
-    .budget-label {
-      font-size: 1.4rem;
-      letter-spacing: 0.15em;
-      margin-bottom: 1.8rem;
-      color: var(--gold-dark);
+    .start-btn {
+      padding: 18px 72px;
+      font-size: 1.45rem;
+      letter-spacing: 0.4em;
+      color: white;
+      background: var(--gold-dark);
+      border: none;
+      cursor: pointer;
+      transition: all 0.45s;
       text-transform: uppercase;
     }
 
-    .budget-buttons {
+    .start-btn:hover { background: var(--gold-main); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(166,124,82,0.3); }
+
+    .question {
+      display: none;
+      animation: fadeIn 0.6s forwards;
+    }
+
+    .question.active { display: block; }
+
+    .question h2 {
+      font-size: clamp(2.3rem, 6.5vw, 3.6rem);
+      color: var(--gold-dark);
+      margin: 1.5rem 0 2.8rem;
+      letter-spacing: 0.08em;
+    }
+
+    .small { font-size: 1.1rem; font-weight: 300; opacity: 0.8; display: block; margin-top: 0.5rem; }
+
+    .options {
       display: flex;
-      flex-wrap: wrap;
+      flex-direction: column;
       gap: 1.2rem;
-      justify-content: center;
+      max-width: 520px;
+      margin: 0 auto 3.5rem;
     }
 
-    .budget-btn {
-      padding: 16px 32px;
-      font-size: 1.28rem;
-      letter-spacing: 0.25em;
-      color: var(--gold-dark);
-      background: transparent;
-      border: 1px solid var(--gold-main);
-      cursor: pointer;
-      transition: all 0.35s ease;
-      min-width: 140px;
-    }
-
-    .budget-btn:hover,
-    .budget-btn.active {
-      background: var(--gold-main);
-      color: white;
-      border-color: var(--gold-main);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 32px rgba(193,154,110,0.22);
-    }
-
-    .next-step {
-      margin-top: 5rem;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.8s ease;
-    }
-
-    .next-step.visible {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .loader {
-      width: 180px;
-      height: 4px;
-      background: var(--border-soft);
-      margin: 2.5rem auto;
-      position: relative;
-      overflow: hidden;
-      border-radius: 2px;
-    }
-
-    .loader-bar {
-      width: 0;
-      height: 100%;
-      background: var(--gold-dark);
-      position: absolute;
-      left: 0;
-      top: 0;
-      animation: load 4.5s forwards linear;
-    }
-
-    .status-text {
-      font-size: 1.45rem;
-      font-weight: 300;
+    .option {
+      padding: 22px 28px;
+      font-size: 1.4rem;
       letter-spacing: 0.12em;
-      color: var(--gold-dark);
-      margin-top: 1.8rem;
-      opacity: 0;
-      animation: fadeInStatus 1.2s forwards 1s;
+      background: white;
+      border: 1px solid var(--soft-border);
+      cursor: pointer;
+      transition: all 0.4s ease;
     }
 
-    @keyframes load {
-      to { width: 100%; }
+    .option:hover {
+      border-color: var(--gold-main);
+      transform: translateX(12px);
+      box-shadow: 0 10px 40px rgba(193,154,110,0.15);
     }
 
-    @keyframes fadeInStatus {
-      to { opacity: 1; }
+    .option.selected {
+      background: var(--gold-dark);
+      color: white;
+      border-color: var(--gold-dark);
+      transform: translateX(18px);
     }
 
-    .file-upload {
-      margin-top: 4rem;
-      opacity: 0;
-      transition: opacity 1s forwards 5.5s;
-    }
-
-    .file-upload.visible {
-      opacity: 1;
+    .upload-zone {
+      margin: 2rem auto;
+      max-width: 480px;
     }
 
     .upload-label {
-      display: inline-block;
-      padding: 18px 48px;
-      font-size: 1.3rem;
-      letter-spacing: 0.3em;
-      color: white;
+      display: block;
+      padding: 24px 32px;
+      font-size: 1.35rem;
+      letter-spacing: 0.2em;
       background: var(--gold-dark);
+      color: white;
       cursor: pointer;
-      transition: all 0.4s ease;
+      transition: all 0.4s;
       text-transform: uppercase;
-      border: none;
+      margin: 1.5rem 0;
     }
 
-    .upload-label:hover {
-      background: var(--gold-main);
-      transform: translateY(-3px);
+    .upload-label:hover { background: var(--gold-main); transform: translateY(-4px); }
+
+    input[type="file"] { display: none; }
+
+    #emailInput {
+      width: 100%;
+      max-width: 480px;
+      padding: 18px 24px;
+      font-size: 1.3rem;
+      border: 1px solid var(--gold-main);
+      background: white;
+      color: var(--text);
+      margin: 2rem auto 3rem;
+      font-family: 'Playfair Display', serif;
     }
 
-    input[type="file"] {
-      display: none;
+    .progress {
+      font-size: 1.2rem;
+      color: var(--gold-main);
+      margin-bottom: 1rem;
+      letter-spacing: 0.15em;
     }
+
+    @keyframes fadeIn { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
 
     @media (max-width: 640px) {
-      .budget-buttons { gap: 0.8rem; }
-      .budget-btn { padding: 14px 24px; font-size: 1.15rem; min-width: 120px; }
-      .title { font-size: 2.8rem; }
-      .subtitle { font-size: 1.35rem; }
+      .options { gap: 1rem; }
+      .option { padding: 18px 24px; font-size: 1.25rem; }
     }
   </style>
 </head>
 <body>
 
   <div class="container">
-    <div class="header">
-      <h1 class="title">Diagnostic Beauté</h1>
-      <p class="subtitle">On commence par ton budget réel</p>
+
+    <div class="intro" id="intro">
+      <h1>Diagnostic Maquillage</h1>
+      <p>On va sculpter ton teint parfait.<br>Réponds sans filtre, on avance tout seul.</p>
+      <button class="start-btn" onclick="startQuiz()">Commencer</button>
     </div>
 
-    <div class="budget-section">
-      <div class="budget-label">Ton budget max pour ta routine parfaite</div>
-      
-      <div class="budget-buttons">
-        <button class="budget-btn" data-value="50">50 €</button>
-        <button class="budget-btn" data-value="100">100 €</button>
-        <button class="budget-btn" data-value="200">200 €</button>
-        <button class="budget-btn" data-value="400">400 €</button>
-        <button class="budget-btn" data-value="1000">1000 €+</button>
+    <!-- Questions -->
+    <div class="question" id="q1">
+      <div class="progress">1/6</div>
+      <h2>Quel est votre objectif principal ?</h2>
+      <div class="options">
+        <div class="option" data-value="naturel">Un teint parfait et naturel (Effet "no-makeup")</div>
+        <div class="option" data-value="camoufler">Camoufler les imperfections (Acné, rougeurs, taches)</div>
+        <div class="option" data-value="soiree">Un look sophistiqué pour le soir</div>
       </div>
     </div>
 
-    <div class="next-step" id="nextStep">
-      <div class="loader">
-        <div class="loader-bar"></div>
+    <div class="question" id="q2">
+      <div class="progress">2/6</div>
+      <h2>Comment décririez-vous votre type de peau ?</h2>
+      <div class="options">
+        <div class="option" data-value="grasse">Grasse (Elle brille pendant la journée)</div>
+        <div class="option" data-value="seche">Sèche (Elle tiraille ou pèle un peu)</div>
+        <div class="option" data-value="mixte">Mixte (Brille sur le nez/front, mais sèche sur les joues)</div>
+        <div class="option" data-value="sensible">Sensible (Rougit facilement)</div>
       </div>
-      <div class="status-text">On cherche ton maquillage parfait… au juste prix</div>
+    </div>
 
-      <div class="file-upload" id="uploadSection">
-        <label class="upload-label" for="selfie">Uploader ton selfie maintenant</label>
+    <div class="question" id="q3">
+      <div class="progress">3/6</div>
+      <h2>Quel fini préférez-vous pour votre teint ?</h2>
+      <div class="options">
+        <div class="option" data-value="mat">Mat (Pas de brillance du tout)</div>
+        <div class="option" data-value="dewy">Lumineux / Dewy (Peau bien hydratée et éclatante)</div>
+        <div class="option" data-value="satine">Satiné (Entre les deux)</div>
+      </div>
+    </div>
+
+    <div class="question" id="q4">
+      <div class="progress">4/6</div>
+      <h2>Analyse de votre carnation</h2>
+      <p class="small">Pour une précision maximale, téléchargez un selfie pris à la lumière du jour (face à une fenêtre).</p>
+      <div class="upload-zone">
+        <label class="upload-label" for="selfie">Uploader ton selfie</label>
         <input type="file" id="selfie" accept="image/*">
       </div>
     </div>
+
+    <div class="question" id="q5">
+      <div class="progress">5/6</div>
+      <h2>Quelle est la couleur de vos veines à l'intérieur de votre poignet ?<br><span class="small">(Astuce de pro pour connaître le sous-ton)</span></h2>
+      <div class="options">
+        <div class="option" data-value="froid">Bleues ou violettes (Sous-ton Froid)</div>
+        <div class="option" data-value="chaud">Vertes (Sous-ton Chaud)</div>
+        <div class="option" data-value="neutre">Je ne sais pas / Mélange des deux (Sous-ton Neutre)</div>
+      </div>
+    </div>
+
+    <div class="question" id="q6">
+      <div class="progress">6/6</div>
+      <h2>Où devons-nous envoyer votre diagnostic et vos produits recommandés ?</h2>
+      <input type="email" id="emailInput" placeholder="ton@email.com" required>
+    </div>
+
+    <!-- Résultat final -->
+    <div class="result" id="result" style="display:none;">
+      <h1 style="font-size: clamp(3.5rem,10vw,6rem); color:var(--gold-main); margin:2rem 0;">Ton diagnostic est prêt.</h1>
+      <p style="font-size:1.8rem; max-width:680px; margin:0 auto 4rem; line-height:1.7;">
+        On a tout capté : ton envie de glow qui claque, ta peau qui brille comme une chatte en chaleur ou qui tire comme une vieille bite sèche, ton sous-ton qui va décider si tu vas vers le nude glacé ou le chaud caramel...<br><br>
+        Ton ordonnance maquillage arrive direct dans ta boîte. Ouvre-la vite, ta peau va jouir.
+      </p>
+      <button onclick="restartQuiz()" style="padding:18px 60px; font-size:1.4rem; letter-spacing:0.35em; background:transparent; border:1px solid var(--gold-dark); color:var(--gold-dark); cursor:pointer; text-transform:uppercase; transition:all 0.4s;">
+        Recommencer
+      </button>
+    </div>
+
   </div>
 
   <script>
-    const buttons = document.querySelectorAll('.budget-btn');
-    const nextStep = document.getElementById('nextStep');
-    const uploadSection = document.getElementById('uploadSection');
+    const questions = document.querySelectorAll('.question');
+    let current = -1;
 
-    buttons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        buttons.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
+    function startQuiz() {
+      document.getElementById('intro').style.display = 'none';
+      nextQuestion();
+    }
 
-        setTimeout(() => {
-          nextStep.classList.add('visible');
+    function nextQuestion() {
+      if (current >= 0) {
+        questions[current].classList.remove('active');
+      }
+      current++;
+      if (current < questions.length) {
+        questions[current].classList.add('active');
+
+        // Auto-advance sur les questions à choix
+        if (current !== 3 && current !== 5) {  // skip upload et email
+          const opts = questions[current].querySelectorAll('.option');
+          opts.forEach(opt => {
+            opt.onclick = () => {
+              opts.forEach(o => o.classList.remove('selected'));
+              opt.classList.add('selected');
+              setTimeout(nextQuestion, 900);
+            };
+          });
+        }
+
+        // Pour l'upload (q4), on avance après upload ou timeout long
+        if (current === 3) {
+          const fileInput = document.getElementById('selfie');
+          fileInput.onchange = () => {
+            if (fileInput.files.length > 0) {
+              setTimeout(nextQuestion, 1200); // un peu plus long pour montrer qu'on "analyse"
+            }
+          };
+          // Ou avance auto après 8s si pas uploadé
           setTimeout(() => {
-            uploadSection.classList.add('visible');
-          }, 5500);
-        }, 400);
-      });
-    });
+            if (!fileInput.files || fileInput.files.length === 0) {
+              nextQuestion();
+            }
+          }, 8000);
+        }
+
+        // Pour l'email (q6), avance quand on tape quelque chose de valide
+        if (current === 5) {
+          const emailInput = document.getElementById('emailInput');
+          emailInput.oninput = () => {
+            if (emailInput.value.trim().includes('@') && emailInput.value.trim().length > 5) {
+              setTimeout(showResult, 1400);
+            }
+          };
+        }
+      } else {
+        showResult();
+      }
+    }
+
+    function showResult() {
+      document.querySelectorAll('.question').forEach(q => q.classList.remove('active'));
+      document.getElementById('result').style.display = 'block';
+      // Ici tu pourrais collecter toutes les data.value des .selected et l'email
+      // console.log("Data collectée : ", ...);
+    }
+
+    function restartQuiz() {
+      current = -1;
+      document.getElementById('result').style.display = 'none';
+      document.getElementById('intro').style.display = 'block';
+      document.querySelectorAll('.option').forEach(el => el.classList.remove('selected'));
+      document.getElementById('selfie').value = '';
+      document.getElementById('emailInput').value = '';
+    }
   </script>
 
 </body>
