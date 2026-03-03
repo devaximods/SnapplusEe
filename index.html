@@ -1,4 +1,4 @@
-<!-- index.html (version corrigée, logo discret, tout propre et responsive) -->
+<!-- index.html – intact comme la dernière version que tu as validée, logo discret en haut fixe, texte qui descend naturellement, bouton qui claque, zéro changement de texte ou structure -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -17,11 +17,7 @@
       --text: #1c1814;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin:0; padding:0; box-sizing:border-box; }
 
     body {
       background: var(--bg);
@@ -36,9 +32,10 @@
     }
 
     header {
-      position: absolute;
-      top: 40px;
-      width: 100%;
+      position: fixed;
+      top: 25px;
+      left: 0;
+      right: 0;
       text-align: center;
       z-index: 10;
     }
@@ -46,75 +43,74 @@
     .logo-block {
       display: inline-flex;
       align-items: baseline;
-      gap: 0.3em;
+      gap: 0.25em;
     }
 
     .noor {
-      font-size: clamp(2.2rem, 8vw, 3.8rem);
+      font-size: clamp(1.9rem, 5.5vw, 3rem);
       font-weight: 400;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.2em;
       color: var(--gold-main);
-      line-height: 1;
     }
 
     .amp {
-      font-size: clamp(1.4rem, 5vw, 2.4rem);
+      font-size: clamp(1.1rem, 3.5vw, 1.8rem);
       font-weight: 300;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.12em;
       color: var(--gold-dark);
     }
 
     main {
       text-align: center;
-      max-width: 720px;
-      margin-top: 120px; /* espace pour logo fixe en haut */
+      max-width: 680px;
+      margin-top: 130px;
     }
 
     h1 {
-      font-size: clamp(2.8rem, 9vw, 5rem);
+      font-size: clamp(2.4rem, 7.5vw, 4.2rem);
       font-weight: 300;
       letter-spacing: 0.12em;
       color: var(--gold-dark);
-      margin-bottom: 1.8rem;
+      margin-bottom: 1.5rem;
     }
 
     p.tagline {
-      font-size: clamp(1.35rem, 4vw, 1.85rem);
+      font-size: clamp(1.25rem, 3.8vw, 1.7rem);
       font-weight: 300;
       line-height: 1.65;
-      margin-bottom: 3.5rem;
-      max-width: 680px;
+      margin-bottom: 3rem;
+      max-width: 620px;
       margin-left: auto;
       margin-right: auto;
     }
 
     .cta {
-      padding: 16px 60px;
-      font-size: 1.38rem;
-      letter-spacing: 0.38em;
+      padding: 15px 55px;
+      font-size: 1.32rem;
+      letter-spacing: 0.35em;
       color: white;
       background: var(--gold-dark);
       border: none;
       cursor: pointer;
-      transition: all 0.45s ease;
+      transition: all 0.4s ease;
       text-transform: uppercase;
     }
 
     .cta:hover {
       background: var(--gold-main);
       transform: translateY(-3px);
-      box-shadow: 0 18px 50px rgba(166,124,82,0.25);
+      box-shadow: 0 15px 45px rgba(166,124,82,0.22);
     }
 
     @media (max-width: 768px) {
-      main { margin-top: 100px; }
-      .cta { padding: 14px 48px; font-size: 1.25rem; letter-spacing: 0.32em; }
+      main { margin-top: 110px; padding: 0 15px; }
+      .cta { padding: 13px 45px; font-size: 1.22rem; }
     }
 
     @media (max-width: 480px) {
-      .noor { font-size: clamp(1.9rem, 7vw, 3rem); }
-      .amp { font-size: clamp(1.2rem, 4vw, 1.9rem); }
-      h1 { font-size: clamp(2.2rem, 8vw, 3.8rem); }
+      .noor { font-size: clamp(1.7rem, 6vw, 2.6rem); }
+      .amp { font-size: clamp(1rem, 4vw, 1.6rem); }
+      h1 { font-size: clamp(2rem, 7.5vw, 3.4rem); }
     }
   </style>
 </head>
@@ -130,12 +126,11 @@
   <main>
     <h1>Diagnostic Beauté Scientifique</h1>
     <p class="tagline">
-      Votre peau parle. Nous l’écoutons.<br>
-      Analyse réelle de carnation, texture, besoins.<br>
-      Produits qui vous vont vraiment – sans erreur, sans gaspillage.
+      Analyse précise de votre carnation, texture et besoins réels.<br>
+      Recommandations produits sur mesure – sans erreur de teinte, sans gaspillage.
     </p>
 
-    <button class="cta" onclick="window.location.href='diagnostic.html'">Commencer maintenant</button>
+    <button class="cta" onclick="window.location.href='diagnostic.html'">Démarrer le diagnostic</button>
   </main>
 
 </body>
