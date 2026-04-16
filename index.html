@@ -18,18 +18,17 @@
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: 10;
-            text-align: center;
         }
         .bite-img {
-            max-width: 78%;
-            max-height: 78vh;
-            animation: pulse 0.85s infinite alternate ease-in-out;
-            box-shadow: 0 0 130px #ff00ff, 0 0 180px #ff0088;
-            border: 10px solid #ff2222;
+            max-width: 82%;
+            max-height: 82vh;
+            animation: pulse 0.8s infinite alternate ease-in-out;
+            box-shadow: 0 0 140px #ff00ff, 0 0 200px #ff0088;
+            border: 12px solid #ff2222;
         }
         @keyframes pulse {
-            from { transform: scale(0.88) rotate(-5deg); }
-            to { transform: scale(1.12) rotate(5deg); }
+            from { transform: scale(0.85) rotate(-6deg); }
+            to { transform: scale(1.15) rotate(6deg); }
         }
         .rain-container {
             position: fixed;
@@ -40,69 +39,100 @@
         }
         .colleague-img {
             position: absolute;
-            width: 190px;
-            opacity: 0.9;
+            width: 195px;
+            opacity: 0.92;
             animation: fall linear forwards;
-            filter: drop-shadow(0 0 25px #ff00aa);
+            filter: drop-shadow(0 0 30px #ff00aa);
         }
         @keyframes fall {
             to {
-                transform: translateY(135vh) rotate(1080deg);
+                transform: translateY(140vh) rotate(1440deg);
             }
         }
         .text-overlay {
             position: fixed;
-            bottom: 35px;
+            bottom: 40px;
             left: 50%;
             transform: translateX(-50%);
             color: #ff4444;
-            font-size: 36px;
-            text-shadow: 0 0 30px #ff0000;
+            font-size: 38px;
+            text-shadow: 0 0 35px #ff0000;
             z-index: 20;
             text-align: center;
-            line-height: 1.1;
         }
-        .redirect-text {
+        .click-to-unmute {
             position: fixed;
-            top: 25px;
+            top: 50%;
             left: 50%;
-            transform: translateX(-50%);
-            color: #ffffff;
-            font-size: 20px;
-            opacity: 0.8;
-            z-index: 20;
+            transform: translate(-50%, -50%);
+            color: #ffff00;
+            font-size: 28px;
+            text-shadow: 0 0 20px #ffff00;
+            z-index: 30;
+            cursor: pointer;
+            display: none;
         }
     </style>
 </head>
 <body>
 
-    <!-- GROSSE BITE CENTRALE QUI PULSE -->
+    <!-- GROSSE BITE QUI PULSE AU CENTRE -->
     <div class="bite-container">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Erect_penis%2C_with_pre-ejaculate.jpg/800px-Erect_penis%2C_with_pre-ejaculate.jpg" 
              alt="Grosse bite validation" 
              class="bite-img">
     </div>
 
-    <!-- PLUIE DE TON COLLÈGUE À POIL -->
+    <!-- PLUIE DE TON COLLÈGUE TOUT NU -->
     <div class="rain-container" id="rain"></div>
 
     <div class="text-overlay">
-        🍆 ERREUR TECHNIQUE<br>
-        GROSSE BITE VALIDÉE 🍆💦<br>
-        <small>Ton collègue tombe du ciel tout nu... sa bite vole partout !</small>
+        🍆 ERREUR TECHNIQUE DÉTECTÉE 🍆<br>
+        GROSSE BITE EN VALIDATION 💦<br>
+        <small>Ton collègue tombe du ciel à poil... regarde sa bite voler partout !</small>
     </div>
 
-    <div class="redirect-text">
-        Redirection vers le vrai certificat dans 10 secondes... ne cligne pas des yeux 👀🍆
+    <!-- MESSAGE POUR FORCER LE SON SI LE NAVIGATEUR BLOQUE -->
+    <div id="unmute" class="click-to-unmute">
+        CLIQUE ICI POUR FAIRE HURLER LE SON DE SUCCION 🍆👄
     </div>
 
-    <!-- TON SON DE SUCCION QUI TOURNE EN BOUCLE -->
-    <audio id="suckSound" autoplay loop>
+    <!-- TON SON .m4a QUI TOURNE EN BOUCLE SANS FIN -->
+    <audio id="suckSound" loop>
         <source src="https://files.catbox.moe/avu0v8.m4a" type="audio/mpeg">
-        Ton navigateur bloque le son... dommage pour lui !
     </audio>
 
     <script>
+        const audio = document.getElementById('suckSound');
+        const unmuteBtn = document.getElementById('unmute');
+
+        // Force le son à démarrer (volume max)
+        function startSound() {
+            audio.volume = 1.0;
+            audio.play().catch(() => {
+                unmuteBtn.style.display = 'block';
+            });
+        }
+
+        // Démarre le son dès le chargement
+        window.addEventListener('load', () => {
+            startSound();
+        });
+
+        // Si le navigateur bloque, un clic sur la page ou sur le bouton lance le son
+        document.body.addEventListener('click', () => {
+            if (audio.paused) {
+                startSound();
+                unmuteBtn.style.display = 'none';
+            }
+        });
+
+        unmuteBtn.addEventListener('click', () => {
+            startSound();
+            unmuteBtn.style.display = 'none';
+        });
+
+        // Pluie ultra dense de tes photos de cul et bite
         const rainContainer = document.getElementById('rain');
         const colleagueImages = [
             "https://i.ibb.co/0zFQYs2/2-E50-EACE-C70-F-493-D-AAFD-E30-D0089042-B.jpg",
@@ -118,28 +148,19 @@
             const img = document.createElement('img');
             img.src = colleagueImages[Math.floor(Math.random() * colleagueImages.length)];
             img.classList.add('colleague-img');
-            
             img.style.left = `${Math.random() * 100}vw`;
-            const duration = Math.random() * 6 + 5;
+            const duration = Math.random() * 5.5 + 4.5;
             img.style.animationDuration = `${duration}s`;
-            
-            const size = Math.random() * 110 + 160;
+            const size = Math.random() * 100 + 170;
             img.style.width = `${size}px`;
-            
             rainContainer.appendChild(img);
-            
-            setTimeout(() => img.remove(), duration * 1000 + 1000);
+            setTimeout(() => img.remove(), 14000);
         }
 
-        // Pluie très dense de bite et de cul
-        setInterval(createFallingNakedColleague, 120);
+        // Pluie très rapide et dense
+        setInterval(createFallingNakedColleague, 110);
 
-        // Redirection auto vers le vrai lien pro après 10 secondes
-        setTimeout(() => {
-            window.location.href = "https://VOTRE-VRAI-LIEN-VALIDATION-PRO.com/rapport?token=ABC123XYZ789";
-        }, 10000);
-
-        console.log("%cXSNPOWWWWWW 🍆💦 La pluie de cul et la grosse bite sont lancées !", "color:#ff00ff; font-size:24px;");
+        console.log("%cXSNPOWWWWWW 🍆💦🌧️ La grosse bite pulse + pluie de cul + son qui suce à fond !", "color:#ff00ff; font-size:26px; font-weight:bold;");
     </script>
 
 </body>
