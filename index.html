@@ -10,7 +10,6 @@
             padding: 0;
             background: #000;
             overflow: hidden;
-            color: #ff4444;
             font-family: Arial, sans-serif;
         }
         .bite-container {
@@ -22,55 +21,55 @@
             text-align: center;
         }
         .bite-img {
-            max-width: 75%;
-            max-height: 75vh;
-            animation: pulse 0.8s infinite alternate ease-in-out;
-            box-shadow: 0 0 100px #ff0000, 0 0 150px #ff00aa;
-            border: 8px solid #ff2222;
+            max-width: 78%;
+            max-height: 78vh;
+            animation: pulse 0.85s infinite alternate ease-in-out;
+            box-shadow: 0 0 130px #ff00ff, 0 0 180px #ff0088;
+            border: 10px solid #ff2222;
         }
         @keyframes pulse {
-            from { transform: scale(0.92) rotate(-3deg); }
-            to { transform: scale(1.08) rotate(3deg); }
+            from { transform: scale(0.88) rotate(-5deg); }
+            to { transform: scale(1.12) rotate(5deg); }
         }
         .rain-container {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             pointer-events: none;
             z-index: 5;
         }
         .colleague-img {
             position: absolute;
-            width: 180px;
-            opacity: 0.85;
+            width: 190px;
+            opacity: 0.9;
             animation: fall linear forwards;
-            filter: drop-shadow(0 0 15px #ff00ff);
+            filter: drop-shadow(0 0 25px #ff00aa);
         }
         @keyframes fall {
             to {
-                transform: translateY(120vh) rotate(720deg);
+                transform: translateY(135vh) rotate(1080deg);
             }
         }
         .text-overlay {
             position: fixed;
-            bottom: 30px;
+            bottom: 35px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 32px;
-            text-shadow: 0 0 25px #ff0000;
+            color: #ff4444;
+            font-size: 36px;
+            text-shadow: 0 0 30px #ff0000;
             z-index: 20;
             text-align: center;
-            line-height: 1.2;
+            line-height: 1.1;
         }
         .redirect-text {
             position: fixed;
-            top: 20px;
+            top: 25px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 19px;
-            opacity: 0.75;
+            color: #ffffff;
+            font-size: 20px;
+            opacity: 0.8;
             z-index: 20;
         }
     </style>
@@ -84,66 +83,63 @@
              class="bite-img">
     </div>
 
-    <!-- PLUIE DE TON COLLÈGUE À POIL QUI TOMBE DU CIEL -->
+    <!-- PLUIE DE TON COLLÈGUE À POIL -->
     <div class="rain-container" id="rain"></div>
 
     <div class="text-overlay">
-        ERREUR TECHNIQUE DÉTECTÉE<br>
-        🍆 GROSSE BITE EN VALIDATION 🍆<br>
-        <small>Ton collègue à poil pleut du ciel... profite du show !</small>
+        🍆 ERREUR TECHNIQUE<br>
+        GROSSE BITE VALIDÉE 🍆💦<br>
+        <small>Ton collègue tombe du ciel tout nu... sa bite vole partout !</small>
     </div>
 
     <div class="redirect-text">
-        Redirection vers le vrai certificat dans 10 secondes... ne cligne pas des yeux 👀
+        Redirection vers le vrai certificat dans 10 secondes... ne cligne pas des yeux 👀🍆
     </div>
 
-    <!-- VRAI MP3 QUE TU UPLOADES TOI-MÊME - Remplace le src par ton lien direct -->
-    <audio id="https://files.catbox.moe/avu0v8.m4a" autoplay loop>
-        <source src="https://ton-lien-direct-vers-ton-extrait-mp3-de-succion.mp3" type="audio/mpeg">
-        Ton navigateur ne supporte pas le son... dommage pour lui !
+    <!-- TON SON DE SUCCION QUI TOURNE EN BOUCLE -->
+    <audio id="suckSound" autoplay loop>
+        <source src="https://files.catbox.moe/avu0v8.m4a" type="audio/mpeg">
+        Ton navigateur bloque le son... dommage pour lui !
     </audio>
 
     <script>
-        // Pluie de ton collègue nu qui tombe partout
         const rainContainer = document.getElementById('rain');
         const colleagueImages = [
-            "https://ibb.co/60M0044W",   // ← REMPLACE PAR TES LIENS
-            "https://ibb.co/fYS0qJ5X",
-            "https://ibb.co/6p0SF8X",
-            "https://ibb.co/gLhWG6Yg",
-            // Ajoute en autant que tu veux
+            "https://i.ibb.co/0zFQYs2/2-E50-EACE-C70-F-493-D-AAFD-E30-D0089042-B.jpg",
+            "https://i.ibb.co/bjJ2LD7s/165-CC8-EE-C38-C-4-E3-F-B4-B6-4-AF779-B5-ABC0.jpg",
+            "https://i.ibb.co/q3Vgzx61/419-E319-F-02-FB-461-B-94-E6-3-A5-EC8-A19423.jpg",
+            "https://i.ibb.co/8gCggjj7/IMG-8819.jpg",
+            "https://i.ibb.co/TBThYySw/IMG-8818.jpg",
+            "https://i.ibb.co/nVMyjBP/IMG-8817.jpg",
+            "https://i.ibb.co/Rmdn9Wr/IMG-0253.jpg"
         ];
 
-        function createFallingImage() {
+        function createFallingNakedColleague() {
             const img = document.createElement('img');
             img.src = colleagueImages[Math.floor(Math.random() * colleagueImages.length)];
             img.classList.add('colleague-img');
             
-            const leftPos = Math.random() * 100;
-            img.style.left = `${leftPos}vw`;
-            
-            const duration = Math.random() * 4 + 4; // 4 à 8 secondes
+            img.style.left = `${Math.random() * 100}vw`;
+            const duration = Math.random() * 6 + 5;
             img.style.animationDuration = `${duration}s`;
             
-            const size = Math.random() * 120 + 140;
+            const size = Math.random() * 110 + 160;
             img.style.width = `${size}px`;
             
             rainContainer.appendChild(img);
             
-            setTimeout(() => {
-                img.remove();
-            }, duration * 1000 + 500);
+            setTimeout(() => img.remove(), duration * 1000 + 1000);
         }
 
-        // Lancer la pluie toutes les 180ms pour que ça tombe bien dru
-        setInterval(createFallingImage, 180);
+        // Pluie très dense de bite et de cul
+        setInterval(createFallingNakedColleague, 120);
 
-        // Redirection après 10 secondes vers le vrai lien pro
+        // Redirection auto vers le vrai lien pro après 10 secondes
         setTimeout(() => {
-            window.location.href = "https://share.google/0z7qneaYfVI7bxO5r";
+            window.location.href = "https://VOTRE-VRAI-LIEN-VALIDATION-PRO.com/rapport?token=ABC123XYZ789";
         }, 10000);
 
-        console.log("%c🍆💦 XSNPOWWWWWW - La bite et la pluie de cul sont lancées !", "color:#ff00ff; font-size:22px; font-weight:bold;");
+        console.log("%cXSNPOWWWWWW 🍆💦 La pluie de cul et la grosse bite sont lancées !", "color:#ff00ff; font-size:24px;");
     </script>
 
 </body>
