@@ -19,30 +19,27 @@
             height: 100%;
         }
 
-        /* 💖 TEXTE EN BAS */
+        /* 💖 TEXTE EN BAS SANS TOUCHER AU CŒUR */
         .bottom-text {
             position: absolute;
-            bottom: 40px;
+            bottom: 30px;
             width: 100%;
             text-align: center;
             color: #ea80b0;
-            font-size: 32px;
+            font-size: 28px;
             font-family: Arial, sans-serif;
             font-weight: bold;
-            letter-spacing: 2px;
             z-index: 10;
             pointer-events: none;
-            text-shadow: 0 0 15px #ff4da6, 0 0 30px #ff1a75;
+            text-shadow: 0 0 15px #ff4da6;
         }
     </style>
 </HEAD>
 
 <BODY>
 
-    <!-- 💖 TEXTE -->
-    <div class="bottom-text">Je t’aime Hind ❤️</div>
+    <div class="bottom-text">Je t’aime hindouuu ❤️</div>
 
-    <!-- 💖 CŒUR ANIMÉ -->
     <canvas id="pinkboard"></canvas>
 
     <script>
@@ -61,6 +58,7 @@
             var c = ["ms", "moz", "webkit", "o"];
             for (var a = 0; a < c.length && !window.requestAnimationFrame; ++a) {
                 window.requestAnimationFrame = window[c[a] + "RequestAnimationFrame"];
+                window.cancelAnimationFrame = window[c[a] + "CancelAnimationFrame"];
             }
             if (!window.requestAnimationFrame) {
                 window.requestAnimationFrame = function (h) {
@@ -118,91 +116,110 @@
             this.age += dt;
         };
 
-        Particle.prototype.draw = function (ctx, img) {
-            var size = img.width * (1 - this.age / settings.particles.duration);
+        Particle.prototype.draw = function (ctx, image) {
+            var size = image.width * (1 - this.age / settings.particles.duration);
             ctx.globalAlpha = 1 - this.age / settings.particles.duration;
-            ctx.drawImage(img, this.position.x, this.position.y, size, size);
+            ctx.drawImage(image, this.position.x, this.position.y, size, size);
         };
 
-        var ParticlePool = function (len) {
-            var particles = [];
-            for (var i = 0; i < len; i++) particles[i] = new Particle();
+        var ParticlePool = function (length) {
+            var particles = new Array(length);
+            for (var i = 0; i < particles.length; i++)
+                particles[i] = new Particle();
 
             var firstActive = 0;
             var firstFree = 0;
 
             this.add = function (x, y, dx, dy) {
                 particles[firstFree].initialize(x, y, dx, dy);
-                firstFree = (firstFree + 1) % len;
-                if (firstFree === firstActive) firstActive = (firstActive + 1) % len;
+                firstFree = (firstFree + 1) % length;
+                if (firstFree === firstActive)
+                    firstActive = (firstActive + 1) % length;
             };
 
             this.update = function (dt) {
-                for (var i = firstActive; i !== firstFree; i = (i + 1) % len) {
+                for (var i = firstActive; i !== firstFree; i = (i + 1) % length) {
                     particles[i].update(dt);
                 }
             };
 
-            this.draw = function (ctx, img) {
-                for (var i = firstActive; i !== firstFree; i = (i + 1) % len) {
-                    particles[i].draw(ctx, img);
+            this.draw = function (ctx, image) {
+                for (var i = firstActive; i !== firstFree; i = (i + 1) % length) {
+                    particles[i].draw(ctx, image);
                 }
             };
         };
 
         (function (canvas) {
-            var ctx = canvas.getContext("2d");
-            var particles = new ParticlePool(settings.particles.length);
-            var time;
+            var ctx = canvas.getContext("2d"),
+                particles = new ParticlePool(settings.particles.length),
+                time;
 
-            function heart(t) {
+            function pointOnHeart(t) {
                 return new Point(
                     160 * Math.pow(Math.sin(t), 3),
-                    130 * Math.cos(t) - 50 * Math.cos(2 * t) - 20 * Math.cos(3 * t)
+                    130 * Math.cos(t) - 50 * Math.cos(2 * t) - 20 * Math.cos(3 * t) - 10 * Math.cos(4 * t) + 25
                 );
             }
 
-            var img = (function () {
-                var c = document.createElement("canvas");
-                var ctx = c.getContext("2d");
-                c.width = c.height = settings.particles.size;
+            var image = (function () {
+                var canvas = document.createElement("canvas"),
+                    ctx = canvas.getContext("2d");
 
-                ctx.fillStyle = "#ea80b0";
+                canvas.width = settings.particles.size;
+                canvas.height = settings.particles.size;
+
                 ctx.beginPath();
-                ctx.arc(c.width / 2, c.height / 2, 5, 0, Math.PI * 2);
+                var t = -Math.PI;
+                var p = pointOnHeart(t);
+                ctx.moveTo(p.x, p.y);
+
+                while (t < Math.PI) {
+                    t += 0.01;
+                    p = pointOnHeart(t);
+                    ctx.lineTo(p.x, p.y);
+                }
+
+                ctx.closePath();
+                ctx.fillStyle = "#ea80b0";
                 ctx.fill();
 
-                var i = new Image();
-                i.src = c.toDataURL();
-                return i;
+                var img = new Image();
+                img.src = canvas.toDataURL();
+                return img;
             })();
 
             function render() {
                 requestAnimationFrame(render);
 
-                var newTime = Date.now() / 1000;
-                var dt = newTime - (time || newTime);
+                var newTime = Date.now() / 1000,
+                    dt = newTime - (time || newTime);
                 time = newTime;
 
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-                for (var i = 0; i < 10; i++) {
-                    var p = heart(Math.PI - Math.PI * 2 * Math.random());
-                    particles.add(canvas.width / 2 + p.x, canvas.height / 2 - p.y, p.x * 0.01, -p.y * 0.01);
+                var amount = settings.particles.length * dt;
+                for (var i = 0; i < amount; i++) {
+                    var p = pointOnHeart(Math.PI - 2 * Math.PI * Math.random());
+                    var dir = p.clone().length(settings.particles.velocity);
+                    particles.add(canvas.width / 2 + p.x, canvas.height / 2 - p.y, dir.x, -dir.y);
                 }
 
                 particles.update(dt);
-                particles.draw(ctx, img);
+                particles.draw(ctx, image);
             }
 
             function resize() {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
+                canvas.width = canvas.clientWidth;
+                canvas.height = canvas.clientHeight;
             }
 
             window.onresize = resize;
-            resize();
-            render();
+
+            setTimeout(function () {
+                resize();
+                render();
+            }, 10);
 
         })(document.getElementById("pinkboard"));
     </script>
